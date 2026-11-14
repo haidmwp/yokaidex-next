@@ -58,7 +58,7 @@ html, body { margin: 0; padding: 0; }
 }
 .a-topbar .a-user { display: flex; align-items: center; gap: 12px; color: var(--a-muted); }
 .a-content { padding: 24px; max-width: 1280px; width: 100%; }
-.a-menu-btn { display: none; }
+.a-btn.a-menu-btn { display: none; }
 
 .a-page-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 18px; flex-wrap: wrap; }
 .a-page-head p { margin: 4px 0 0; color: var(--a-muted); }
@@ -160,7 +160,7 @@ html, body { margin: 0; padding: 0; }
 @media (max-width: 900px) {
   .a-sidebar { position: fixed; left: -260px; z-index: 50; transition: left .2s; }
   .a-sidebar.open { left: 0; box-shadow: 0 0 0 100vmax rgba(0,0,0,.4); }
-  .a-menu-btn { display: inline-flex; }
+  .a-btn.a-menu-btn { display: inline-flex; }
   .a-topbar { padding-left: 60px; }
   .a-content { padding: 16px; }
 }

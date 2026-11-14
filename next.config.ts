@@ -1,7 +1,8 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  // Nút DevTools (chỉ hiện khi dev) đặt bên phải để không đè lên sidebar admin
+  devIndicators: { position: "bottom-right" },
   cacheComponents: true,
   partialPrefetching: true,
 };
