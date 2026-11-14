@@ -13,7 +13,7 @@ const GROUPS = [
     title: "Nội dung",
     // Cùng thứ tự với menu của website
     items: [
-      { href: "/admin/pages/home", label: "Trang chủ (Home)", icon: "icon-home.png" },
+      { href: "/admin/pages/home", label: "Home", icon: "icon-home.png" },
       { href: "/admin/yokai", label: "Yo-kai (Medallium)", icon: "icon-medallium.png" },
       { href: "/admin/qr-code", label: "QR Code", icon: "icon-qr-code.png" },
       { href: "/admin/baffle-board", label: "Baffle Board", icon: "icon-baffle-board.png" },
