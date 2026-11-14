@@ -4,14 +4,15 @@ import SiteShell from "@/components/site/SiteShell";
 import Analytics from "@/components/site/Analytics";
 import AdBar from "@/components/site/AdBar";
 import SupportNotice from "@/components/site/SupportNotice";
-import { getGeneralSettings } from "@/lib/settings";
+import { faviconIcons, getGeneralSettings } from "@/lib/settings";
 
 // Tiêu đề tab: trang chủ = tiêu đề website, trang con = "Tên trang | tiêu đề website" (sửa trong Admin › Cài đặt chung)
 export async function generateMetadata(): Promise<Metadata> {
-  const { siteTitle, siteUrl, gscVerification } = await getGeneralSettings();
+  const { siteTitle, siteUrl, gscVerification, favicon } = await getGeneralSettings();
   return {
     metadataBase: new URL(siteUrl),
     title: { default: siteTitle, template: `%s | ${siteTitle}` },
+    icons: faviconIcons(favicon),
     openGraph: { siteName: siteTitle },
     // thẻ <meta name="google-site-verification"> cho Google Search Console
     verification: gscVerification ? { google: gscVerification } : undefined,

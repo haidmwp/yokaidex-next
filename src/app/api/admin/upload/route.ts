@@ -14,7 +14,7 @@ export async function POST(request: Request) {
   const { tr } = await getTr();
   if (!(file instanceof File)) return Response.json({ error: tr("Không có file", "No file") }, { status: 400 });
   const ext = path.extname(file.name).toLowerCase();
-  if (!IMAGE_TYPES[ext]) return Response.json({ error: tr("Chỉ hỗ trợ ảnh png, jpg, webp, gif, avif", "Only png, jpg, webp, gif and avif images are supported") }, { status: 400 });
+  if (!IMAGE_TYPES[ext]) return Response.json({ error: tr("Chỉ hỗ trợ ảnh png, jpg, webp, gif, avif, ico", "Only png, jpg, webp, gif, avif and ico images are supported") }, { status: 400 });
   if (file.size > MAX_UPLOAD_BYTES) return Response.json({ error: tr("File tối đa 5MB", "Maximum file size is 5MB") }, { status: 400 });
 
   const now = new Date();

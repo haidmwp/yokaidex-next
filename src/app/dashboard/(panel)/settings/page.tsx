@@ -1,5 +1,5 @@
 import AdminForm from "@/components/admin/AdminForm";
-import { TextField } from "@/components/admin/Fields";
+import { ImageField, TextField } from "@/components/admin/Fields";
 import Tabs from "@/components/admin/Tabs";
 import { prisma } from "@/lib/prisma";
 import { getTr } from "@/lib/admin-lang-server";
@@ -57,6 +57,21 @@ export default async function SettingsPage() {
           hint={tr(
             "Tên miền chính thức (có https://). Dùng cho sitemap, robots.txt và thẻ chia sẻ mạng xã hội.",
             "The official domain (with https://). Used for the sitemap, robots.txt and social sharing tags.",
+          )}
+        />
+      </div>
+
+      <h2 style={{ marginTop: 24 }}>Favicon</h2>
+      <div className="a-form-grid" style={{ gridTemplateColumns: "1fr" }}>
+        <ImageField
+          name="favicon"
+          pickOnClick
+          clearable
+          label={tr("Biểu tượng trên tab trình duyệt", "Browser tab icon")}
+          defaultValue={s.favicon}
+          hint={tr(
+            "Bấm Upload để tải ảnh lên (nên dùng ảnh vuông PNG 512×512, hoặc file .ico). Để trống để dùng favicon mặc định. Trình duyệt có thể cần tải lại trang (Ctrl+F5) mới thấy icon mới.",
+            "Click Upload to upload an image (a square 512×512 PNG or an .ico file is recommended). Leave empty to use the default favicon. Browsers may need a hard reload (Ctrl+F5) to show the new icon.",
           )}
         />
       </div>

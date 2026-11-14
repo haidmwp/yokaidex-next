@@ -10,6 +10,7 @@ export const IMAGE_TYPES: Record<string, string> = {
   ".webp": "image/webp",
   ".gif": "image/gif",
   ".avif": "image/avif",
+  ".ico": "image/x-icon",
 };
 
 export const MAX_UPLOAD_BYTES = 5 * 1024 * 1024;

@@ -24,6 +24,8 @@ export type GeneralSettings = {
   sitemapSections: string[];
   /** Mã xác minh Google Search Console (nội dung thẻ meta google-site-verification) */
   gscVerification: string;
+  /** Favicon (đường dẫn ảnh /uploads/... hoặc https://...). Rỗng = /favicon.ico mặc định */
+  favicon: string;
 };
 
 /** Các nhóm trang có thể đưa vào sitemap. */
@@ -54,6 +56,7 @@ export const DEFAULT_SETTINGS: GeneralSettings = {
   sitemapEnabled: true,
   sitemapSections: SITEMAP_SECTIONS.map((s) => s.id),
   gscVerification: "",
+  favicon: "",
 };
 
 /** Đọc thẳng từ DB (không cache) – dùng cho proxy / server action. */
@@ -73,6 +76,7 @@ export async function readGeneralSettings(): Promise<GeneralSettings> {
     sitemapEnabled: v.sitemapEnabled ?? DEFAULT_SETTINGS.sitemapEnabled,
     sitemapSections: Array.isArray(v.sitemapSections) ? v.sitemapSections : DEFAULT_SETTINGS.sitemapSections,
     gscVerification: (v.gscVerification ?? "").trim(),
+    favicon: (v.favicon ?? "").trim(),
   };
 }
 
@@ -145,4 +149,12 @@ export function normalizeGaId(input: string, tr: Tr = VI): { id: string } | { er
   if (!id) return { id: "" };
   if (!/^G-[A-Z0-9]{4,20}$/.test(id)) return { error: tr("Mã Google Analytics phải có dạng G-XXXXXXXXXX (GA4 Measurement ID).", "The Google Analytics ID must look like G-XXXXXXXXXX (GA4 Measurement ID).") };
   return { id };
+}
+
+/** Kiểm tra đường dẫn favicon: rỗng (mặc định), đường dẫn trong site "/..." hoặc URL http(s). */
+export function normalizeFavicon(input: string, tr: Tr = VI): { url: string } | { error: string } {
+  const v = input.trim();
+  if (!v) return { url: "" };
+  if (v.length <= 500 && (/^\/[^/\s]/.test(v) || /^https?:\/\/\S+$/.test(v))) return { url: v };
+  return { error: tr("Favicon phải là đường dẫn ảnh (/uploads/...) hoặc URL http(s).", "The favicon must be an image path (/uploads/...) or an http(s) URL.") };
 }

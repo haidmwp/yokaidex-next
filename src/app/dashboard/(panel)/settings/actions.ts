@@ -11,6 +11,7 @@ import {
   SITEMAP_SECTIONS,
   clearLoginPathCache,
   normalizeGaId,
+  normalizeFavicon,
   normalizeGscCode,
   normalizeLoginPath,
   normalizeSiteUrl,
@@ -33,6 +34,8 @@ export async function saveGeneralSettings(_prev: ActionState, fd: FormData): Pro
   const adblockWarning = fd.get("_ads") === "1" ? fd.get("adblockWarning") === "on" : before.adblockWarning;
   const site = fd.has("siteUrl") ? normalizeSiteUrl(str(fd, "siteUrl"), tr) : { url: before.siteUrl };
   if ("error" in site) return { error: site.error };
+  const fav = fd.has("favicon") ? normalizeFavicon(str(fd, "favicon"), tr) : { url: before.favicon };
+  if ("error" in fav) return { error: fav.error };
   // phần SEO chỉ cập nhật khi form có tab SEO (tránh form cũ đang mở ghi đè thành "tắt sitemap")
   const hasSeo = fd.get("_seo") === "1";
   const gsc = hasSeo ? normalizeGscCode(str(fd, "gscVerification"), tr) : { code: before.gscVerification };
@@ -57,6 +60,7 @@ export async function saveGeneralSettings(_prev: ActionState, fd: FormData): Pro
     adCode,
     adblockWarning,
     siteUrl: site.url,
+    favicon: fav.url,
     sitemapEnabled,
     sitemapSections,
     gscVerification: gsc.code,

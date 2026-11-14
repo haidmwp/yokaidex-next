@@ -19,18 +19,50 @@ type ImageInputProps = {
   onChange: (v: string) => void;
   name?: string;
   placeholder?: string;
+  /** Bấm vào ô nhập cũng mở hộp chọn file (ô chỉ đọc, chỉ đổi bằng upload). */
+  pickOnClick?: boolean;
+  /** Hiện nút × đỏ cuối ô để xoá ảnh đã chọn. */
+  clearable?: boolean;
 };
 
 /** Ô nhập đường dẫn ảnh + xem trước + nút upload. */
-export function ImageInput({ value, onChange, name, placeholder }: ImageInputProps) {
+export function ImageInput({ value, onChange, name, placeholder, pickOnClick, clearable }: ImageInputProps) {
   const { tr } = useTr();
   const fileRef = useRef<HTMLInputElement>(null);
   const [busy, setBusy] = useState(false);
+  const pick = () => !busy && fileRef.current?.click();
   return (
     <div className="a-image-field">
       {value ? <img className="a-thumb" src={value} alt="" /> : <span className="a-thumb" />}
-      <input type="text" name={name} value={value} placeholder={placeholder ?? tr("/img/... hoặc https://...", "/img/... or https://...")} onChange={(e) => onChange(e.target.value)} />
-      <button type="button" className="a-btn a-btn-sm" disabled={busy} onClick={() => fileRef.current?.click()}>
+      <div className="a-image-input">
+        <input
+          type="text"
+          name={name}
+          value={value}
+          readOnly={pickOnClick}
+          className={pickOnClick ? "a-pick" : undefined}
+          title={pickOnClick ? tr("Bấm để chọn ảnh tải lên", "Click to choose an image to upload") : undefined}
+          placeholder={
+            placeholder ??
+            (pickOnClick ? tr("Bấm để chọn ảnh tải lên...", "Click to choose an image to upload...") : tr("/img/... hoặc https://...", "/img/... or https://..."))
+          }
+          onClick={pickOnClick ? pick : undefined}
+          onKeyDown={pickOnClick ? (e) => (e.key === "Enter" || e.key === " ") && (e.preventDefault(), pick()) : undefined}
+          onChange={(e) => onChange(e.target.value)}
+        />
+        {clearable && value && (
+          <button
+            type="button"
+            className="a-image-clear"
+            aria-label={tr("Xoá ảnh", "Remove image")}
+            title={tr("Xoá ảnh", "Remove image")}
+            onClick={() => onChange("")}
+          >
+            ×
+          </button>
+        )}
+      </div>
+      <button type="button" className="a-btn a-btn-sm" disabled={busy} onClick={pick}>
         {busy ? "..." : "Upload"}
       </button>
       <input
@@ -57,12 +89,26 @@ export function ImageInput({ value, onChange, name, placeholder }: ImageInputPro
 }
 
 /** Phiên bản không kiểm soát (dùng trong form thường, có name). */
-export function ImageField({ name, defaultValue = "", label, hint }: { name: string; defaultValue?: string; label?: string; hint?: string }) {
+export function ImageField({
+  name,
+  defaultValue = "",
+  label,
+  hint,
+  pickOnClick,
+  clearable,
+}: {
+  name: string;
+  defaultValue?: string;
+  label?: string;
+  hint?: string;
+  pickOnClick?: boolean;
+  clearable?: boolean;
+}) {
   const [v, setV] = useState(defaultValue);
   return (
     <div className="a-field">
       {label && <label>{label}</label>}
-      <ImageInput name={name} value={v} onChange={setV} />
+      <ImageInput name={name} value={v} onChange={setV} pickOnClick={pickOnClick} clearable={clearable} />
       {hint && <span className="a-hint">{hint}</span>}
     </div>
   );
