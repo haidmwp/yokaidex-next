@@ -4,6 +4,8 @@
 
 generator client {
   provider = "prisma-client-js"
+  // native = máy dev; rhel-* = hosting CloudLinux (iNET OnePanel)
+  binaryTargets = ["native", "rhel-openssl-1.1.x", "rhel-openssl-3.0.x"]
 }
 
 datasource db {

@@ -3,6 +3,8 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   // Nút DevTools (chỉ hiện khi dev) đặt bên phải để không đè lên sidebar admin
   devIndicators: { position: "bottom-right" },
+  // Bản build gọn (.next/standalone) để chạy trên hosting Node.js (CloudLinux/Passenger)
+  output: "standalone",
   cacheComponents: true,
   // URL cũ của bản CRA -> Medallium Yo-kai Watch 3
   async redirects() {
