@@ -20,7 +20,7 @@ async function Shell({ children }: { children: React.ReactNode }) {
             <a href="/" target="_blank" rel="noreferrer">
               {tr("Xem website ↗", "View website ↗")}
             </a>
-            <span>{user.name || user.username || user.email}</span>
+            <span className="a-user-name">{user.name || user.username || user.email}</span>
             <form action={logout}>
               <button className="a-btn a-btn-sm">{tr("Đăng xuất", "Log out")}</button>
             </form>

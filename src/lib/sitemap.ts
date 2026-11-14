@@ -1,6 +1,6 @@
 // Sitemap kiểu Yoast SEO: /sitemap.xml (= /sitemap_index.xml) là index, trỏ tới các sitemap con
-// theo nhóm (page-sitemap.xml, yokai-watch-1-sitemap.xml, …). Mỗi file gắn stylesheet /sitemap.xsl
-// để hiển thị dạng bảng khi mở bằng trình duyệt; Google vẫn đọc XML bình thường.
+// theo nhóm (page-sitemap.xml, yokai-watch-1-sitemap.xml, …). Trả XML thuần (không dùng XSLT vì
+// Chrome đang gỡ bỏ XSLT và hiện cảnh báo khi mở).
 import { getSitemapData } from "./data";
 import { getGeneralSettings } from "./settings";
 
@@ -64,7 +64,7 @@ function entries(section: SitemapSection, d: Data, base: string): Entry[] {
 }
 
 const esc = (s: string) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
-const HEAD = '<?xml version="1.0" encoding="UTF-8"?>\n<?xml-stylesheet type="text/xsl" href="/sitemap.xsl"?>\n';
+const HEAD = '<?xml version="1.0" encoding="UTF-8"?>\n';
 
 function xml(body: string) {
   return new Response(HEAD + body, {

@@ -23,13 +23,20 @@
           .desc b { color: #333; }
           table { border: none; border-collapse: collapse; width: 100%; }
           th { text-align: left; padding: 10px 12px; font-size: 13px; border-bottom: 2px solid #e85a3d; background: #fff8f6; color: #333; white-space: nowrap; }
-          td { padding: 8px 12px; font-size: 13px; border-bottom: 1px solid #f0f0f0; word-break: break-all; }
+          td { padding: 8px 12px; font-size: 13px; border-bottom: 1px solid #f0f0f0; white-space: nowrap; }
+          /* bảng rộng hơn màn hình (điện thoại) thì cuộn ngang, không bẻ URL */
+          .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+          @media (max-width: 600px) {
+            #header { padding: 18px 16px 14px; }
+            #header h1 { font-size: 22px; }
+            #content { padding: 16px 16px 32px; }
+          }
           tr:nth-child(odd) td { background: #fafafa; }
           tr:hover td { background: #fff1ec; }
           a { color: #2253c4; text-decoration: none; }
           a:hover { text-decoration: underline; }
           td.num, th.num { text-align: right; width: 70px; white-space: nowrap; }
-          td.date, th.date { width: 200px; white-space: nowrap; word-break: normal; }
+          td.date, th.date { width: 200px; white-space: nowrap; }
           .back { display: inline-block; margin-bottom: 12px; }
         </style>
       </head>
@@ -44,7 +51,7 @@
         <div id="content">
           <xsl:if test="count(sitemap:sitemapindex/sitemap:sitemap) &gt; 0">
             <p class="desc">Sitemap index này gồm <b><xsl:value-of select="count(sitemap:sitemapindex/sitemap:sitemap)"/></b> sitemap.</p>
-            <table>
+            <div class="table-wrap"><table>
               <thead>
                 <tr>
                   <th>Sitemap</th>
@@ -60,12 +67,12 @@
                   </tr>
                 </xsl:for-each>
               </tbody>
-            </table>
+            </table></div>
           </xsl:if>
           <xsl:if test="count(sitemap:urlset/sitemap:url) &gt; 0">
             <a class="back" href="/sitemap_index.xml">← Tất cả sitemap</a>
             <p class="desc">Sitemap này gồm <b><xsl:value-of select="count(sitemap:urlset/sitemap:url)"/></b> URL.</p>
-            <table>
+            <div class="table-wrap"><table>
               <thead>
                 <tr>
                   <th>URL</th>
@@ -83,7 +90,7 @@
                   </tr>
                 </xsl:for-each>
               </tbody>
-            </table>
+            </table></div>
           </xsl:if>
         </div>
       </body>
