@@ -1759,3 +1759,52 @@ img {
     .yokai-list-pc-wrapper { display: none; }
     .yokai-list-wrapper { display: block; }
 }
+
+/* ===== Next.js port: thanh quảng cáo cố định dưới chân trang (Admin › Cài đặt chung) ===== */
+.ad-bar {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 9000; /* dưới sidebar/navbar (9999+) */
+    height: 100px;
+    padding: 5px;
+    display: flex;
+    background: rgba(255, 255, 255, .97);
+    box-shadow: 0 -2px 6px rgba(0, 0, 0, .15);
+}
+/* khung chứa banner: căn giữa, banner lớn hơn khung sẽ được thu nhỏ bằng JS (AdBar.tsx) */
+.ad-bar-viewport {
+    flex: 1;
+    min-width: 0;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+.ad-bar-content {
+    flex: none;
+    width: max-content;
+    line-height: 0;
+    transform-origin: center center;
+}
+/* nút đóng dạng tai nhỏ phía trên thanh, không chiếm chỗ banner */
+.ad-bar-close {
+    position: absolute;
+    top: -24px;
+    right: 10px;
+    width: 32px;
+    height: 24px;
+    border: none;
+    border-radius: 6px 6px 0 0;
+    background: rgba(255, 255, 255, .97);
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, .12);
+    color: #333;
+    font-size: 18px;
+    line-height: 24px;
+    cursor: pointer;
+}
+.ad-bar-close:hover { background: #eee; }
+/* chừa chỗ để thanh quảng cáo không che nội dung cuối trang */
+body.has-ad-bar { padding-bottom: 100px; }

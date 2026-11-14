@@ -138,3 +138,25 @@ export async function getSocials(): Promise<Socials> {
   const v = (row?.value ?? {}) as Partial<Socials>;
   return { title: v.title ?? "Follow us on:", links: v.links ?? [] };
 }
+
+/** Dữ liệu cho /sitemap.xml – mọi trang public kèm thời điểm cập nhật nếu có. */
+export async function getSitemapData() {
+  "use cache";
+  tag();
+  const [yokais, foods, qrCats, qrSets, regions, pages] = await Promise.all([
+    prisma.yokai.findMany({ where: { published: true }, orderBy: { number: "asc" }, select: { game: true, slug: true, image: true, updatedAt: true } }),
+    prisma.foodCategory.findMany({ orderBy: { sortOrder: "asc" }, select: { slug: true, image: true } }),
+    prisma.qrCategory.findMany({ select: { slug: true } }),
+    prisma.qrSet.findMany({ select: { slug: true, category: { select: { slug: true } } } }),
+    prisma.passwordRegion.findMany({ select: { game: true, code: true } }),
+    prisma.page.findMany({ select: { slug: true, updatedAt: true } }),
+  ]);
+  return {
+    yokais: yokais.map((y) => ({ game: y.game, slug: y.slug, image: y.image, updatedAt: y.updatedAt.toISOString() })),
+    pages: Object.fromEntries(pages.map((p) => [p.slug, p.updatedAt.toISOString()])),
+    foods: foods.map((f) => ({ slug: f.slug, image: f.image })),
+    qrCats: qrCats.map((c) => c.slug),
+    qrSets: qrSets.map((s) => ({ cat: s.category.slug, slug: s.slug })),
+    regions: regions.map((r) => ({ game: r.game, code: r.code })),
+  };
+}

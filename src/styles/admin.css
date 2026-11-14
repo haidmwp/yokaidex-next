@@ -214,3 +214,12 @@ html, body { margin: 0; padding: 0; }
   flex-direction: column; gap: 1px; pointer-events: none;
 }
 .a-chart-col:hover .a-chart-tip, .a-chart-col:focus .a-chart-tip { display: flex; bottom: 100%; top: auto; }
+
+/* ===== Tabs ===== */
+.a-tabs { display: flex; gap: 4px; flex-wrap: wrap; border-bottom: 1px solid var(--a-border); margin-bottom: 18px; }
+.a-tab {
+  padding: 10px 16px; border: none; background: none; font: inherit; font-weight: 600; color: var(--a-muted);
+  border-bottom: 2px solid transparent; margin-bottom: -1px; cursor: pointer;
+}
+.a-tab:hover { color: var(--a-text); }
+.a-tab.active { color: var(--a-primary); border-bottom-color: var(--a-primary); }

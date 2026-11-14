@@ -9,7 +9,28 @@ export type GeneralSettings = {
   loginPath: string;
   /** Google Analytics 4 Measurement ID (G-XXXXXXX). Rỗng = tắt GA. */
   gaId: string;
+  /** Mã quảng cáo (HTML/script, vd. AdSense). Rỗng = không hiện thanh quảng cáo. */
+  adCode: string;
+  /** Địa chỉ gốc của website (dùng cho sitemap, robots, link chia sẻ), vd https://yokaidex.com */
+  siteUrl: string;
+  /** Bật /sitemap.xml */
+  sitemapEnabled: boolean;
+  /** Các nhóm trang đưa vào sitemap (xem SITEMAP_SECTIONS) */
+  sitemapSections: string[];
+  /** Mã xác minh Google Search Console (nội dung thẻ meta google-site-verification) */
+  gscVerification: string;
 };
+
+/** Các nhóm trang có thể đưa vào sitemap. */
+export const SITEMAP_SECTIONS = [
+  { id: "pages", label: "Trang chính (Home, Medallium, Food, QR Code, Baffle Board, Password…)" },
+  { id: "yw1", label: "Yo-kai Watch 1 – trang chi tiết yo-kai" },
+  { id: "yw2", label: "Yo-kai Watch 2 – trang chi tiết yo-kai" },
+  { id: "yw3", label: "Yo-kai Watch 3 – trang chi tiết yo-kai" },
+  { id: "food", label: "Food – từng nhóm món ăn" },
+  { id: "qr", label: "QR Code – từng loại coin và bộ QR" },
+  { id: "password", label: "Password – từng vùng/ngôn ngữ" },
+] as const;
 
 /** Khu quản trị luôn nằm ở /dashboard/..., bất kể đường dẫn đăng nhập. */
 export const ADMIN_BASE = "/dashboard";
@@ -22,6 +43,11 @@ export const DEFAULT_SETTINGS: GeneralSettings = {
   siteTitle: `${SITE_NAME} ${SITE_TAGLINE}`,
   loginPath: DEFAULT_LOGIN_PATH,
   gaId: "",
+  adCode: "",
+  siteUrl: (process.env.NEXT_PUBLIC_SITE_URL || "https://yokaidex.com").replace(/\/+$/, ""),
+  sitemapEnabled: true,
+  sitemapSections: SITEMAP_SECTIONS.map((s) => s.id),
+  gscVerification: "",
 };
 
 /** Đọc thẳng từ DB (không cache) – dùng cho proxy / server action. */
@@ -35,7 +61,36 @@ export async function readGeneralSettings(): Promise<GeneralSettings> {
     loginPath: lp && lp !== "/admin/login" ? lp : DEFAULT_LOGIN_PATH,
     // chưa từng lưu trong admin -> dùng NEXT_PUBLIC_GA_ID trong .env; đã lưu rỗng -> tắt
     gaId: (v.gaId ?? process.env.NEXT_PUBLIC_GA_ID ?? "").trim(),
+    adCode: (v.adCode ?? "").trim(),
+    siteUrl: (v.siteUrl?.trim() || DEFAULT_SETTINGS.siteUrl).replace(/\/+$/, ""),
+    sitemapEnabled: v.sitemapEnabled ?? DEFAULT_SETTINGS.sitemapEnabled,
+    sitemapSections: Array.isArray(v.sitemapSections) ? v.sitemapSections : DEFAULT_SETTINGS.sitemapSections,
+    gscVerification: (v.gscVerification ?? "").trim(),
   };
+}
+
+/** Kiểm tra địa chỉ website (http/https, không có đường dẫn con). */
+export function normalizeSiteUrl(input: string): { url: string } | { error: string } {
+  const raw = input.trim() || DEFAULT_SETTINGS.siteUrl;
+  try {
+    const u = new URL(raw);
+    if (!/^https?:$/.test(u.protocol)) throw new Error();
+    return { url: `${u.protocol}//${u.host}` };
+  } catch {
+    return { error: "Địa chỉ website không hợp lệ, vd: https://yokaidex.com" };
+  }
+}
+
+/**
+ * Mã xác minh Search Console: chấp nhận dán cả thẻ <meta name="google-site-verification" content="..."> hoặc chỉ phần mã.
+ */
+export function normalizeGscCode(input: string): { code: string } | { error: string } {
+  let v = input.trim();
+  const m = v.match(/content\s*=\s*["']([^"']+)["']/i);
+  if (m) v = m[1].trim();
+  if (!v) return { code: "" };
+  if (!/^[A-Za-z0-9_-]{10,100}$/.test(v)) return { error: "Mã xác minh Search Console không hợp lệ." };
+  return { code: v };
 }
 
 // Proxy chạy ở mọi request -> nhớ tạm đường dẫn đăng nhập vài giây thay vì hỏi DB mỗi lần.
