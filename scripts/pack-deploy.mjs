@@ -9,7 +9,9 @@
 // Trên hosting (home /home/mpcaxydchosting):
 //   ~/yokaidex        app root của Node.js app (cloudlinux-selector, startup file server.js, Node 22)
 //   ~/yokaidex-data   dữ liệu, nằm ngoài app nên deploy lại không bị ghi đè
-// Deploy lại: thay ~/yokaidex bằng bản mới rồi `cloudlinux-selector restart --json --interpreter nodejs --app-root yokaidex`.
+// Deploy lại: `cloudlinux-selector stop ...` TRƯỚC, thay ~/yokaidex/.next + server.js, rồi `cloudlinux-selector start
+// --json --interpreter nodejs --app-root yokaidex`. Không dùng `restart`: tiến trình cũ và mới chạy song song có thể
+// vượt hạn mức process của hosting và làm web treo.
 import fs from "node:fs";
 import path from "node:path";
 
@@ -56,7 +58,7 @@ const env = Object.fromEntries(
     .map((m) => [m[1], m[2]]),
 );
 const prod = {
-  DATABASE_URL: `file:${HOME}/yokaidex-data/yokaidex.db`,
+  DATABASE_URL: `file:${HOME}/yokaidex-data/yokaidex.db?connection_limit=1`,
   AUTH_SECRET: env.AUTH_SECRET,
   NEXT_PUBLIC_GA_ID: env.NEXT_PUBLIC_GA_ID,
   NEXT_PUBLIC_SITE_URL: env.NEXT_PUBLIC_SITE_URL,
@@ -65,6 +67,10 @@ const prod = {
   UPLOAD_DIR: `${HOME}/yokaidex-data/uploads`,
   // CageFS không cho Prisma đọc thông tin hệ điều hành -> chỉ thẳng engine RHEL 8 (OpenSSL 1.1)
   PRISMA_QUERY_ENGINE_LIBRARY: `${HOME}/yokaidex/node_modules/.prisma/client/libquery_engine-rhel-openssl-1.1.x.so.node`,
+  // Hosting tính cả luồng vào hạn mức 150 "process". Mặc định Prisma (tokio) tạo số luồng = số nhân CPU
+  // của máy chủ (rất nhiều) -> giới hạn lại để 1-2 tiến trình Node không ăn hết hạn mức.
+  TOKIO_WORKER_THREADS: "2",
+  UV_THREADPOOL_SIZE: "2",
 };
 fs.writeFileSync(`${APP}/.env`, Object.entries(prod).map(([k, v]) => `${k}="${v ?? ""}"`).join("\n") + "\n");
 const missing = Object.entries(prod).filter(([, v]) => !v).map(([k]) => k);
