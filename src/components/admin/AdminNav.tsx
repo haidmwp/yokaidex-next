@@ -61,17 +61,20 @@ export default function AdminNav({ unread, children }: { unread: number; childre
         </nav>
       </aside>
       <div className="a-main" onClick={() => open && setOpen(false)}>
-        <button
-          type="button"
-          className="a-btn a-btn-sm a-menu-btn"
-          style={{ position: "fixed", top: 14, left: 12, zIndex: 20 }}
-          onClick={(e) => {
-            e.stopPropagation();
-            setOpen(true);
-          }}
-        >
-          ☰
-        </button>
+        {!open && (
+          <button
+            type="button"
+            className="a-btn a-btn-sm a-menu-btn"
+            style={{ position: "fixed", top: 14, left: 12, zIndex: 60 }}
+            aria-label="Mở menu"
+            onClick={(e) => {
+              e.stopPropagation();
+              setOpen(true);
+            }}
+          >
+            ☰
+          </button>
+          )}
         {children}
       </div>
     </div>
