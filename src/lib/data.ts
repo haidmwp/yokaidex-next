@@ -1,0 +1,132 @@
+// Truy vấn dữ liệu cho site public – tất cả đều được cache ('use cache') với tag
+// CONTENT_TAG. Admin gọi updateTag(CONTENT_TAG) sau mỗi thay đổi để làm mới.
+import { cacheLife, cacheTag } from "next/cache";
+import { prisma } from "./prisma";
+import type { Evolution, Fusion, Moveset, YokaiCard } from "./types";
+
+export const CONTENT_TAG = "content";
+
+function tag() {
+  cacheLife("max");
+  cacheTag(CONTENT_TAG);
+}
+
+export async function getPage(slug: string) {
+  "use cache";
+  tag();
+  return prisma.page.findUnique({ where: { slug } });
+}
+
+export async function getYokaiCards(): Promise<YokaiCard[]> {
+  "use cache";
+  tag();
+  return prisma.yokai.findMany({
+    where: { published: true },
+    orderBy: { number: "asc" },
+    select: { number: true, name: true, slug: true, rank: true, tribe: true, attribute: true, color: true, image: true },
+  });
+}
+
+export async function getYokaiSlugs() {
+  "use cache";
+  tag();
+  const rows = await prisma.yokai.findMany({ where: { published: true }, select: { slug: true } });
+  return rows.map((r) => r.slug);
+}
+
+export async function getYokai(slug: string) {
+  "use cache";
+  tag();
+  const y = await prisma.yokai.findFirst({ where: { slug, published: true } });
+  if (!y) return null;
+  const food = y.foodSlug
+    ? await prisma.foodCategory.findUnique({ where: { slug: y.foodSlug }, select: { name: true, slug: true, image: true } })
+    : null;
+  return {
+    ...y,
+    profile: (y.profile as string[]) ?? [],
+    evolution: (y.evolution as Evolution) ?? null,
+    fusions: (y.fusions as Fusion[]) ?? [],
+    moveset: y.moveset as Moveset,
+    food,
+  };
+}
+
+export async function getFoodCategories() {
+  "use cache";
+  tag();
+  return prisma.foodCategory.findMany({ orderBy: [{ sortOrder: "asc" }, { name: "asc" }] });
+}
+
+export async function getFoodCategory(slug: string) {
+  "use cache";
+  tag();
+  return prisma.foodCategory.findUnique({
+    where: { slug },
+    include: { items: { orderBy: [{ sortOrder: "asc" }, { id: "asc" }] } },
+  });
+}
+
+export async function getQrCategories() {
+  "use cache";
+  tag();
+  return prisma.qrCategory.findMany({ orderBy: [{ sortOrder: "asc" }, { id: "asc" }] });
+}
+
+export async function getQrCategory(slug: string) {
+  "use cache";
+  tag();
+  return prisma.qrCategory.findUnique({
+    where: { slug },
+    include: { sets: { orderBy: [{ sortOrder: "asc" }, { id: "asc" }], select: { name: true, slug: true } } },
+  });
+}
+
+export async function getQrSet(categorySlug: string, slug: string) {
+  "use cache";
+  tag();
+  const set = await prisma.qrSet.findUnique({ where: { slug }, include: { category: true } });
+  if (!set || set.category.slug !== categorySlug) return null;
+  return { ...set, slides: (set.slides as string[]) ?? [] };
+}
+
+export async function getBaffleBoards() {
+  "use cache";
+  tag();
+  const rows = await prisma.baffleBoard.findMany({ orderBy: [{ sortOrder: "asc" }, { id: "asc" }] });
+  return rows.map((r) => ({ ...r, clues: (r.clues as string[]) ?? [] }));
+}
+
+export async function getPasswordRegions(game: number) {
+  "use cache";
+  tag();
+  return prisma.passwordRegion.findMany({ where: { game }, orderBy: [{ sortOrder: "asc" }, { id: "asc" }] });
+}
+
+export async function getPasswordRegion(game: number, code: string) {
+  "use cache";
+  tag();
+  return prisma.passwordRegion.findUnique({
+    where: { game_code: { game, code } },
+    include: { passwords: { orderBy: [{ sortOrder: "asc" }, { id: "asc" }] } },
+  });
+}
+
+export async function getAttitudes() {
+  "use cache";
+  tag();
+  return prisma.attitude.findMany({ orderBy: [{ sortOrder: "asc" }, { id: "asc" }] });
+}
+
+export async function getSpecialSouls() {
+  "use cache";
+  tag();
+  return prisma.specialSoul.findMany({ orderBy: [{ sortOrder: "asc" }, { id: "asc" }] });
+}
+
+export async function getChangelog() {
+  "use cache";
+  tag();
+  const rows = await prisma.changelog.findMany({ orderBy: [{ sortOrder: "asc" }, { id: "desc" }] });
+  return rows.map((r) => ({ ...r, items: (r.items as string[]) ?? [] }));
+}

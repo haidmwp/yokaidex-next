@@ -1,0 +1,78 @@
+[
+  {
+    "version": "v0.1.8 release",
+    "items": [
+      "Now you can filter Yo-kais in Medallium by attribute.",
+      "Clear this website cache to update newest content."
+    ],
+    "sortOrder": 0
+  },
+  {
+    "version": "v0.1.7 release",
+    "items": [
+      "Now you can filter Yo-kais in Medallium by rank and trible.",
+      "Clear this website cache to update newest content."
+    ],
+    "sortOrder": 1
+  },
+  {
+    "version": "v0.1.6 release",
+    "items": [
+      "Fix some bugs.",
+      "Clear this website cache to update newest content."
+    ],
+    "sortOrder": 2
+  },
+  {
+    "version": "v0.1.5 release",
+    "items": [
+      "Update QR Code.",
+      "You can use ← / → on your keyboard or scroll up / down on your middle button mouse to move prev / next slide in QR Code slide.",
+      "Clear this website cache to update newest content."
+    ],
+    "sortOrder": 3
+  },
+  {
+    "version": "v0.1.4 release",
+    "items": [
+      "Update Yo-kais hight quality image in medallium and yokai information.",
+      "Fix some bugs.",
+      "Clear this website cache to update newest content."
+    ],
+    "sortOrder": 4
+  },
+  {
+    "version": "v0.1.3 release",
+    "items": [
+      "Update Food.",
+      "Clear this website cache to update newest content."
+    ],
+    "sortOrder": 5
+  },
+  {
+    "version": "v0.1.2 release",
+    "items": [
+      "Update Password.",
+      "Clear this website cache to update newest content."
+    ],
+    "sortOrder": 6
+  },
+  {
+    "version": "v0.1.1 release",
+    "items": [
+      "Fix some bugs.",
+      "Clear this website cache to update newest content."
+    ],
+    "sortOrder": 7
+  },
+  {
+    "version": "v0.1.0 release",
+    "items": [
+      "Medallium.",
+      "Baffle Board.",
+      "Attitude.",
+      "RARE Special Soul."
+    ],
+    "sortOrder": 8
+  }
+]

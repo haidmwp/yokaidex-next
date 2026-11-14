@@ -1,0 +1,652 @@
+[
+  {
+    "game": "yw3",
+    "location": "St. Peanutsburg Pizzeria (Story Mode)",
+    "clues": [
+      "In the Shady tribe",
+      "Always angry",
+      "Looks like bacon"
+    ],
+    "solution": "Salty Bacon",
+    "slug": "salty-bacon",
+    "effect": "Allows you to buy Crispy Bacon Pizza.",
+    "sortOrder": 0
+  },
+  {
+    "game": "yw3",
+    "location": "Hazel Tyne House Bathroom - Hailey's Side (Story Mode)",
+    "clues": [
+      "Charming Tribe",
+      "Always cold",
+      "Try asking Zest-a-Minute"
+    ],
+    "solution": "Pupsicle",
+    "slug": "pupsicle",
+    "effect": "Turns the bath cold.",
+    "sortOrder": 1
+  },
+  {
+    "game": "yw3",
+    "location": "Hazel Tyne House Bathroom - Nate's Side (Story Mode)",
+    "clues": [
+      "Serious fighter",
+      "Loves REAL fights",
+      "Try asking Shipshape Sailor"
+    ],
+    "solution": "El Gutso",
+    "slug": "el-gutso",
+    "effect": "Turns the bath hot.",
+    "sortOrder": 2
+  },
+  {
+    "game": "yw3",
+    "location": "Coconut Residential Area",
+    "clues": [
+      "Lean and mean",
+      "Great functionality",
+      "Robot from the future"
+    ],
+    "solution": "Robonyan F",
+    "slug": "robonyan-f",
+    "effect": "Once a day he will give you a Chocobar.",
+    "sortOrder": 3
+  },
+  {
+    "game": "yw3",
+    "location": "Miracle Circus",
+    "clues": [
+      "Wears a loincloth",
+      "Has a pan for a hat",
+      "Battles with a toothpick"
+    ],
+    "solution": "Pandle",
+    "slug": "pandle",
+    "effect": "Will give access to a quest that will give you Glumdango.",
+    "sortOrder": 4
+  },
+  {
+    "game": "yw3",
+    "location": "Banter Bakery",
+    "clues": [
+      "Looks like a tree",
+      "Shady Tribe",
+      "Has four arms"
+    ],
+    "solution": "Retreeter",
+    "slug": "retreeter",
+    "effect": "Will increase the amount of limited stock items.",
+    "sortOrder": 5
+  },
+  {
+    "game": "yw3",
+    "location": "Shopper's Row - Riverbank",
+    "clues": [
+      "Visits during the holidays",
+      "Carries three sacks",
+      "Enjoys quizzes"
+    ],
+    "solution": "Ol' Saint Trick",
+    "slug": "ol-saint-trick",
+    "effect": "Enables you to trade various coin fragments for Crank-a-Kai coins.",
+    "sortOrder": 6
+  },
+  {
+    "game": "yw3",
+    "location": "East Pines District",
+    "clues": [
+      "Has a chocolate nose",
+      "Sells Choco-Bananas",
+      "Likes playing RPS"
+    ],
+    "solution": "Cocobanana",
+    "slug": "cocobanana",
+    "effect": "Sells Chocobannanas, if beaten in Rock-paper-scissors he will give you a bonus Chocobannana.",
+    "sortOrder": 7
+  },
+  {
+    "game": "yw3",
+    "location": "St. Peautsburg - Pier Area",
+    "clues": [
+      "Uses a red umbrella",
+      "Seems a bit down",
+      "...And wet"
+    ],
+    "solution": "Drizzelda",
+    "slug": "drizzelda",
+    "effect": "Makes it rain.",
+    "sortOrder": 8
+  },
+  {
+    "game": "yw3",
+    "location": "St.Peanutsburg - Pier Area",
+    "clues": [
+      "Brightens up the day",
+      "Has a dazzling smile",
+      "My darling sweet pea!"
+    ],
+    "solution": "Ray O'Light",
+    "slug": "ray-o-light",
+    "effect": "Makes it sunny.",
+    "sortOrder": 9
+  },
+  {
+    "game": "yw3",
+    "location": "Scrap yard",
+    "clues": [
+      "Heartful Tribe",
+      "Carries the...earth?",
+      "Loves the environment"
+    ],
+    "solution": "Greengramps",
+    "slug": "greengramps",
+    "effect": "Able to trade trash gotten from the Dream Radar in exchange for items.",
+    "sortOrder": 10
+  },
+  {
+    "game": "yw3",
+    "location": "Sports Club",
+    "clues": [
+      "Feel the burn!",
+      "Pump some iron!",
+      "Victoryyyyyy!"
+    ],
+    "solution": "Sgt. Burly",
+    "slug": "sgt-burly",
+    "effect": "Increases GP received by 1.2.",
+    "sortOrder": 11
+  },
+  {
+    "game": "yw3",
+    "location": "Breezy Hills - Everymart",
+    "clues": [
+      "Incredibly stuck-up",
+      "Bosses others around",
+      "Hurry up already!"
+    ],
+    "solution": "Snobetty",
+    "slug": "snobetty",
+    "effect": "The Everymart she's nearby will sell Choice tuna, Marbled beef, and golden dolls for more.",
+    "sortOrder": 12
+  },
+  {
+    "game": "yw3",
+    "location": "Blossom Heights - Hot Springs",
+    "clues": [
+      "Heartful Tribe",
+      "Runs an inn",
+      "Incredibly dexterous hair"
+    ],
+    "solution": "Ghostess",
+    "slug": "ghostess",
+    "effect": "Adds one extra crank to the daily Crank-a-Kai turns.",
+    "sortOrder": 13
+  },
+  {
+    "game": "yw3",
+    "location": "Sunset Mall B1",
+    "clues": [
+      "Heartful Tribe",
+      "Star of the seaweed world",
+      "Has hordes of fans"
+    ],
+    "solution": "Kelpacabana",
+    "slug": "kelpacabana",
+    "effect": "Will exchange Dancing stars for Victory poses.",
+    "sortOrder": 14
+  },
+  {
+    "game": "yw3",
+    "location": "Business Tower",
+    "clues": [
+      "Wears a dashing Sand Suit",
+      "Has side-parted hair",
+      "Incredibly humble"
+    ],
+    "solution": "Mr. Sandmeh",
+    "slug": "mr-sandmeh",
+    "effect": "Will open a door needed in a quest.",
+    "sortOrder": 15
+  },
+  {
+    "game": "yw3",
+    "location": "Sparkopolis",
+    "clues": [
+      "Magnificent eyebrows",
+      "Holds a small staff",
+      "Great teacher"
+    ],
+    "solution": "Illoo",
+    "slug": "illoo",
+    "effect": "Talk to him to travel to the Illusion version Sparkopolis.",
+    "sortOrder": 16
+  },
+  {
+    "game": "yw3",
+    "location": "Bada-Bing Tower top floor",
+    "clues": [
+      "Governs recollections",
+      "Has an odd suction device",
+      "Recovers lost memories"
+    ],
+    "solution": "Vacuumory",
+    "slug": "vacuumory",
+    "effect": "Talk to him to rematch Don Spiracy.",
+    "sortOrder": 17
+  },
+  {
+    "game": "yw3",
+    "location": "Greenfields Station",
+    "clues": [
+      "Mysterious Tribe",
+      "Looks like a hat",
+      "Eats memories"
+    ],
+    "solution": "Wazzat",
+    "slug": "wazzat",
+    "effect": "Allows you to change the names of your Yo-kai.",
+    "sortOrder": 18
+  },
+  {
+    "game": "yw3",
+    "location": "Yopple Headquarters - Yo-kai Watch Factory",
+    "clues": [
+      "Inspirits those hard at work",
+      "Looks like a tie",
+      "I just wanna go home..."
+    ],
+    "solution": "Tie-red",
+    "slug": "tie-red",
+    "effect": "Enables you to work a part-time job in quality check.",
+    "sortOrder": 19
+  },
+  {
+    "game": "yw3",
+    "location": "The Catwalk",
+    "clues": [
+      "Heartful Tribe",
+      "Rides a mouse car",
+      "Likes pressing buttons"
+    ],
+    "solution": "Push Pup",
+    "slug": "push-pup",
+    "effect": "Be able to open the manhole nearby him.",
+    "sortOrder": 20
+  },
+  {
+    "game": "yw3",
+    "location": "Downtown Springdale Rolling Waves Park",
+    "clues": [
+      "Lolls around over here",
+      "Lolls around over there",
+      "Found a new continent"
+    ],
+    "solution": "Kittylumbus",
+    "slug": "kittylumbus",
+    "effect": "Talk to him to rematch Yo-kaiju.",
+    "sortOrder": 21
+  },
+  {
+    "game": "yw3",
+    "location": "Fortune Hospital - 2F",
+    "clues": [
+      "Works at a hospital",
+      "Wears nurse clothes",
+      "Licks wounds better"
+    ],
+    "solution": "Nurse Tongus",
+    "slug": "nurse-tongus",
+    "effect": "Once a day she will give you medicine.",
+    "sortOrder": 22
+  },
+  {
+    "game": "yw3",
+    "location": "Tranquility Apts. - B-301",
+    "clues": [
+      "Mysterious Tribe",
+      "Travels through time",
+      "Has three mirrors"
+    ],
+    "solution": "Miradox",
+    "slug": "miradox",
+    "effect": "Takes you back to the past in a very limited area.",
+    "sortOrder": 23
+  },
+  {
+    "game": "yw2",
+    "location": "Uptown Springdale: Outside Everymart (Story Mode)",
+    "clues": [
+      "Wears traditional clothing",
+      "Heartful Tribe",
+      "Makes Inspirited people hungry"
+    ],
+    "solution": "Hungramps",
+    "slug": "hungramps",
+    "effect": "30% discount at Everymart Uptown.",
+    "sortOrder": 0
+  },
+  {
+    "game": "yw2",
+    "location": "Uptown Springdale: Outside Jungle Hunter",
+    "clues": [
+      "Has a flaming mane",
+      "Likes meat",
+      "A fiery tough guy"
+    ],
+    "solution": "Blazion",
+    "slug": "blazion",
+    "effect": "Allows certain bugs/fish to be traded in for 3x the amount of points.",
+    "sortOrder": 1
+  },
+  {
+    "game": "yw2",
+    "location": "Uptown Springdale: Outside Community Center (Story Mode)",
+    "clues": [
+      "Three-paneled mirror",
+      "Transports people through time",
+      "Reveal!"
+    ],
+    "solution": "Miradox",
+    "slug": "miradox",
+    "effect": "Warp to Old Springdale.",
+    "sortOrder": 2
+  },
+  {
+    "game": "yw2",
+    "location": "Mount Wildwood: Abandoned Tunnel East",
+    "clues": [
+      "Emissary from the future",
+      "Resembles Jibanyan",
+      "Says he'll 'be back'"
+    ],
+    "solution": "Robonyan",
+    "slug": "robonyan",
+    "effect": "Allows access to the waterfall area.",
+    "sortOrder": 3
+  },
+  {
+    "game": "yw2",
+    "location": "Mount Wildwood: Abandoned Tunnel West",
+    "clues": [
+      "Dragon Yo-kai",
+      "Indecisive",
+      "His favorite phrase is 'Hmmm...'"
+    ],
+    "solution": "Draaagin",
+    "slug": "draaagin",
+    "effect": "Allows access to abandoned tunnel east after a few in-game days. ",
+    "sortOrder": 4
+  },
+  {
+    "game": "yw2",
+    "location": "Mount Wildwood: Summit",
+    "clues": [
+      "White tuxedo",
+      "Heartful Tribe",
+      "My darling sweet pea"
+    ],
+    "solution": "Ray O'Light",
+    "slug": "ray-o-light",
+    "effect": "Changes the weather to sunny.",
+    "sortOrder": 5
+  },
+  {
+    "game": "yw2",
+    "location": "Mount Wildwood: Summit",
+    "clues": [
+      "Drizzly drizzle...",
+      "Dampy damp...",
+      "Drizzly, drizzly drizzle..."
+    ],
+    "solution": "Drizzelda",
+    "slug": "drizzelda",
+    "effect": "Changes the weather to rainy.",
+    "sortOrder": 6
+  },
+  {
+    "game": "yw2",
+    "location": "Breezy Hills: East of Eddie's house",
+    "clues": [
+      "Holds bells in his right hand",
+      "A classic Yo-kai",
+      "Happy happy!"
+    ],
+    "solution": "High Gnomey",
+    "slug": "high-gnomey",
+    "effect": "Increases your daily Crank-a-kai attempts by one.",
+    "sortOrder": 7
+  },
+  {
+    "game": "yw2",
+    "location": "Blossom Heights: Outside the bath house",
+    "clues": [
+      "Neat-freak shogun",
+      "Loves his antibacterial spray",
+      "Clean, clean!"
+    ],
+    "solution": "Washogun",
+    "slug": "washogun",
+    "effect": "Sproink's Quest Activator.",
+    "sortOrder": 8
+  },
+  {
+    "game": "yw2",
+    "location": "Shopper's Row: East of Everymart (In Night Time)",
+    "clues": [
+      "First-rate food stall",
+      "Dashi stock",
+      "Well den"
+    ],
+    "solution": "Master Oden",
+    "slug": "master-oden",
+    "effect": "Oden can now be purchased from Shopper's Row Everymart.",
+    "sortOrder": 9
+  },
+  {
+    "game": "yw2",
+    "location": "Downtown Springdale: East  of the Springdale Business Tower",
+    "clues": [
+      "Holds a small staff in one hand",
+      "Loves bread",
+      "Conjures apparitions"
+    ],
+    "solution": "Illoo",
+    "slug": "illoo",
+    "effect": "Allows access to 4F and 13F of the Springdale Business Tower.",
+    "sortOrder": 10
+  },
+  {
+    "game": "yw2",
+    "location": "Downtown Springdale: Around the Construction Site",
+    "clues": [
+      "Proud of solf skin",
+      "Puffs up when angry",
+      "Face pops out of his body"
+    ],
+    "solution": "Mochismo",
+    "slug": "mochismo",
+    "effect": "After a few days in real time, the Sports Club will be built an accessible.",
+    "sortOrder": 11
+  },
+  {
+    "game": "yw2",
+    "location": "Downtown Springdale: Sports Club 2F",
+    "clues": [
+      "Yo-kai workout leader",
+      "Peak physical condition",
+      "Feel the burn!"
+    ],
+    "solution": "Sgt. Burly",
+    "slug": "sgt-burly",
+    "effect": "Increases GP gain rate.",
+    "sortOrder": 12
+  },
+  {
+    "game": "yw2",
+    "location": "Excellent Tower: Bottom left of the entrance",
+    "clues": [
+      "Eats memories",
+      "Nysterious Tribe",
+      "Shaped like a hat"
+    ],
+    "solution": "Wazzat",
+    "slug": "wazzat",
+    "effect": "Allows Yo-kai's nicknames to be changed.",
+    "sortOrder": 13
+  },
+  {
+    "game": "yw2",
+    "location": "San Fantastico: Seaside Cave (Story Mode)",
+    "clues": [
+      "Healthy, thanks to seaweed",
+      "One of a trio",
+      "Views Steppa as a rival"
+    ],
+    "solution": "Wiglin",
+    "slug": "wiglin",
+    "effect": "Allows the water level to be changed.",
+    "sortOrder": 14
+  },
+  {
+    "game": "yw2",
+    "location": "San Fantastico: Seaside Cave (Story Mode)",
+    "clues": [
+      "Healthy, groovy seaweed",
+      "One of a trio",
+      "Views Wiglin as a rival"
+    ],
+    "solution": "Steppa",
+    "slug": "steppa",
+    "effect": "Allows the water level to be changed.",
+    "sortOrder": 15
+  },
+  {
+    "game": "yw2",
+    "location": "San Fantastico: Seaside Cave (Story Mode)",
+    "clues": [
+      "Loved by Wiglin",
+      "Loved by Steppa",
+      "Not interested in either"
+    ],
+    "solution": "Rhyth",
+    "slug": "rhyth",
+    "effect": "Allows the water level to be changed.",
+    "sortOrder": 16
+  },
+  {
+    "game": "yw2",
+    "location": "San Fantastico: Parking lot outside station",
+    "clues": [
+      "Like taking detours",
+      "Worries about scaly sharkskin",
+      "Vegetarian"
+    ],
+    "solution": "Chummer",
+    "slug": "chummer",
+    "effect": "Little Heaven Station can now be accessed *.",
+    "sortOrder": 17
+  },
+  {
+    "game": "yw2",
+    "location": "San Fantastico: Briny Grotto (Entrance from beach undermeath abandoned house)",
+    "clues": [
+      "Green clothes",
+      "Heartful Tribe",
+      "Hoards things in bags"
+    ],
+    "solution": "Ol' Fortune",
+    "slug": "ol-fortune",
+    "effect": "Crank-a-kai Coin Fragments can now be exchanged.",
+    "sortOrder": 18
+  },
+  {
+    "game": "yw2",
+    "location": "Old Springdale: Outside the station",
+    "clues": [
+      "Travels atop a cloud",
+      "Wields a vacuum cleaner",
+      "Sucks up memories"
+    ],
+    "solution": "Vacuumory",
+    "slug": "vacuumory",
+    "effect": "Allow Dame Dedtime to be rematched.",
+    "sortOrder": 19
+  },
+  {
+    "game": "yw2",
+    "location": "Yo-kai World: Lord's Gate",
+    "clues": [
+      "Reflective",
+      "Power of darkness",
+      "Summons spirits from his mirror"
+    ],
+    "solution": "Mircle",
+    "slug": "mircle",
+    "effect": "Allows McKraken to be battled.",
+    "sortOrder": 20
+  },
+  {
+    "game": "yw2",
+    "location": "Old Springdale: The Burbs (Next to the school)",
+    "clues": [
+      "Won...",
+      "...der...",
+      "...nyan!"
+    ],
+    "solution": "Wondernyan",
+    "slug": "wondernyan",
+    "effect": "Once a day he will give you a random Crank-a-kai coin.",
+    "sortOrder": 21
+  },
+  {
+    "game": "yw2",
+    "location": "Cherry Hill station",
+    "clues": [
+      "Traditional Japanese clothes.",
+      "Likes big flowers",
+      "Cherry blossoms"
+    ],
+    "solution": "Elder Bloom",
+    "slug": "elder-bloom",
+    "effect": "Makes cherry trees bloom.",
+    "sortOrder": 22
+  },
+  {
+    "game": "gate-of-whimsy",
+    "location": "",
+    "clues": [
+      "Flying",
+      "Long hair",
+      "Love"
+    ],
+    "solution": "Cupistol",
+    "slug": "cupistol",
+    "effect": "",
+    "sortOrder": 0
+  },
+  {
+    "game": "gate-of-whimsy",
+    "location": "",
+    "clues": [
+      "Not in the left row of trees",
+      "Not in the middle trees",
+      "Not the tree on the corner"
+    ],
+    "solution": "Cadin",
+    "slug": "cadin",
+    "effect": "",
+    "sortOrder": 1
+  },
+  {
+    "game": "gate-of-whimsy",
+    "location": "",
+    "clues": [
+      "On the right",
+      "No-left",
+      "Wait-right"
+    ],
+    "solution": "Peckpocket",
+    "slug": "peckpocket",
+    "effect": "",
+    "sortOrder": 2
+  }
+]

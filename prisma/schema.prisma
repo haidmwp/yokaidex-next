@@ -1,0 +1,184 @@
+// YokaiDex content schema.
+// Mặc định dùng SQLite (file prisma/dev.db). Muốn dùng MySQL (Laragon) chỉ cần đổi
+// provider = "mysql" và DATABASE_URL="mysql://root:@localhost:3306/yokaidex".
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           Int      @id @default(autoincrement())
+  email        String   @unique
+  name         String   @default("")
+  passwordHash String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+/// Yo-kai trong Medallium
+model Yokai {
+  id        Int     @id @default(autoincrement())
+  number    String  @unique // "001"
+  name      String
+  slug      String  @unique
+  rank      String // S, A, B, C, D, E
+  tribe     String
+  attribute String
+  color     String  @default("#E85A3D")
+  image     String  @default("")
+  foodSlug  String  @default("")
+  hp        Int     @default(0)
+  str       Int     @default(0)
+  spr       Int     @default(0)
+  def       Int     @default(0)
+  spd       Int     @default(0)
+  /// string[] – đoạn mô tả profile
+  profile   Json
+  /// { from:{name,slug,image}, level, to:{name,slug,image} } | null
+  evolution Json?
+  /// Array<{ a: Part, b: Part, result: Part }>, Part = {name,slug,image,isYokai}
+  fusions   Json
+  /// { attack, technique, inspirit, soultimate, skill }
+  moveset   Json
+  published Boolean @default(true)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model FoodCategory {
+  id        Int        @id @default(autoincrement())
+  name      String
+  slug      String     @unique
+  color     String     @default("#FBA6CC")
+  image     String     @default("")
+  sortOrder Int        @default(0)
+  items     FoodItem[]
+}
+
+model FoodItem {
+  id         Int          @id @default(autoincrement())
+  name       String
+  image      String       @default("")
+  onFriend   String       @default("")
+  onFoe      String       @default("")
+  sortOrder  Int          @default(0)
+  categoryId Int
+  category   FoodCategory @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+}
+
+model QrCategory {
+  id        Int     @id @default(autoincrement())
+  name      String
+  slug      String  @unique
+  icon      String  @default("")
+  color     String  @default("#FFC648")
+  sortOrder Int     @default(0)
+  sets      QrSet[]
+}
+
+model QrSet {
+  id         Int        @id @default(autoincrement())
+  name       String
+  slug       String     @unique
+  color      String     @default("#FFC648")
+  /// string[] – URL ảnh QR
+  slides     Json
+  sortOrder  Int        @default(0)
+  categoryId Int
+  category   QrCategory @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+}
+
+/// game: "yw3" | "yw2" | "gate-of-whimsy"
+model BaffleBoard {
+  id        Int    @id @default(autoincrement())
+  game      String
+  location  String @default("")
+  /// string[]
+  clues     Json
+  solution  String
+  slug      String @default("")
+  effect    String @default("")
+  sortOrder Int    @default(0)
+}
+
+/// Vùng/ngôn ngữ password, ví dụ game=1 code="en-us"
+model PasswordRegion {
+  id        Int        @id @default(autoincrement())
+  game      Int
+  code      String
+  label     String
+  color     String     @default("#758EFF")
+  sortOrder Int        @default(0)
+  passwords Password[]
+
+  @@unique([game, code])
+}
+
+model Password {
+  id        Int            @id @default(autoincrement())
+  code      String
+  effect    String
+  sortOrder Int            @default(0)
+  regionId  Int
+  region    PasswordRegion @relation(fields: [regionId], references: [id], onDelete: Cascade)
+}
+
+model Attitude {
+  id         Int    @id @default(autoincrement())
+  name       String
+  stats      String @default("")
+  preference String @default("")
+  book       String @default("")
+  sortOrder  Int    @default(0)
+}
+
+model SpecialSoul {
+  id          Int    @id @default(autoincrement())
+  soul1Name   String
+  soul1Slug   String @default("")
+  soul1Image  String @default("")
+  soul2Name   String
+  soul2Slug   String @default("")
+  soul2Image  String @default("")
+  resultName  String
+  resultImage String @default("")
+  description String @default("")
+  sortOrder   Int    @default(0)
+}
+
+model Changelog {
+  id        Int      @id @default(autoincrement())
+  version   String
+  /// string[]
+  items     Json
+  sortOrder Int      @default(0)
+  createdAt DateTime @default(now())
+}
+
+/// Trang tĩnh: home, privacy-policy...
+model Page {
+  id          Int      @id @default(autoincrement())
+  slug        String   @unique
+  title       String
+  color       String   @default("#758EFF")
+  description String   @default("")
+  /// HTML
+  content     String
+  updatedAt   DateTime @updatedAt
+}
+
+model ContactMessage {
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String
+  subject   String
+  message   String   @default("")
+  read      Boolean  @default(false)
+  createdAt DateTime @default(now())
+}

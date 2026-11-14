@@ -1,0 +1,86 @@
+[
+  {
+    "name": "Grouchy",
+    "stats": "HP/STR",
+    "preference": "Attack",
+    "book": "Think Karate",
+    "sortOrder": 0
+  },
+  {
+    "name": "Rough",
+    "stats": "STR+",
+    "preference": "Attack",
+    "book": "Use Karate",
+    "sortOrder": 1
+  },
+  {
+    "name": "Logical",
+    "stats": "SPR/SPD",
+    "preference": "Technique",
+    "book": "Skill Compendium",
+    "sortOrder": 2
+  },
+  {
+    "name": "Brainy",
+    "stats": "SPR+",
+    "preference": "Technique",
+    "book": "Skill Encyclopedia",
+    "sortOrder": 3
+  },
+  {
+    "name": "Twisted",
+    "stats": "STR/SPD",
+    "preference": "Insprit (Enemy)",
+    "book": "The Pest's Quest",
+    "sortOrder": 4
+  },
+  {
+    "name": "Cruel",
+    "stats": "SPD+",
+    "preference": "Insprit (Enemy)",
+    "book": "The Perfect Pest",
+    "sortOrder": 5
+  },
+  {
+    "name": "Helpful",
+    "stats": "HP/SPD",
+    "preference": "Insprit (Ally)",
+    "book": "Support Life #7",
+    "sortOrder": 6
+  },
+  {
+    "name": "Devoted",
+    "stats": "STR/DEF",
+    "preference": "Insprit (Ally)",
+    "book": "Support Special",
+    "sortOrder": 7
+  },
+  {
+    "name": "Gentle",
+    "stats": "HP/SPR",
+    "preference": "Technique (Ally)",
+    "book": "Li'l Angel Heals",
+    "sortOrder": 8
+  },
+  {
+    "name": "Tender",
+    "stats": "HP+",
+    "preference": "Technique (Ally)",
+    "book": "Bye, Li'l Angel",
+    "sortOrder": 9
+  },
+  {
+    "name": "Careful",
+    "stats": "DEF/SPR",
+    "preference": "Guard",
+    "book": "Get Guarding",
+    "sortOrder": 10
+  },
+  {
+    "name": "Calm",
+    "stats": "DEF+",
+    "preference": "Guard",
+    "book": "Guard Gloriously",
+    "sortOrder": 11
+  }
+]

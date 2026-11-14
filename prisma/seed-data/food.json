@@ -1,0 +1,1142 @@
+[
+  {
+    "name": "Bread",
+    "slug": "bread",
+    "color": "#BC7231",
+    "image": "/img/food/Sandwhich.png",
+    "sortOrder": 0,
+    "items": [
+      {
+        "name": "Sandwich",
+        "image": "/img/food/Sandwhich.png",
+        "onFriend": "Recovers some HP",
+        "onFoe": "Yo-kai will like you a bit"
+      },
+      {
+        "name": "Custard Bread",
+        "image": "/img/food/Custardbreadhd.png",
+        "onFriend": "Recovers a bit of HP",
+        "onFoe": "Yo-kai will like you some"
+      },
+      {
+        "name": "Blueberry Bagel",
+        "image": "/img/food/Blueberry_Bagel.png",
+        "onFriend": "Recovers a bit of HP",
+        "onFoe": "Yo-kai will like you a some"
+      },
+      {
+        "name": "Curry Bread",
+        "image": "/img/food/Currybreadhd.png",
+        "onFriend": "Recovers some HP",
+        "onFoe": "Yo-kai will like you a lot"
+      },
+      {
+        "name": "Baguette",
+        "image": "/img/food/Baguettehd.png",
+        "onFriend": "Recovers a chunk of HP",
+        "onFoe": "Yo-kai will like you a lot"
+      },
+      {
+        "name": "Club Sandwich",
+        "image": "/img/food/Club_Sandwich.png",
+        "onFriend": "Recovers some HP",
+        "onFoe": "Yo-kai will like you a lot"
+      },
+      {
+        "name": "Blehgel",
+        "image": "/img/food/Blehgelhd.png",
+        "onFriend": "Recovers a lot of HP",
+        "onFoe": "Yo-kai will like you a ton"
+      }
+    ]
+  },
+  {
+    "name": "Candy",
+    "slug": "candy",
+    "color": "#4283A5",
+    "image": "/img/food/10-Cent_Gum.png",
+    "sortOrder": 1,
+    "items": [
+      {
+        "name": "10-Cent Gum",
+        "image": "/img/food/10-Cent_Gum.png",
+        "onFriend": "Recovers a bit of HP",
+        "onFoe": "Yo-kai will like you a bit"
+      },
+      {
+        "name": "Gooey Candy",
+        "image": "/img/food/Gooey_Candy.png",
+        "onFriend": "Recovers a bit of HP",
+        "onFoe": "Yo-kai will like you a bit"
+      },
+      {
+        "name": "Giant Cracker",
+        "image": "/img/food/Giant_Cracker.png",
+        "onFriend": "Recovers a bit of HP",
+        "onFoe": "Yo-kai will like you some"
+      },
+      {
+        "name": "Fruit Drops",
+        "image": "/img/food/Fruit_Drops.png",
+        "onFriend": "Recovers a bit of HP",
+        "onFoe": "Yo-kai will like you a lot"
+      },
+      {
+        "name": "Shaved Ice",
+        "image": "/img/food/Shaved_Ice.png",
+        "onFriend": "Recovers a chunk of HP",
+        "onFoe": "Yo-kai will like you a lot"
+      },
+      {
+        "name": "Rainbow Jelly Beans",
+        "image": "/img/food/Rainbow_Jelly_Beans.png",
+        "onFriend": "Recovers a chunk of HP",
+        "onFoe": "Yo-kai will like you a lot"
+      },
+      {
+        "name": "Candy Apple",
+        "image": "/img/food/Candy_Apple.png",
+        "onFriend": "Recovers a chunk of HP",
+        "onFoe": "Yo-kai will like you a ton"
+      }
+    ]
+  },
+  {
+    "name": "Chinese Food",
+    "slug": "chinese-food",
+    "color": "#D62711",
+    "image": "/img/food/Pot_Stickers.png",
+    "sortOrder": 2,
+    "items": [
+      {
+        "name": "Pot Stickers",
+        "image": "/img/food/Pot_Stickers.png",
+        "onFriend": "Recovers some HP",
+        "onFoe": "Yo-kai will like you a bit"
+      },
+      {
+        "name": "Liver & Chives",
+        "image": "/img/food/Liver_Chives.png",
+        "onFriend": "Recovers a chunk of HP",
+        "onFoe": "Yo-kai will like you some"
+      },
+      {
+        "name": "Crab Omelet",
+        "image": "/img/food/Crab_Omelet.png",
+        "onFriend": "Recovers a lot of HP",
+        "onFoe": "Yo-kai will like you a lot"
+      },
+      {
+        "name": "Chili Shrimp",
+        "image": "/img/food/Chili_Shrimp.png",
+        "onFriend": "Recovers a ton of HP",
+        "onFoe": "Yo-kai will like you a ton"
+      },
+      {
+        "name": "Mapo Tofu",
+        "image": "/img/food/Mapo_Tofu.png",
+        "onFriend": "Recovers a ton of HP",
+        "onFoe": "Yo-kai will like you a ton"
+      }
+    ]
+  },
+  {
+    "name": "Chocobars",
+    "slug": "chocobars",
+    "color": "#ED772D",
+    "image": "/img/food/Chocobar.png",
+    "sortOrder": 3,
+    "items": [
+      {
+        "name": "Chocobar",
+        "image": "/img/food/Chocobar.png",
+        "onFriend": "Recovers a bit of HP",
+        "onFoe": "Yo-kai will like you a bit"
+      },
+      {
+        "name": "Strawberry Chocobar",
+        "image": "/img/food/Strawberry_Chocobar.png",
+        "onFriend": "Recovers a bit of HP",
+        "onFoe": "Yo-kai will like you some"
+      },
+      {
+        "name": "Premium Chocobar",
+        "image": "/img/food/Premium_Chocobar.png",
+        "onFriend": "Recovers some HP",
+        "onFoe": "Yo-kai will like you a lot"
+      }
+    ]
+  },
+  {
+    "name": "Curry",
+    "slug": "curry",
+    "color": "#A05C30",
+    "image": "/img/food/Chicken_Curry.png",
+    "sortOrder": 4,
+    "items": [
+      {
+        "name": "Chicken Curry",
+        "image": "/img/food/Chicken_Curry.png",
+        "onFriend": "Recovers a bit of HP",
+        "onFoe": "Yo-kai will like you a bit"
+      },
+      {
+        "name": "Lamb Curry",
+        "image": "/img/food/Lamb_Curry.png",
+        "onFriend": "Recovers some HP",
+        "onFoe": "Yo-kai will like you some"
+      },
+      {
+        "name": "Veggie Curry",
+        "image": "/img/food/Veggie_Curry.png",
+        "onFriend": "Recovers a ton of HP",
+        "onFoe": "Yo-kai will like you some"
+      },
+      {
+        "name": "Seafood Curry",
+        "image": "/img/food/Seafood_Curry.png",
+        "onFriend": "Recovers a ton of HP",
+        "onFoe": "Yo-kai will like you a lot"
+      },
+      {
+        "name": "Buster Curry",
+        "image": "/img/food/Buster_Curry.png",
+        "onFriend": "Recovers a ton of HP",
+        "onFoe": "Yo-kai will like you a ton"
+      }
+    ]
+  },
+  {
+    "name": "Donuts",
+    "slug": "donuts",
+    "color": "#C2A18A",
+    "image": "/img/food/Donut.png",
+    "sortOrder": 5,
+    "items": [
+      {
+        "name": "Donut",
+        "image": "/img/food/Donut.png",
+        "onFriend": "Recovers a bit of HP",
+        "onFoe": "Yo-kai will like you a bit"
+      },
+      {
+        "name": "Twisty Donut",
+        "image": "/img/food/Twisty_Donut.png",
+        "onFriend": "Recovers a bit of HP",
+        "onFoe": "Yo-kai will like you a bit"
+      },
+      {
+        "name": "Chocolate Doughnut",
+        "image": "/img/food/Bit_o_Choc_Donut.png",
+        "onFriend": "Recovers some HP",
+        "onFoe": "Yo-kai will like you some"
+      },
+      {
+        "name": "Cosmic Donut",
+        "image": "/img/food/Cosmic_Donut.png",
+        "onFriend": "Recovers a chunk of HP",
+        "onFoe": "Yo-kai will like you a ton"
+      }
+    ]
+  },
+  {
+    "name": "Hambugers",
+    "slug": "hamburgers",
+    "color": "#82AA2A",
+    "image": "/img/food/Hamburger.png",
+    "sortOrder": 6,
+    "items": [
+      {
+        "name": "Hamburger",
+        "image": "/img/food/Hamburger.png",
+        "onFriend": "Recovers some HP",
+        "onFoe": "Yo-kai will like you a bit"
+      },
+      {
+        "name": "Cheeseburger",
+        "image": "/img/food/Cheeseburger.png",
+        "onFriend": "Recovers a chunk of HP",
+        "onFoe": "Yo-kai will like you some"
+      },
+      {
+        "name": "Double Burger",
+        "image": "/img/food/Double_Burger.png",
+        "onFriend": "Recovers a lot of HP",
+        "onFoe": "Yo-kai will like you some"
+      },
+      {
+        "name": "Star Burger",
+        "image": "/img/food/Star_Burger.png",
+        "onFriend": "Recovers a lot of HP",
+        "onFoe": "Yo-kai will like you some"
+      },
+      {
+        "name": "Star Burger Deluxe",
+        "image": "/img/food/Star_Burger_Deluxe.png",
+        "onFriend": "Recovers a ton of HP",
+        "onFoe": "Yo-kai will like you a lot"
+      },
+      {
+        "name": "Nom Burger",
+        "image": "/img/food/Nom_Burger.png",
+        "onFriend": "Recovers a ton of HP",
+        "onFoe": "Yo-kai will like you a ton"
+      },
+      {
+        "name": "Extreme Star Burger",
+        "image": "/img/food/Star_Burger_EX.png",
+        "onFriend": "Recovers a ton of HP",
+        "onFoe": "Yo-kai will like you a ton"
+      }
+    ]
+  },
+  {
+    "name": "Hot Dogs",
+    "slug": "hot-dogs",
+    "color": "#EEC75C",
+    "image": "/img/food/Plain_Hot_Dog.png",
+    "sortOrder": 7,
+    "items": [
+      {
+        "name": "Plain Hotdog",
+        "image": "/img/food/Plain_Hot_Dog.png",
+        "onFriend": "Recovers a bit of HP",
+        "onFoe": "Yo-kai will like you a bit"
+      },
+      {
+        "name": "Ground Beef Dog",
+        "image": "/img/food/Burger_Dog.png",
+        "onFriend": "Recovers some HP",
+        "onFoe": "Yo-kai will like you some"
+      },
+      {
+        "name": "Hot Chili Dog",
+        "image": "/img/food/Hot_Chili_Dog.png",
+        "onFriend": "Recovers some HP",
+        "onFoe": "Yo-kai will like you a lot"
+      },
+      {
+        "name": "Special Hot Dog",
+        "image": "/img/food/Premium_Special_Hot_Dog.png",
+        "onFriend": "Recovers a lot of HP",
+        "onFoe": "Yo-kai will like you a ton"
+      }
+    ]
+  },
+  {
+    "name": "Ice Cream",
+    "slug": "ice-cream",
+    "color": "#FEA543",
+    "image": "/img/food/Ice_Cream.png",
+    "sortOrder": 8,
+    "items": [
+      {
+        "name": "Ice Cream",
+        "image": "/img/food/Ice_Cream.png",
+        "onFriend": "Recovers a bit of HP",
+        "onFoe": "Yo-kai will like you a bit"
+      },
+      {
+        "name": "Berry Ice Cream",
+        "image": "/img/food/Berry_Berry_Ice_Cream.png",
+        "onFriend": "Recovers some HP",
+        "onFoe": "Yo-kai will like you some"
+      },
+      {
+        "name": "Rainbow Soft Serve",
+        "image": "/img/food/Rainbow_Ice_Cream.png",
+        "onFriend": "Recovers a chunk of HP",
+        "onFoe": "Yo-kai will like you a lot"
+      },
+      {
+        "name": "Special ☆ Sundae",
+        "image": "/img/food/Special_Sundae.png",
+        "onFriend": "Recovers a chunk of HP",
+        "onFoe": "Yo-kai will like you a ton"
+      }
+    ]
+  },
+  {
+    "name": "Juice",
+    "slug": "juice",
+    "color": "#E8473A",
+    "image": "/img/food/Y-Cola.png",
+    "sortOrder": 9,
+    "items": [
+      {
+        "name": "Y-Cola",
+        "image": "/img/food/Y-Cola.png",
+        "onFriend": "Adds a bit to the Soul Meter",
+        "onFoe": "Yo-kai will like you a bit"
+      },
+      {
+        "name": "Soul Tea",
+        "image": "/img/food/Soul_Tea_2.png",
+        "onFriend": "Adds a bit to the Soul Meter",
+        "onFoe": "Yo-kai will like you a bit"
+      },
+      {
+        "name": "Spiritizer Y",
+        "image": "/img/food/Spiritizer_Y_2.png",
+        "onFriend": "Adds a bit to the Soul Meter",
+        "onFoe": "Yo-kai will like you a bit"
+      },
+      {
+        "name": "Doctor Rapper",
+        "image": "/img/food/Doctor_Rapper.png",
+        "onFriend": "Adds a chunk to the Soul Meter",
+        "onFoe": "Yo-kai will like you some"
+      },
+      {
+        "name": "Y-Cola Max",
+        "image": "/img/food/Y-Cola_2_Liter.png",
+        "onFriend": "Adds a lot to the Soul Meter",
+        "onFoe": "Yo-kai will like you a lot"
+      },
+      {
+        "name": "VoltXtreme",
+        "image": "/img/food/VoltXtreme.png",
+        "onFriend": "Almost fills up the Soul Meter",
+        "onFoe": "Yo-kai will like you a ton"
+      }
+    ]
+  },
+  {
+    "name": "Meat",
+    "slug": "meat",
+    "color": "#EB6341",
+    "image": "/img/food/Chicken_Thigh.png",
+    "sortOrder": 10,
+    "items": [
+      {
+        "name": "Chicken Thigh",
+        "image": "/img/food/Chicken_Thigh.png",
+        "onFriend": "Recovers some HP",
+        "onFoe": "Yo-kai will like you a bit"
+      },
+      {
+        "name": "Pork Cutlet",
+        "image": "/img/food/Porkchop-0.png",
+        "onFriend": "Recovers a ton of HP",
+        "onFoe": "Yo-kai will like you a bit"
+      },
+      {
+        "name": "Slab Bacon",
+        "image": "/img/food/Slab_Bacon.png",
+        "onFriend": "Recovers a chunk of HP",
+        "onFoe": "Yo-kai will like you some"
+      },
+      {
+        "name": "Beef Tongue",
+        "image": "/img/food/Beef_Tongue.png",
+        "onFriend": "Recovers a lot of HP",
+        "onFoe": "Yo-kai will like you a lot"
+      },
+      {
+        "name": "Sirloin Steak",
+        "image": "/img/food/Sirloin_Steak.png",
+        "onFriend": "Recovers a ton of HP",
+        "onFoe": "Yo-kai will like you a lot"
+      },
+      {
+        "name": "Marbled Beef",
+        "image": "/img/food/Marbled_Beef-0.png",
+        "onFriend": "Recovers a ton of HP",
+        "onFoe": "Yo-kai will like you a ton"
+      },
+      {
+        "name": "Chateaubriand",
+        "image": "/img/food/Chateaubriand-0.png",
+        "onFriend": "Recovers a ton of HP",
+        "onFoe": "Yo-kai will like you a ton"
+      }
+    ]
+  },
+  {
+    "name": "Mega Tasty",
+    "slug": "mega-tasty",
+    "color": "#FF982D",
+    "image": "/img/food/Deliciousticks.png",
+    "sortOrder": 11,
+    "items": [
+      {
+        "name": "Mega Tasty Bar",
+        "image": "/img/food/Deliciousticks.png",
+        "onFriend": "Recovers a bit of HP",
+        "onFoe": "Yo-kai will like you a lot"
+      }
+    ]
+  },
+  {
+    "name": "Milk",
+    "slug": "milk",
+    "color": "#d5b8a5",
+    "image": "/img/food/Milk-0.png",
+    "sortOrder": 12,
+    "items": [
+      {
+        "name": "Milk",
+        "image": "/img/food/Milk-0.png",
+        "onFriend": "Adds a bit to the Soul Meter",
+        "onFoe": "Yo-kai will like you a bit"
+      },
+      {
+        "name": "Coffee Milk",
+        "image": "/img/food/Coffee_Milk.png",
+        "onFriend": "Adds some to the Soul Meter",
+        "onFoe": "Yo-kai will like you some"
+      },
+      {
+        "name": "Fruit Milk",
+        "image": "/img/food/Fruit_Milk.png",
+        "onFriend": "Adds some to Soul Meter",
+        "onFoe": "Yo-kai will like you a lot"
+      },
+      {
+        "name": "Amazing Milk",
+        "image": "/img/food/Amazing_Milk-0.png",
+        "onFriend": "Adds a ton to the Soul Meter",
+        "onFoe": "Yo-kai will like you a ton"
+      }
+    ]
+  },
+  {
+    "name": "Oden",
+    "slug": "oden",
+    "color": "#F8CE5F",
+    "image": "/img/food/Steamed_Daikon.png",
+    "sortOrder": 13,
+    "items": [
+      {
+        "name": "Steamed Daikon",
+        "image": "/img/food/Steamed_Daikon.png",
+        "onFriend": "Recovers a bit of HP",
+        "onFoe": "Yo-kai will like you a bit"
+      },
+      {
+        "name": "Boiled Egg",
+        "image": "/img/food/Boiled_Egg.png",
+        "onFriend": "Recovers a bit of HP",
+        "onFoe": "Yo-kai will like you a bit"
+      },
+      {
+        "name": "Beef Skewers",
+        "image": "/img/food/Beef_Skewers.png",
+        "onFriend": "Recovers some HP",
+        "onFoe": "Yo-kai will like you some"
+      },
+      {
+        "name": "Top-Class Oden",
+        "image": "/img/food/Top-Class_Oden.png",
+        "onFriend": "Recovers a ton of HP",
+        "onFoe": "Yo-kai will like you a ton"
+      }
+    ]
+  },
+  {
+    "name": "Pasta",
+    "slug": "pasta",
+    "color": "#F8CE5F",
+    "image": "/img/food/Bolognese.png",
+    "sortOrder": 14,
+    "items": [
+      {
+        "name": "Bolognese",
+        "image": "/img/food/Bolognese.png",
+        "onFriend": "Recovers a lot of HP",
+        "onFoe": "Yo-kai will like you some"
+      },
+      {
+        "name": "Spaghetti Carbonara",
+        "image": "/img/food/Carbonara.png",
+        "onFriend": "Recovers a ton of HP",
+        "onFoe": "Yo-kai will like you some"
+      },
+      {
+        "name": "Genovese",
+        "image": "/img/food/Genovese.png",
+        "onFriend": "Recovers a ton of HP",
+        "onFoe": "Yo-kai will like you a lot"
+      },
+      {
+        "name": "Clam Spaghetti",
+        "image": "/img/food/Spaghetti_alle_Vongole_in_Bianco.png",
+        "onFriend": "Recovers a ton of HP",
+        "onFoe": "Yo-kai will like you a lot"
+      },
+      {
+        "name": "3-Star Pescatore",
+        "image": "/img/food/Three-Star_Pescatora.png",
+        "onFriend": "Recovers a ton of HP",
+        "onFoe": "Yo-kai will like you a ton"
+      }
+    ]
+  },
+  {
+    "name": "Pizza",
+    "slug": "pizza",
+    "color": "#D45D13",
+    "image": "/img/food/Hi-Cheese_Pizza.png",
+    "sortOrder": 15,
+    "items": [
+      {
+        "name": "Cheese Pizza",
+        "image": "/img/food/Hi-Cheese_Pizza.png",
+        "onFriend": "Recovers a ton of HP",
+        "onFoe": "Yo-kai will like you a bit"
+      },
+      {
+        "name": "Pizza Margherita",
+        "image": "/img/food/Pizza_Margherita.png",
+        "onFriend": "Recovers a lot of HP",
+        "onFoe": "Yo-kai will like you some"
+      },
+      {
+        "name": "Garlic Chicken Pizza",
+        "image": "/img/food/Garlic_Chicken_Pizza.png",
+        "onFriend": "Recovers a ton of HP",
+        "onFoe": "Yo-kai will like you a lot"
+      },
+      {
+        "name": "Crispy Bacon Pizza",
+        "image": "/img/food/Crispy_Bacon_Pizza.png",
+        "onFriend": "Recovers a ton of HP",
+        "onFoe": "Yo-kai will like you a lot"
+      },
+      {
+        "name": "Star Pizza",
+        "image": "/img/food/Starry_Sky_Pizza.png",
+        "onFriend": "Recovers a ton of HP",
+        "onFoe": "Yo-kai will like you a ton"
+      }
+    ]
+  },
+  {
+    "name": "Ramen",
+    "slug": "ramen",
+    "color": "#B76517",
+    "image": "/img/food/Ramen_Cup.png",
+    "sortOrder": 16,
+    "items": [
+      {
+        "name": "Ramen Cup",
+        "image": "/img/food/Ramen_Cup.png",
+        "onFriend": "Recovers some HP",
+        "onFoe": "Yo-kai will like you a bit"
+      },
+      {
+        "name": "Pork Ramen",
+        "image": "/img/food/Pork_Ramen.png",
+        "onFriend": "Recovers a chunk of HP",
+        "onFoe": "Yo-kai will like you some"
+      },
+      {
+        "name": "Deluxe Ramen",
+        "image": "/img/food/Deluxe_Ramen.png",
+        "onFriend": "Recovers a lot of HP",
+        "onFoe": "Yo-kai will like you a lot"
+      },
+      {
+        "name": "Everything Ramen",
+        "image": "/img/food/Everything_Ramen-0.png",
+        "onFriend": "Recovers a ton of HP",
+        "onFoe": "Yo-kai will like you a ton"
+      }
+    ]
+  },
+  {
+    "name": "Rice Balls",
+    "slug": "rice-balls",
+    "color": "#E7B48C",
+    "image": "/img/food/Plum_Rice_Ball.png",
+    "sortOrder": 17,
+    "items": [
+      {
+        "name": "Plum Rice Ball",
+        "image": "/img/food/Plum_Rice_Ball.png",
+        "onFriend": "Recovers a bit of HP",
+        "onFoe": "Yo-kai will like you a bit"
+      },
+      {
+        "name": "Leaf Rice Ball",
+        "image": "/img/food/Leaf_Rice_Ball.png",
+        "onFriend": "Recovers a bit of HP",
+        "onFoe": "Yo-kai will like you a bit"
+      },
+      {
+        "name": "Roe Rice Ball",
+        "image": "/img/food/Roe_Rice_Ball.png",
+        "onFriend": "Recovers a chunk of HP",
+        "onFoe": "Yo-kai will like you some"
+      },
+      {
+        "name": "Shrimp Rice Ball",
+        "image": "/img/food/Shrimp_Rice_Ball.png",
+        "onFriend": "Recovers a lot of HP",
+        "onFoe": "Yo-kai will like you a ton"
+      },
+      {
+        "name": "Deluxe Rice Ball",
+        "image": "/img/food/Deluxe_Rice_Ball.png",
+        "onFriend": "Recovers all HP",
+        "onFoe": "Yo-kai will like you a ton"
+      }
+    ]
+  },
+  {
+    "name": "Seafood",
+    "slug": "seafood",
+    "color": "#EDA38D",
+    "image": "/img/food/Dried_Mackerel.png",
+    "sortOrder": 18,
+    "items": [
+      {
+        "name": "Dried Mackerel",
+        "image": "/img/food/Dried_Mackerel.png",
+        "onFriend": "Recovers a bit of HP",
+        "onFoe": "Yo-kai will like you a bit"
+      },
+      {
+        "name": "Yellowtail",
+        "image": "/img/food/Yellowtail.png",
+        "onFriend": "Recovers some HP",
+        "onFoe": "Yo-kai will like you some"
+      },
+      {
+        "name": "Mussels",
+        "image": "/img/food/Mussels-0.png",
+        "onFriend": "Recovers some HP",
+        "onFoe": "Yo-kai will like you some"
+      },
+      {
+        "name": "Lobster",
+        "image": "/img/food/Lobster-0.png",
+        "onFriend": "Recovers a ton of HP",
+        "onFoe": "Yo-kai will like you some"
+      },
+      {
+        "name": "Fresh Urchin",
+        "image": "/img/food/Fresh_Urchin.png",
+        "onFriend": "Recovers a ton of HP",
+        "onFoe": "Yo-kai will like you a lot"
+      },
+      {
+        "name": "King Salmon",
+        "image": "/img/food/King_Salmon-0.png",
+        "onFriend": "Recovers a ton of HP",
+        "onFoe": "Yo-kai will like you a lot"
+      },
+      {
+        "name": "Choice Tuna",
+        "image": "/img/food/Choice_Tuna.png",
+        "onFriend": "Recovers a ton of HP",
+        "onFoe": "Yo-kai will like you a ton"
+      }
+    ]
+  },
+  {
+    "name": "Snacks",
+    "slug": "snacks",
+    "color": "#97A642",
+    "image": "/img/food/Potato_Chips.png",
+    "sortOrder": 19,
+    "items": [
+      {
+        "name": "Potato Chips",
+        "image": "/img/food/Potato_Chips.png",
+        "onFriend": "Recovers a bit of HP",
+        "onFoe": "Yo-kai will like you a bit"
+      },
+      {
+        "name": "Caramel Peanuts",
+        "image": "/img/food/Caramel_Peanuts-0.png",
+        "onFriend": "Recovers a ton of HP",
+        "onFoe": "Yo-kai will like you a bit"
+      },
+      {
+        "name": "Tasty Nibbles",
+        "image": "/img/food/Tasty_Nibbles.png",
+        "onFriend": "Recovers some HP",
+        "onFoe": "Yo-kai will like you some"
+      },
+      {
+        "name": "Cheesy Chips",
+        "image": "/img/food/Cheesy_Corn_Chips.png",
+        "onFriend": "Recovers a ton of HP",
+        "onFoe": "Yo-kai will like you a lot"
+      },
+      {
+        "name": "Peppy Popcorn",
+        "image": "/img/food/Buttered_Popcorn-0.png",
+        "onFriend": "Recovers a lot of HP",
+        "onFoe": "Yo-kai will like you a lot"
+      },
+      {
+        "name": "Snow-Pea Snacks",
+        "image": "/img/food/Snow_Pea_Snacks.png",
+        "onFriend": "Recovers a ton of HP",
+        "onFoe": "Yo-kai will like you a ton"
+      }
+    ]
+  },
+  {
+    "name": "Soba",
+    "slug": "soba",
+    "color": "#8C6B4F",
+    "image": "/img/food/Kakesoba_Noodles.png",
+    "sortOrder": 20,
+    "items": [
+      {
+        "name": "Noodles in Broth",
+        "image": "/img/food/Kakesoba_Noodles.png",
+        "onFriend": "Recovers a lot of HP",
+        "onFoe": "Yo-kai will like you some"
+      },
+      {
+        "name": "Soba Noodles",
+        "image": "/img/food/Zarusoba_Noodles.png",
+        "onFriend": "Recovers a ton of HP",
+        "onFoe": "Yo-kai will like you some"
+      },
+      {
+        "name": "Fishy Noodles",
+        "image": "/img/food/Nishisoba_Noodles.png",
+        "onFriend": "Recovers a lot of HP",
+        "onFoe": "Yo-kai will like you a lot"
+      },
+      {
+        "name": "Duck Noodles",
+        "image": "/img/food/Kamoseirosoba_Noodles.png",
+        "onFriend": "Recovers a ton of HP",
+        "onFoe": "Yo-kai will like you a ton"
+      }
+    ]
+  },
+  {
+    "name": "Sukiyaki",
+    "slug": "sukiyaki",
+    "color": "#E6835C",
+    "image": "/img/food/Sukiyaki_(1).png",
+    "sortOrder": 21,
+    "items": [
+      {
+        "name": "Sukiyaki Lunchbox",
+        "image": "/img/food/Sukiyaki_(1).png",
+        "onFriend": "Recovers a ton of HP",
+        "onFoe": "Yo-kai will like you a lot"
+      },
+      {
+        "name": "Chicken Sukiyaki",
+        "image": "/img/food/Chicken_Sukiyaki.png",
+        "onFriend": "Recovers a ton of HP",
+        "onFoe": "Yo-kai will like you a lot"
+      },
+      {
+        "name": "Beef Sukiyaki",
+        "image": "/img/food/Sukiyaki_(2).png",
+        "onFriend": "Recovers a ton of HP",
+        "onFoe": "Yo-kai will like you a lot"
+      },
+      {
+        "name": "Special Marbled Sukiyak",
+        "image": "/img/food/Sukiyaki_(3).png",
+        "onFriend": "Recovers a ton of HP",
+        "onFoe": "Yo-kai will like you a ton"
+      },
+      {
+        "name": "Sukiyaki Yo-kai Special",
+        "image": "/img/food/Ultimate_Sukiyaki-0.png",
+        "onFriend": "Recovers a ton of HP",
+        "onFoe": "Yo-kai will like you a ton"
+      },
+      {
+        "name": "Sushi Sukiyaki Feast",
+        "image": "/img/food/Sushi-Sukiyaki_of_the_Imperial_Kitchen.png",
+        "onFriend": "Recovers a ton of HP",
+        "onFoe": "Yo-kai will like you a ton"
+      },
+      {
+        "name": "Tempura Sukiyaki Feast",
+        "image": "/img/food/Tempura-Sukiyaki_of_the_Imperial_Kitchen.png",
+        "onFriend": "Recovers a ton of HP",
+        "onFoe": "Yo-kai will like you a ton"
+      }
+    ]
+  },
+  {
+    "name": "Sushi",
+    "slug": "sushi",
+    "color": "#6CB146",
+    "image": "/img/food/Cucumber_Roll.png",
+    "sortOrder": 22,
+    "items": [
+      {
+        "name": "Cucumber Roll",
+        "image": "/img/food/Cucumber_Roll.png",
+        "onFriend": "Recovers a bit of HP",
+        "onFoe": "Yo-kai will like you a bit"
+      },
+      {
+        "name": "Shrimp Sushi",
+        "image": "/img/food/Shrimp_Sushi-0.png",
+        "onFriend": "Recovers some HP",
+        "onFoe": "Yo-kai will like you some"
+      },
+      {
+        "name": "California Rolls",
+        "image": "/img/food/California_Roll-0.png",
+        "onFriend": "Recovers a chunk of HP",
+        "onFoe": "Yo-kai will like you some"
+      },
+      {
+        "name": "Egg Sushi",
+        "image": "/img/food/Egg_Sushi-0.png",
+        "onFriend": "Recovers a bit of HP",
+        "onFoe": "Yo-kai will like you some"
+      },
+      {
+        "name": "Salmon Roe Sushi",
+        "image": "/img/food/Roe_Maki.png",
+        "onFriend": "Recovers a chunk of HP",
+        "onFoe": "Yo-kai will like you a lot"
+      },
+      {
+        "name": "Salmon Sushi",
+        "image": "/img/food/Salmon_Roe_Sushi.png",
+        "onFriend": "Recovers a ton of HP",
+        "onFoe": "Yo-kai will like you a lot"
+      },
+      {
+        "name": "Fin Sushi",
+        "image": "/img/food/Flounder_Sushi.png",
+        "onFriend": "Recovers a ton of HP",
+        "onFoe": "Yo-kai will like you a lot"
+      },
+      {
+        "name": "Sea Urchin Sushi",
+        "image": "/img/food/Urchin_Sushi.png",
+        "onFriend": "Recovers a chunk of HP",
+        "onFoe": "Yo-kai will like you a lot"
+      },
+      {
+        "name": "Fatty Tuna Sushi",
+        "image": "/img/food/Fatty_Tuna_Sushi-0.png",
+        "onFriend": "Recovers a ton of HP",
+        "onFoe": "Yo-kai will like you a ton"
+      },
+      {
+        "name": "High-End Sushi",
+        "image": "/img/food/First_Rate_Sushi.png",
+        "onFriend": "Recovers a ton of HP",
+        "onFoe": "Yo-kai will like you a ton"
+      },
+      {
+        "name": "Sushi Tempura Feast",
+        "image": "/img/food/Sushi-Tempura_of_the_Imperial_Kitchen.png",
+        "onFriend": "Recovers a ton of HP",
+        "onFoe": "Yo-kai will like you a ton"
+      },
+      {
+        "name": "Sushi Sukiyaki Feast",
+        "image": "/img/food/Sushi-Sukiyaki_of_the_Imperial_Kitchen.png",
+        "onFriend": "Recovers a ton of HP",
+        "onFoe": "Yo-kai will like you a ton"
+      }
+    ]
+  },
+  {
+    "name": "Sweets",
+    "slug": "sweets",
+    "color": "#D2730D",
+    "image": "/img/food/Cheesecake.png",
+    "sortOrder": 23,
+    "items": [
+      {
+        "name": "Cheesecake",
+        "image": "/img/food/Cheesecake.png",
+        "onFriend": "Recovers a bit of HP",
+        "onFoe": "Yo-kai will like you a bit"
+      },
+      {
+        "name": "Cupcake",
+        "image": "/img/food/Cupcake-0.png",
+        "onFriend": "Recovers a bit of HP",
+        "onFoe": "Yo-kai will like you a bit"
+      },
+      {
+        "name": "Shortcake",
+        "image": "/img/food/Shortcake.png",
+        "onFriend": "Recovers some HP",
+        "onFoe": "Yo-kai will like you some"
+      },
+      {
+        "name": "Mom's Cherry Pie",
+        "image": "/img/food/Cherry_Pie-0.png",
+        "onFriend": "Recovers some HP",
+        "onFoe": "Yo-kai will like you some"
+      },
+      {
+        "name": "Choco-Banana",
+        "image": "/img/food/Chocolate_Banana.png",
+        "onFriend": "Recovers some HP",
+        "onFoe": "Yo-kai will like you some"
+      },
+      {
+        "name": "Sweet Rice Cakes",
+        "image": "/img/food/Sweet_Rice_Cakes.png",
+        "onFriend": "Recovers a bit of HP",
+        "onFoe": "Yo-kai will like you some"
+      },
+      {
+        "name": "Royal Pancakes",
+        "image": "/img/food/Royal_Pancakes.png",
+        "onFriend": "Recovers a ton of HP",
+        "onFoe": "Yo-kai will like you a lot"
+      },
+      {
+        "name": "Jumbo Parfait",
+        "image": "/img/food/Jumbo_Parfait.png",
+        "onFriend": "Recovers a ton of HP",
+        "onFoe": "Yo-kai will like you a ton"
+      },
+      {
+        "name": "Spirit Doughnut",
+        "image": "/img/food/Spirit_Doughnut2.png",
+        "onFriend": "Recovers a bit of HP",
+        "onFoe": "Yo-kai will like you a bit"
+      },
+      {
+        "name": "Soul Doughnut",
+        "image": "/img/food/Soul_Doughnut2.png",
+        "onFriend": "Recovers a bit of HP",
+        "onFoe": "Yo-kai will like you a bit"
+      },
+      {
+        "name": "Specter Doughnut",
+        "image": "/img/food/Specter_Doughnut.png",
+        "onFriend": "Recovers some HP",
+        "onFoe": "Yo-kai will like you some"
+      }
+    ]
+  },
+  {
+    "name": "Tempura",
+    "slug": "tempura",
+    "color": "#F8D24F",
+    "image": "/img/food/Eggplant_Tempura.png",
+    "sortOrder": 24,
+    "items": [
+      {
+        "name": "Eggplant Tempura",
+        "image": "/img/food/Eggplant_Tempura.png",
+        "onFriend": "Recovers a bit of HP",
+        "onFoe": "Yo-kai will like you a bit"
+      },
+      {
+        "name": "Pumpkin Tempura",
+        "image": "/img/food/Pumpkin_Tempura-0.png",
+        "onFriend": "Recovers a bit of HP",
+        "onFoe": "Yo-kai will like you a bit"
+      },
+      {
+        "name": "Chicken Tempura",
+        "image": "/img/food/Chicken_Tempura.png",
+        "onFriend": "Recovers a bit of HP",
+        "onFoe": "Yo-kai will like you some"
+      },
+      {
+        "name": "Fish Tempura",
+        "image": "/img/food/Smelt_Tempura-0.png",
+        "onFriend": "Recovers a bit of HP",
+        "onFoe": "Yo-kai will like you some"
+      },
+      {
+        "name": "Squid Tempura",
+        "image": "/img/food/Squid_Tempura-0.png",
+        "onFriend": "Recovers some HP",
+        "onFoe": "Yo-kai will like you some"
+      },
+      {
+        "name": "Eel Tempura",
+        "image": "/img/food/Conger_Eel_Tempura.png",
+        "onFriend": "Recovers a chunk of HP",
+        "onFoe": "Yo-kai will like you a lot"
+      },
+      {
+        "name": "Jumbo Shrimp Tempura",
+        "image": "/img/food/Jumbo_Shrimp_Tempura-0.png",
+        "onFriend": "Recovers a chunk of HP",
+        "onFoe": "Yo-kai will like you a ton"
+      },
+      {
+        "name": "Deluxe Tempura",
+        "image": "/img/food/Superb_Tempura.png",
+        "onFriend": "Recovers a ton of HP",
+        "onFoe": "Yo-kai will like you a ton"
+      },
+      {
+        "name": "Sushi Tempura Feast",
+        "image": "/img/food/Sushi-Tempura_of_the_Imperial_Kitchen.png",
+        "onFriend": "Recovers a ton of HP",
+        "onFoe": "Yo-kai will like you a ton"
+      },
+      {
+        "name": "Tempura Sukiyaki Feast",
+        "image": "/img/food/Tempura-Sukiyaki_of_the_Imperial_Kitchen.png",
+        "onFriend": "Recovers a ton of HP",
+        "onFoe": "Yo-kai will like you a ton"
+      }
+    ]
+  },
+  {
+    "name": "Veggies",
+    "slug": "veggies",
+    "color": "#FF5111",
+    "image": "/img/food/Carrot-0.png",
+    "sortOrder": 25,
+    "items": [
+      {
+        "name": "Carrot",
+        "image": "/img/food/Carrot-0.png",
+        "onFriend": "Recovers a bit of HP",
+        "onFoe": "Yo-kai will like you a bit"
+      },
+      {
+        "name": "Cucumber",
+        "image": "/img/food/Cucumber-0.png",
+        "onFriend": "Recovers a bit of HP",
+        "onFoe": "Yo-kai will like you some"
+      },
+      {
+        "name": "Bamboo Shoot",
+        "image": "/img/food/Bamboo_Shoot-0.png",
+        "onFriend": "Recovers a lot of HP",
+        "onFoe": "Yo-kai will like you a lot"
+      },
+      {
+        "name": "Corn on the Cob",
+        "image": "/img/food/Sweet_Corn.png",
+        "onFriend": "Recovers a chunk of HP",
+        "onFoe": "Yo-kai will like you a lot"
+      },
+      {
+        "name": "Avocado",
+        "image": "/img/food/Avocado-0.png",
+        "onFriend": "Recovers a bit of HP",
+        "onFoe": "Yo-kai will like you a lot"
+      },
+      {
+        "name": "Green Mango",
+        "image": "/img/food/Green_Mango-0.png",
+        "onFriend": "Recovers a ton of HP",
+        "onFoe": "Yo-kai will like you a lot"
+      },
+      {
+        "name": "Matsutake",
+        "image": "/img/food/Matsutake-0.png",
+        "onFriend": "Recovers a ton of HP",
+        "onFoe": "Yo-kai will like you a ton"
+      }
+    ]
+  }
+]
