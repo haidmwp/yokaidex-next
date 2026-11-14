@@ -57,6 +57,17 @@ html, body { margin: 0; padding: 0; }
   position: sticky; top: 0; z-index: 10;
 }
 .a-topbar .a-user { display: flex; align-items: center; gap: 12px; color: var(--a-muted); }
+/* nút chọn ngôn ngữ VI / EN */
+.a-lang { display: inline-flex; border: 1px solid var(--a-border); border-radius: 8px; overflow: hidden; }
+.a-lang button {
+  border: none; background: var(--a-surface); color: var(--a-muted); font: inherit; font-size: 12px; font-weight: 700;
+  padding: 5px 9px; cursor: pointer;
+}
+.a-lang button + button { border-left: 1px solid var(--a-border); }
+.a-lang button.active { background: var(--a-primary); color: #fff; }
+.a-lang[aria-busy="true"] { opacity: .6; }
+.a-login .a-card { position: relative; }
+.a-login-lang { position: absolute; top: 14px; right: 14px; }
 .a-content { padding: 24px; width: 100%; } /* cùng padding 24px với .a-topbar */
 .a-btn.a-menu-btn { display: none; }
 
@@ -214,6 +225,10 @@ html, body { margin: 0; padding: 0; }
   flex-direction: column; gap: 1px; pointer-events: none;
 }
 .a-chart-col:hover .a-chart-tip, .a-chart-col:focus .a-chart-tip { display: flex; bottom: 100%; top: auto; }
+/* 3 tháng (90 cột): bỏ khe giữa các cột, cột mảnh, bo góc nhỏ */
+.a-chart-dense .a-chart-bars { gap: 0; }
+.a-chart-dense .a-chart-col { min-width: 0; padding: 0 .5px; }
+.a-chart-dense .a-chart-bar { border-radius: 1px 1px 0 0; }
 
 /* ===== Tabs ===== */
 .a-tabs { display: flex; gap: 4px; flex-wrap: wrap; border-bottom: 1px solid var(--a-border); margin-bottom: 18px; }

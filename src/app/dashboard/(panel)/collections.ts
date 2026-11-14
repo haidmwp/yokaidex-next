@@ -5,21 +5,24 @@ import { requireAdmin } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { type ActionState, cleanRows, errorMessage, json, refreshContent, slugify, str } from "@/lib/admin";
 import { BAFFLE_GAMES } from "@/lib/constants";
+import { getTr } from "@/lib/admin-lang-server";
+import type { Tr } from "@/lib/admin-lang";
 
-async function run(fn: () => Promise<number>, label: string): Promise<ActionState> {
+async function run(fn: () => Promise<number>, label: (tr: Tr) => string): Promise<ActionState> {
   await requireAdmin();
+  const { tr } = await getTr();
   try {
     const n = await fn();
     refreshContent();
-    return { ok: `Đã lưu ${n} ${label}.` };
+    return { ok: tr(`Đã lưu ${n} ${label(tr)}.`, `Saved ${n} ${label(tr)}.`) };
   } catch (e) {
-    return { error: errorMessage(e) };
+    return { error: await errorMessage(e) };
   }
 }
 
 export async function saveBaffle(_prev: ActionState, fd: FormData): Promise<ActionState> {
   const game = str(fd, "game");
-  if (!BAFFLE_GAMES.some((g) => g.id === game)) return { error: "Game không hợp lệ" };
+  if (!BAFFLE_GAMES.some((g) => g.id === game)) return { error: (await getTr()).tr("Game không hợp lệ", "Invalid game") };
   type R = { location: string; clues: string[]; solution: string; slug: string; effect: string };
   const rows = cleanRows(json<R[]>(fd, "rows", []), "solution").map((r, i) => ({
     location: r.location ?? "",
@@ -33,7 +36,7 @@ export async function saveBaffle(_prev: ActionState, fd: FormData): Promise<Acti
   return run(async () => {
     await prisma.$transaction([prisma.baffleBoard.deleteMany({ where: { game } }), prisma.baffleBoard.createMany({ data: rows })]);
     return rows.length;
-  }, "câu đố");
+  }, (tr) => tr("câu đố", "puzzles"));
 }
 
 export async function saveSouls(_prev: ActionState, fd: FormData): Promise<ActionState> {
@@ -52,7 +55,7 @@ export async function saveSouls(_prev: ActionState, fd: FormData): Promise<Actio
   return run(async () => {
     await prisma.$transaction([prisma.specialSoul.deleteMany(), prisma.specialSoul.createMany({ data: rows })]);
     return rows.length;
-  }, "công thức");
+  }, (tr) => tr("công thức", "recipes"));
 }
 
 export async function saveAttitudes(_prev: ActionState, fd: FormData): Promise<ActionState> {
@@ -61,7 +64,7 @@ export async function saveAttitudes(_prev: ActionState, fd: FormData): Promise<A
   return run(async () => {
     await prisma.$transaction([prisma.attitude.deleteMany(), prisma.attitude.createMany({ data: rows })]);
     return rows.length;
-  }, "attitude");
+  }, (tr) => tr("attitude", "attitudes"));
 }
 
 export async function saveChangelog(_prev: ActionState, fd: FormData): Promise<ActionState> {
@@ -70,5 +73,5 @@ export async function saveChangelog(_prev: ActionState, fd: FormData): Promise<A
   return run(async () => {
     await prisma.$transaction([prisma.changelog.deleteMany(), prisma.changelog.createMany({ data: rows })]);
     return rows.length;
-  }, "phiên bản");
+  }, (tr) => tr("phiên bản", "versions"));
 }

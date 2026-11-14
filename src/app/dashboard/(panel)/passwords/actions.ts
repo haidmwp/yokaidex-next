@@ -4,11 +4,13 @@ import { redirect } from "next/navigation";
 import { requireAdmin } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { type ActionState, cleanRows, errorMessage, int, json, refreshContent, slugify, str } from "@/lib/admin";
+import { getTr } from "@/lib/admin-lang-server";
 
 type Row = { code: string; effect: string };
 
 export async function saveRegion(id: number | null, _prev: ActionState, fd: FormData): Promise<ActionState> {
   await requireAdmin();
+  const { tr } = await getTr();
   const data = {
     game: int(fd, "game"),
     code: slugify(str(fd, "code")),
@@ -16,7 +18,7 @@ export async function saveRegion(id: number | null, _prev: ActionState, fd: Form
     color: str(fd, "color"),
     sortOrder: int(fd, "sortOrder"),
   };
-  if (![1, 2, 3].includes(data.game) || !data.code || !data.label) return { error: "Cần chọn game, nhập mã vùng và nhãn." };
+  if (![1, 2, 3].includes(data.game) || !data.code || !data.label) return { error: tr("Cần chọn game, nhập mã vùng và nhãn.", "Please choose a game and enter a region code and label.") };
   const rows = cleanRows(json<Row[]>(fd, "passwords", []), "code").map((r, i) => ({ ...r, sortOrder: i }));
   let newId: number | null = null;
   try {
@@ -31,11 +33,11 @@ export async function saveRegion(id: number | null, _prev: ActionState, fd: Form
       newId = r.id;
     }
   } catch (e) {
-    return { error: errorMessage(e) };
+    return { error: await errorMessage(e) };
   }
   refreshContent();
   if (newId) redirect(`/dashboard/passwords/${newId}`);
-  return { ok: `Đã lưu ${rows.length} password.` };
+  return { ok: tr(`Đã lưu ${rows.length} password.`, `Saved ${rows.length} passwords.`) };
 }
 
 export async function deleteRegion(id: number) {

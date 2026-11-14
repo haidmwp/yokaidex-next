@@ -3,6 +3,7 @@ import "@/styles/site.css";
 import SiteShell from "@/components/site/SiteShell";
 import Analytics from "@/components/site/Analytics";
 import AdBar from "@/components/site/AdBar";
+import SupportNotice from "@/components/site/SupportNotice";
 import { getGeneralSettings } from "@/lib/settings";
 
 // Tiêu đề tab: trang chủ = tiêu đề website, trang con = "Tên trang | tiêu đề website" (sửa trong Admin › Cài đặt chung)
@@ -17,10 +18,16 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-/** Thanh quảng cáo cố định dưới chân trang – chỉ hiện khi có mã trong Cài đặt chung. */
+/** Thanh quảng cáo cố định dưới chân trang + cảnh báo chặn quảng cáo – chỉ khi có mã trong Cài đặt chung. */
 async function Ads() {
-  const { adCode } = await getGeneralSettings();
-  return adCode ? <AdBar code={adCode} /> : null;
+  const { adCode, adblockWarning } = await getGeneralSettings();
+  if (!adCode) return null;
+  return (
+    <>
+      <AdBar code={adCode} />
+      {adblockWarning && <SupportNotice code={adCode} />}
+    </>
+  );
 }
 
 export default function SiteLayout({ children }: { children: React.ReactNode }) {

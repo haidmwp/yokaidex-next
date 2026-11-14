@@ -6,6 +6,7 @@ import { redirect } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import { SESSION_COOKIE, sessionCookieOptions, signSession } from "@/lib/session";
 import { getLoginPath } from "@/lib/settings-store";
+import { getTr } from "@/lib/admin-lang-server";
 
 export type LoginState = { error?: string };
 
@@ -18,7 +19,8 @@ export async function login(_prev: LoginState, fd: FormData): Promise<LoginState
     ? await prisma.user.findFirst({ where: identifier.includes("@") ? { email: identifier } : { username: identifier } })
     : null;
   if (!user || !(await bcrypt.compare(password, user.passwordHash))) {
-    return { error: "Tên đăng nhập/email hoặc mật khẩu không đúng." };
+    const { tr } = await getTr();
+    return { error: tr("Tên đăng nhập/email hoặc mật khẩu không đúng.", "Incorrect username/email or password.") };
   }
   const token = await signSession({ uid: user.id, email: user.email });
   (await cookies()).set(SESSION_COOKIE, token, sessionCookieOptions);

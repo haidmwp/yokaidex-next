@@ -1,7 +1,9 @@
 import Link from "next/link";
 import { prisma } from "@/lib/prisma";
+import { getTr } from "@/lib/admin-lang-server";
 
 export default async function QrList() {
+  const { tr } = await getTr();
   const cats = await prisma.qrCategory.findMany({
     orderBy: [{ sortOrder: "asc" }, { id: "asc" }],
     include: { _count: { select: { sets: true } } },
@@ -11,21 +13,21 @@ export default async function QrList() {
       <div className="a-page-head">
         <div>
           <h1>QR Code</h1>
-          <p>{cats.length} loại coin / vật phẩm</p>
+          <p>{tr(`${cats.length} loại coin / vật phẩm`, `${cats.length} coin / item types`)}</p>
         </div>
         <Link className="a-btn a-btn-primary" href="/dashboard/qr-code/new">
-          + Thêm loại
+          {tr("+ Thêm loại", "+ Add type")}
         </Link>
       </div>
       <div className="a-table-wrap">
         <table className="a-table">
           <thead>
             <tr>
-              <th>Thứ tự</th>
+              <th>{tr("Thứ tự", "Order")}</th>
               <th></th>
-              <th>Tên</th>
-              <th>Số bộ QR</th>
-              <th>Màu</th>
+              <th>{tr("Tên", "Name")}</th>
+              <th>{tr("Số bộ QR", "QR sets")}</th>
+              <th>{tr("Màu", "Color")}</th>
               <th></th>
             </tr>
           </thead>
@@ -46,7 +48,7 @@ export default async function QrList() {
                 </td>
                 <td className="a-right">
                   <Link className="a-btn a-btn-sm" href={`/dashboard/qr-code/${c.id}`}>
-                    Sửa
+                    {tr("Sửa", "Edit")}
                   </Link>
                 </td>
               </tr>

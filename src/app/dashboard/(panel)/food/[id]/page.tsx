@@ -3,18 +3,20 @@ import { notFound } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import DeleteButton from "@/components/admin/DeleteButton";
 import FoodForm from "../FoodForm";
+import { getTr } from "@/lib/admin-lang-server";
 import { deleteFood, saveFood } from "../actions";
 
 export default async function EditFood(props: PageProps<"/dashboard/food/[id]">) {
   const { id } = await props.params;
+  const { tr } = await getTr();
   if (id === "new") {
     return (
       <>
         <div className="a-page-head">
           <div>
-            <h1>Thêm nhóm món ăn</h1>
+            <h1>{tr("Thêm nhóm món ăn", "Add food group")}</h1>
             <p>
-              <Link href="/dashboard/food">← Danh sách</Link>
+              <Link href="/dashboard/food">{tr("← Danh sách", "← Back to list")}</Link>
             </p>
           </div>
         </div>
@@ -33,9 +35,9 @@ export default async function EditFood(props: PageProps<"/dashboard/food/[id]">)
         <div>
           <h1>{cat.name}</h1>
           <p>
-            <Link href="/dashboard/food">← Danh sách</Link> ·{" "}
+            <Link href="/dashboard/food">{tr("← Danh sách", "← Back to list")}</Link> ·{" "}
             <a href={`/food/${cat.slug}`} target="_blank" rel="noreferrer">
-              Xem trên site ↗
+              {tr("Xem trên site ↗", "View on site ↗")}
             </a>
           </p>
         </div>
@@ -44,7 +46,7 @@ export default async function EditFood(props: PageProps<"/dashboard/food/[id]">)
         action={saveFood.bind(null, cat.id)}
         cat={cat}
         items={cat.items.map(({ name, image, onFriend, onFoe }) => ({ name, image, onFriend, onFoe }))}
-        extraActions={<DeleteButton action={deleteFood.bind(null, cat.id)} label="Xoá nhóm" />}
+        extraActions={<DeleteButton action={deleteFood.bind(null, cat.id)} label={tr("Xoá nhóm", "Delete group")} />}
       />
     </>
   );

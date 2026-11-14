@@ -2,11 +2,13 @@ import Link from "next/link";
 import type { Prisma } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
 import { ATTRIBUTES, RANKS, TRIBES, YOKAI_GAMES, yokaiHref } from "@/lib/constants";
+import { getTr } from "@/lib/admin-lang-server";
 
 const PER_PAGE = 50;
 
 export default async function YokaiList(props: PageProps<"/dashboard/yokai">) {
   const sp = (await props.searchParams) as Record<string, string | undefined>;
+  const { tr } = await getTr();
   const q = sp.q?.trim() ?? "";
   const page = Math.max(1, parseInt(sp.page ?? "1", 10) || 1);
   const game = [1, 2, 3].includes(Number(sp.game)) ? Number(sp.game) : 3;
@@ -39,12 +41,10 @@ export default async function YokaiList(props: PageProps<"/dashboard/yokai">) {
       <div className="a-page-head">
         <div>
           <h1>Yo-kai</h1>
-          <p>
-            {total} yo-kai trong Yo-kai Watch {game}
-          </p>
+          <p>{tr(`${total} yo-kai trong Yo-kai Watch ${game}`, `${total} yo-kai in Yo-kai Watch ${game}`)}</p>
         </div>
         <Link className="a-btn a-btn-primary" href={`/dashboard/yokai/new?game=${game}`}>
-          + Thêm Yo-kai
+          {tr("+ Thêm Yo-kai", "+ Add Yo-kai")}
         </Link>
       </div>
       <div className="a-toolbar">
@@ -56,29 +56,29 @@ export default async function YokaiList(props: PageProps<"/dashboard/yokai">) {
       </div>
       <form className="a-toolbar">
         <input type="hidden" name="game" value={game} />
-        <input type="search" name="q" defaultValue={q} placeholder="Tìm theo tên, slug, số..." />
+        <input type="search" name="q" defaultValue={q} placeholder={tr("Tìm theo tên, slug, số...", "Search by name, slug, number...")} />
         <select name="rank" defaultValue={sp.rank ?? ""}>
-          <option value="">Mọi rank</option>
+          <option value="">{tr("Mọi rank", "All ranks")}</option>
           {RANKS.map((r) => (
             <option key={r}>{r}</option>
           ))}
         </select>
         <select name="tribe" defaultValue={sp.tribe ?? ""}>
-          <option value="">Mọi tribe</option>
+          <option value="">{tr("Mọi tribe", "All tribes")}</option>
           {TRIBES.map((r) => (
             <option key={r}>{r}</option>
           ))}
         </select>
         <select name="attribute" defaultValue={sp.attribute ?? ""}>
-          <option value="">Mọi attribute</option>
+          <option value="">{tr("Mọi attribute", "All attributes")}</option>
           {ATTRIBUTES.map((r) => (
             <option key={r}>{r}</option>
           ))}
         </select>
-        <button className="a-btn">Lọc</button>
+        <button className="a-btn">{tr("Lọc", "Filter")}</button>
         {(q || sp.rank || sp.tribe || sp.attribute) && (
           <Link className="a-btn" href={`/dashboard/yokai?game=${game}`}>
-            Xoá lọc
+            {tr("Xoá lọc", "Clear filters")}
           </Link>
         )}
       </form>
@@ -88,11 +88,11 @@ export default async function YokaiList(props: PageProps<"/dashboard/yokai">) {
             <tr>
               <th>#</th>
               <th></th>
-              <th>Tên</th>
+              <th>{tr("Tên", "Name")}</th>
               <th>Rank</th>
               <th>Tribe</th>
               <th>Attribute</th>
-              <th>Màu</th>
+              <th>{tr("Màu", "Color")}</th>
               <th></th>
             </tr>
           </thead>
@@ -114,12 +114,12 @@ export default async function YokaiList(props: PageProps<"/dashboard/yokai">) {
                   <span className="a-swatch" style={{ background: y.color }} />
                 </td>
                 <td className="a-right">
-                  {!y.published && <span className="a-pill a-pill-off">Ẩn</span>}{" "}
+                  {!y.published && <span className="a-pill a-pill-off">{tr("Ẩn", "Hidden")}</span>}{" "}
                   <a className="a-btn a-btn-sm" href={yokaiHref(y.game, y.slug)} target="_blank" rel="noreferrer">
-                    Xem
+                    {tr("Xem", "View")}
                   </a>{" "}
                   <Link className="a-btn a-btn-sm" href={`/dashboard/yokai/${y.id}`}>
-                    Sửa
+                    {tr("Sửa", "Edit")}
                   </Link>
                 </td>
               </tr>
@@ -127,7 +127,7 @@ export default async function YokaiList(props: PageProps<"/dashboard/yokai">) {
             {rows.length === 0 && (
               <tr>
                 <td colSpan={8} className="a-hint">
-                  Không có kết quả.
+                  {tr("Không có kết quả.", "No results.")}
                 </td>
               </tr>
             )}
@@ -135,15 +135,15 @@ export default async function YokaiList(props: PageProps<"/dashboard/yokai">) {
         </table>
       </div>
       <div className="a-pager">
-        Trang {page}/{pages}
+        {tr("Trang", "Page")} {page}/{pages}
         {page > 1 && (
           <Link className="a-btn a-btn-sm" href={link(page - 1)}>
-            ← Trước
+            {tr("← Trước", "← Prev")}
           </Link>
         )}
         {page < pages && (
           <Link className="a-btn a-btn-sm" href={link(page + 1)}>
-            Sau →
+            {tr("Sau →", "Next →")}
           </Link>
         )}
       </div>

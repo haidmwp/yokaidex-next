@@ -3,6 +3,7 @@
 import { useActionState, useEffect, useState } from "react";
 import { useFormStatus } from "react-dom";
 import type { ActionState } from "@/lib/admin";
+import { useTr } from "./AdminLang";
 
 type Props = {
   action: (prev: ActionState, fd: FormData) => Promise<ActionState>;
@@ -13,15 +14,17 @@ type Props = {
 
 function Submit({ label }: { label: string }) {
   const { pending } = useFormStatus();
+  const { tr } = useTr();
   return (
     <button type="submit" className="a-btn a-btn-primary" disabled={pending}>
-      {pending ? "Đang lưu..." : label}
+      {pending ? tr("Đang lưu...", "Saving...") : label}
     </button>
   );
 }
 
 /** Form admin chuẩn: gửi server action, hiện thông báo thành công/lỗi, thanh lưu cố định. */
-export default function AdminForm({ action, children, submitLabel = "Lưu thay đổi", extraActions }: Props) {
+export default function AdminForm({ action, children, submitLabel, extraActions }: Props) {
+  const { tr } = useTr();
   const [state, formAction] = useActionState(action, {});
   // thông báo thành công tự ẩn sau 4 giây
   const [dismissed, setDismissed] = useState<ActionState | null>(null);
@@ -39,7 +42,7 @@ export default function AdminForm({ action, children, submitLabel = "Lưu thay �
       {shown.error && <div className="a-alert a-alert-err">{shown.error}</div>}
       {children}
       <div className="a-actions-bar">
-        <Submit label={submitLabel} />
+        <Submit label={submitLabel ?? tr("Lưu thay đổi", "Save changes")} />
         {extraActions}
       </div>
     </form>

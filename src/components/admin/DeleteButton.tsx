@@ -1,10 +1,12 @@
 "use client";
 
+import { useTr } from "./AdminLang";
+
 /** Nút xoá có hỏi xác nhận; `action` là server action đã bind sẵn id. */
 export default function DeleteButton({
   action,
-  label = "Xoá",
-  confirmText = "Bạn chắc chắn muốn xoá? Thao tác này không thể hoàn tác.",
+  label,
+  confirmText,
   small,
 }: {
   action: () => Promise<void>;
@@ -12,6 +14,7 @@ export default function DeleteButton({
   confirmText?: string;
   small?: boolean;
 }) {
+  const { tr } = useTr();
   return (
     <button
       type="submit"
@@ -19,10 +22,10 @@ export default function DeleteButton({
       formNoValidate
       className={`a-btn a-btn-danger${small ? " a-btn-sm" : ""}`}
       onClick={(e) => {
-        if (!confirm(confirmText)) e.preventDefault();
+        if (!confirm(confirmText ?? tr("Bạn chắc chắn muốn xoá? Thao tác này không thể hoàn tác.", "Are you sure you want to delete this? This cannot be undone."))) e.preventDefault();
       }}
     >
-      {label}
+      {label ?? tr("Xoá", "Delete")}
     </button>
   );
 }

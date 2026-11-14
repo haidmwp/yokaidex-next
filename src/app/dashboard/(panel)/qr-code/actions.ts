@@ -4,11 +4,13 @@ import { redirect } from "next/navigation";
 import { requireAdmin } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { type ActionState, cleanRows, errorMessage, int, json, refreshContent, slugify, str } from "@/lib/admin";
+import { getTr } from "@/lib/admin-lang-server";
 
 type Set = { name: string; slug: string; color: string; slides: string[] };
 
 export async function saveQr(id: number | null, _prev: ActionState, fd: FormData): Promise<ActionState> {
   await requireAdmin();
+  const { tr } = await getTr();
   const name = str(fd, "name");
   const data = {
     name,
@@ -17,7 +19,7 @@ export async function saveQr(id: number | null, _prev: ActionState, fd: FormData
     icon: str(fd, "icon"),
     sortOrder: int(fd, "sortOrder"),
   };
-  if (!data.name || !data.slug) return { error: "Cần nhập tên loại coin." };
+  if (!data.name || !data.slug) return { error: tr("Cần nhập tên loại coin.", "Please enter a coin type name.") };
   const sets = cleanRows(json<Set[]>(fd, "sets", []), "name").map((s, i) => ({
     ...s,
     slug: slugify(s.slug || s.name),
@@ -25,7 +27,7 @@ export async function saveQr(id: number | null, _prev: ActionState, fd: FormData
     sortOrder: i,
   }));
   const dup = sets.find((s, i) => sets.findIndex((x) => x.slug === s.slug) !== i);
-  if (dup) return { error: `Slug bộ QR bị trùng: ${dup.slug}` };
+  if (dup) return { error: tr(`Slug bộ QR bị trùng: ${dup.slug}`, `Duplicate QR set slug: ${dup.slug}`) };
   let newId: number | null = null;
   try {
     if (id) {
@@ -39,11 +41,11 @@ export async function saveQr(id: number | null, _prev: ActionState, fd: FormData
       newId = c.id;
     }
   } catch (e) {
-    return { error: errorMessage(e) };
+    return { error: await errorMessage(e) };
   }
   refreshContent();
   if (newId) redirect(`/dashboard/qr-code/${newId}`);
-  return { ok: `Đã lưu “${data.name}” (${sets.length} bộ QR).` };
+  return { ok: tr(`Đã lưu “${data.name}” (${sets.length} bộ QR).`, `Saved “${data.name}” (${sets.length} QR sets).`) };
 }
 
 export async function deleteQr(id: number) {

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { ColorInput, ImageInput } from "./Fields";
+import { useTr } from "./AdminLang";
 
 export type Column = {
   key: string;
@@ -31,7 +32,7 @@ export default function RowsEditor({
   name,
   columns,
   initial,
-  addLabel = "+ Thêm dòng",
+  addLabel,
   defaults,
 }: {
   name: string;
@@ -41,6 +42,7 @@ export default function RowsEditor({
   defaults?: Record<string, unknown>;
 }) {
   const [rows, setRows] = useState<Row[]>(() => initial.map(withKey));
+  const { tr } = useTr();
 
   const set = (i: number, key: string, value: unknown) =>
     setRows((rs) => rs.map((r, j) => (j === i ? { ...r, [key]: value } : r)));
@@ -93,7 +95,7 @@ export default function RowsEditor({
                         <textarea
                           rows={3}
                           value={((v as string[]) ?? []).join("\n")}
-                          placeholder={c.placeholder ?? "Mỗi dòng một giá trị"}
+                          placeholder={c.placeholder ?? tr("Mỗi dòng một giá trị", "One value per line")}
                           onChange={(e) => set(i, c.key, e.target.value.split("\n"))}
                         />
                       ) : c.type === "image" ? (
@@ -120,13 +122,13 @@ export default function RowsEditor({
                   );
                 })}
                 <td className="a-row-ctl">
-                  <button type="button" className="a-btn a-btn-icon" title="Lên" onClick={() => move(i, -1)}>
+                  <button type="button" className="a-btn a-btn-icon" title={tr("Lên", "Move up")} onClick={() => move(i, -1)}>
                     ↑
                   </button>{" "}
-                  <button type="button" className="a-btn a-btn-icon" title="Xuống" onClick={() => move(i, 1)}>
+                  <button type="button" className="a-btn a-btn-icon" title={tr("Xuống", "Move down")} onClick={() => move(i, 1)}>
                     ↓
                   </button>{" "}
-                  <button type="button" className="a-btn a-btn-icon a-btn-danger" title="Xoá" onClick={() => remove(i)}>
+                  <button type="button" className="a-btn a-btn-icon a-btn-danger" title={tr("Xoá", "Delete")} onClick={() => remove(i)}>
                     ✕
                   </button>
                 </td>
@@ -137,9 +139,9 @@ export default function RowsEditor({
       </div>
       <div className="a-rows-foot">
         <button type="button" className="a-btn a-btn-sm" onClick={add}>
-          {addLabel}
+          {addLabel ?? tr("+ Thêm dòng", "+ Add row")}
         </button>
-        <span className="a-hint">{rows.length} dòng · nhớ bấm “Lưu thay đổi”</span>
+        <span className="a-hint">{tr(`${rows.length} dòng · nhớ bấm “Lưu thay đổi”`, `${rows.length} rows · remember to click “Save changes”`)}</span>
       </div>
     </div>
   );

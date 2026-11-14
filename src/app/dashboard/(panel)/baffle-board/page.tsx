@@ -4,24 +4,26 @@ import AdminForm from "@/components/admin/AdminForm";
 import RowsEditor, { type Column } from "@/components/admin/RowsEditor";
 import { BAFFLE_GAMES } from "@/lib/constants";
 import { saveBaffle } from "../collections";
+import { getTr } from "@/lib/admin-lang-server";
 
 export default async function BaffleAdmin(props: PageProps<"/dashboard/baffle-board">) {
   const sp = (await props.searchParams) as { game?: string };
+  const { tr } = await getTr();
   const game = BAFFLE_GAMES.find((g) => g.id === sp.game) ?? BAFFLE_GAMES[0];
   const rows = await prisma.baffleBoard.findMany({ where: { game: game.id }, orderBy: [{ sortOrder: "asc" }, { id: "asc" }] });
   const columns: Column[] = [
-    ...(game.hasLocation ? [{ key: "location", label: "Địa điểm", type: "textarea" as const }] : []),
-    { key: "clues", label: "Gợi ý (mỗi dòng 1 gợi ý)", type: "lines" },
-    { key: "solution", label: "Đáp án", width: 140 },
-    { key: "slug", label: "Slug yokai", width: 140 },
-    ...(game.hasLocation ? [{ key: "effect", label: "Hiệu ứng", type: "textarea" as const }] : []),
+    ...(game.hasLocation ? [{ key: "location", label: tr("Địa điểm", "Location"), type: "textarea" as const }] : []),
+    { key: "clues", label: tr("Gợi ý (mỗi dòng 1 gợi ý)", "Clues (one per line)"), type: "lines" },
+    { key: "solution", label: tr("Đáp án", "Answer"), width: 140 },
+    { key: "slug", label: tr("Slug yokai", "Yo-kai slug"), width: 140 },
+    ...(game.hasLocation ? [{ key: "effect", label: tr("Hiệu ứng", "Effect"), type: "textarea" as const }] : []),
   ];
   return (
     <>
       <div className="a-page-head">
         <div>
           <h1>Baffle Board</h1>
-          <p>Câu đố bảng chữ theo từng game</p>
+          <p>{tr("Câu đố bảng chữ theo từng game", "Baffle board puzzles per game")}</p>
         </div>
       </div>
       <div className="a-toolbar">
@@ -36,7 +38,7 @@ export default async function BaffleAdmin(props: PageProps<"/dashboard/baffle-bo
         <div className="a-card">
           <RowsEditor
             name="rows"
-            addLabel="+ Thêm câu đố"
+            addLabel={tr("+ Thêm câu đố", "+ Add puzzle")}
             initial={rows.map((r) => ({
               location: r.location,
               clues: (r.clues as string[]) ?? [],

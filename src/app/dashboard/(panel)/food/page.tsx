@@ -1,7 +1,9 @@
 import Link from "next/link";
 import { prisma } from "@/lib/prisma";
+import { getTr } from "@/lib/admin-lang-server";
 
 export default async function FoodList() {
+  const { tr } = await getTr();
   const cats = await prisma.foodCategory.findMany({
     orderBy: [{ sortOrder: "asc" }, { name: "asc" }],
     include: { _count: { select: { items: true } } },
@@ -11,21 +13,21 @@ export default async function FoodList() {
       <div className="a-page-head">
         <div>
           <h1>Food</h1>
-          <p>{cats.length} nhóm món ăn</p>
+          <p>{tr(`${cats.length} nhóm món ăn`, `${cats.length} food groups`)}</p>
         </div>
         <Link className="a-btn a-btn-primary" href="/dashboard/food/new">
-          + Thêm nhóm
+          {tr("+ Thêm nhóm", "+ Add group")}
         </Link>
       </div>
       <div className="a-table-wrap">
         <table className="a-table">
           <thead>
             <tr>
-              <th>Thứ tự</th>
+              <th>{tr("Thứ tự", "Order")}</th>
               <th></th>
-              <th>Nhóm</th>
-              <th>Số món</th>
-              <th>Màu</th>
+              <th>{tr("Nhóm", "Group")}</th>
+              <th>{tr("Số món", "Items")}</th>
+              <th>{tr("Màu", "Color")}</th>
               <th></th>
             </tr>
           </thead>
@@ -46,7 +48,7 @@ export default async function FoodList() {
                 </td>
                 <td className="a-right">
                   <Link className="a-btn a-btn-sm" href={`/dashboard/food/${c.id}`}>
-                    Sửa
+                    {tr("Sửa", "Edit")}
                   </Link>
                 </td>
               </tr>

@@ -5,6 +5,7 @@ import { Prisma } from "@prisma/client";
 import { requireAdmin } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { type ActionState, bool, errorMessage, int, json, refreshContent, slugify, str } from "@/lib/admin";
+import { getTr } from "@/lib/admin-lang-server";
 import { emptyMoveset, type Evolution, type Fusion, type Moveset } from "@/lib/types";
 
 function parse(fd: FormData) {
@@ -41,8 +42,9 @@ function parse(fd: FormData) {
 
 export async function saveYokai(id: number | null, _prev: ActionState, fd: FormData): Promise<ActionState> {
   await requireAdmin();
+  const { tr } = await getTr();
   const data = parse(fd);
-  if (!data.number || !data.name || !data.slug) return { error: "Cần nhập Số thứ tự, Tên và Slug." };
+  if (!data.number || !data.name || !data.slug) return { error: tr("Cần nhập Số thứ tự, Tên và Slug.", "Please enter Number, Name and Slug.") };
   let createdId: number | null = null;
   const payload = { ...data, evolution: data.evolution ?? Prisma.DbNull };
   try {
@@ -53,11 +55,11 @@ export async function saveYokai(id: number | null, _prev: ActionState, fd: FormD
       createdId = y.id;
     }
   } catch (e) {
-    return { error: errorMessage(e) };
+    return { error: await errorMessage(e) };
   }
   refreshContent();
   if (createdId) redirect(`/dashboard/yokai/${createdId}?created=1`);
-  return { ok: "Đã lưu Yo-kai." };
+  return { ok: tr("Đã lưu Yo-kai.", "Yo-kai saved.") };
 }
 
 export async function deleteYokai(id: number) {

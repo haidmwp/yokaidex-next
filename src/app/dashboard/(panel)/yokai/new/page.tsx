@@ -4,9 +4,11 @@ import { emptyMoveset } from "@/lib/types";
 import YokaiForm from "../YokaiForm";
 import { saveYokai } from "../actions";
 import { formOptions } from "../shared";
+import { getTr } from "@/lib/admin-lang-server";
 
 export default async function NewYokai(props: PageProps<"/dashboard/yokai/new">) {
   const sp = (await props.searchParams) as { game?: string };
+  const { tr } = await getTr();
   const game = [1, 2, 3].includes(Number(sp.game)) ? Number(sp.game) : 3;
   const { options, foods } = await formOptions(game);
   const last = await prisma.yokai.findFirst({ where: { game }, orderBy: { number: "desc" }, select: { number: true } });
@@ -15,9 +17,9 @@ export default async function NewYokai(props: PageProps<"/dashboard/yokai/new">)
     <>
       <div className="a-page-head">
         <div>
-          <h1>Thêm Yo-kai · Yo-kai Watch {game}</h1>
+          <h1>{tr("Thêm Yo-kai", "Add Yo-kai")} · Yo-kai Watch {game}</h1>
           <p>
-            <Link href={`/dashboard/yokai?game=${game}`}>← Danh sách</Link>
+            <Link href={`/dashboard/yokai?game=${game}`}>{tr("← Danh sách", "← Back to list")}</Link>
           </p>
         </div>
       </div>

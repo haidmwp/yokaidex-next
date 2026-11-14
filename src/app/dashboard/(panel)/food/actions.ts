@@ -4,11 +4,13 @@ import { redirect } from "next/navigation";
 import { requireAdmin } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { type ActionState, cleanRows, errorMessage, int, json, refreshContent, slugify, str } from "@/lib/admin";
+import { getTr } from "@/lib/admin-lang-server";
 
 type Item = { name: string; image: string; onFriend: string; onFoe: string };
 
 export async function saveFood(id: number | null, _prev: ActionState, fd: FormData): Promise<ActionState> {
   await requireAdmin();
+  const { tr } = await getTr();
   const name = str(fd, "name");
   const data = {
     name,
@@ -17,7 +19,7 @@ export async function saveFood(id: number | null, _prev: ActionState, fd: FormDa
     image: str(fd, "image"),
     sortOrder: int(fd, "sortOrder"),
   };
-  if (!data.name || !data.slug) return { error: "Cần nhập tên nhóm." };
+  if (!data.name || !data.slug) return { error: tr("Cần nhập tên nhóm.", "Please enter a group name.") };
   const items = cleanRows(json<Item[]>(fd, "items", []), "name").map((it, i) => ({ ...it, sortOrder: i }));
   let newId: number | null = null;
   try {
@@ -37,11 +39,11 @@ export async function saveFood(id: number | null, _prev: ActionState, fd: FormDa
       newId = c.id;
     }
   } catch (e) {
-    return { error: errorMessage(e) };
+    return { error: await errorMessage(e) };
   }
   refreshContent();
   if (newId) redirect(`/dashboard/food/${newId}`);
-  return { ok: `Đã lưu nhóm “${data.name}” (${items.length} món).` };
+  return { ok: tr(`Đã lưu nhóm “${data.name}” (${items.length} món).`, `Saved group “${data.name}” (${items.length} items).`) };
 }
 
 export async function deleteFood(id: number) {

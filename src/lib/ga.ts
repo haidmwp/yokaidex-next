@@ -8,6 +8,17 @@ import { BetaAnalyticsDataClient } from "@google-analytics/data";
 
 export const GA_TAG = "ga-stats";
 
+/** Các khoảng thời gian chọn được trên Tổng quan (?range=...). */
+export const GA_RANGES = [
+  { days: 7, label: "7 ngày", labelEn: "7 days" },
+  { days: 30, label: "30 ngày", labelEn: "30 days" },
+  { days: 90, label: "3 tháng", labelEn: "3 months" },
+] as const;
+export type GaDays = (typeof GA_RANGES)[number]["days"];
+export const gaRange = (v?: string) => GA_RANGES.find((r) => String(r.days) === v) ?? GA_RANGES[0];
+
+const pad2 = (n: number) => String(n).padStart(2, "0");
+
 type Totals = { users: number; views: number; sessions: number };
 export type GaReport =
   | { status: "not-configured"; reason: string }
@@ -17,7 +28,8 @@ export type GaReport =
       days: number;
       current: Totals;
       previous: Totals;
-      daily: { date: string; views: number; users: number }[];
+      /** Lượt xem từng ngày trong khoảng (key = YYYYMMDD) */
+      daily: { key: string; label: string; date: string; views: number; users: number }[];
       topPages: { path: string; title: string; views: number }[];
       fetchedAt: string;
     };
@@ -45,7 +57,7 @@ function getClient(keyFilename: string) {
 const num = (v?: string | null) => Number(v ?? 0) || 0;
 
 /** Báo cáo N ngày gần nhất (so với N ngày trước đó). Cache 1 giờ để tiết kiệm hạn mức API. */
-export async function getGaReport(days: 7 | 30): Promise<GaReport> {
+export async function getGaReport(days: GaDays): Promise<GaReport> {
   "use cache";
   cacheLife("hours");
   cacheTag(GA_TAG);
@@ -70,6 +82,7 @@ export async function getGaReport(days: 7 | 30): Promise<GaReport> {
           dimensions: [{ name: "date" }],
           metrics: [{ name: "screenPageViews" }, { name: "activeUsers" }],
           orderBys: [{ dimension: { dimensionName: "date" } }],
+          limit: 1000,
         },
         {
           dateRanges: [{ startDate: `${days - 1}daysAgo`, endDate: "today" }],
@@ -87,14 +100,20 @@ export async function getGaReport(days: 7 | 30): Promise<GaReport> {
       return { users: num(row?.metricValues?.[0]?.value), views: num(row?.metricValues?.[1]?.value), sessions: num(row?.metricValues?.[2]?.value) };
     };
 
-    // điền đủ các ngày (kể cả ngày không có lượt xem)
-    const byDate = new Map((dailyR?.rows ?? []).map((r) => [r.dimensionValues?.[0]?.value ?? "", r]));
-    const daily: { date: string; views: number; users: number }[] = [];
+    // điền đủ các ngày trong khoảng (kể cả ngày không có lượt xem)
+    const byKey = new Map((dailyR?.rows ?? []).map((r) => [r.dimensionValues?.[0]?.value ?? "", r]));
+    const daily: { key: string; label: string; date: string; views: number; users: number }[] = [];
     for (let i = days - 1; i >= 0; i--) {
       const d = new Date(Date.now() - i * 86400000);
-      const key = `${d.getFullYear()}${String(d.getMonth() + 1).padStart(2, "0")}${String(d.getDate()).padStart(2, "0")}`;
-      const r = byDate.get(key);
-      daily.push({ date: key, views: num(r?.metricValues?.[0]?.value), users: num(r?.metricValues?.[1]?.value) });
+      const key = `${d.getFullYear()}${pad2(d.getMonth() + 1)}${pad2(d.getDate())}`;
+      const r = byKey.get(key);
+      daily.push({
+        key,
+        label: `${pad2(d.getDate())}/${pad2(d.getMonth() + 1)}`,
+        date: `${pad2(d.getDate())}/${pad2(d.getMonth() + 1)}/${d.getFullYear()}`,
+        views: num(r?.metricValues?.[0]?.value),
+        users: num(r?.metricValues?.[1]?.value),
+      });
     }
 
     return {

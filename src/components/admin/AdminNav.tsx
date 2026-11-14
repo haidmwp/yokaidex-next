@@ -3,22 +3,24 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
+import type { Tr } from "@/lib/admin-lang";
+import { useTr } from "./AdminLang";
 
-const GROUPS = [
+const groups = (tr: Tr) => [
   {
-    title: "Tổng quan",
-    items: [{ href: "/dashboard", label: "Dashboard", icon: "/img/ui/admin/icon-dashboard.svg", exact: true }],
+    title: tr("Tổng quan", "Overview"),
+    items: [{ href: "/dashboard", label: tr("Trang quản trị", "Dashboard"), icon: "/img/ui/admin/icon-dashboard.svg", exact: true }],
   },
   {
-    title: "Hệ thống",
+    title: tr("Hệ thống", "System"),
     items: [
-      { href: "/dashboard/settings", label: "Cài đặt chung", icon: "icon-baffle-board.png" },
-      { href: "/dashboard/messages", label: "Tin nhắn liên hệ", icon: "icon-contact.png", badge: true },
-      { href: "/dashboard/users", label: "Tài khoản admin", icon: "icon-password.png" },
+      { href: "/dashboard/settings", label: tr("Cài đặt chung", "General settings"), icon: "icon-baffle-board.png" },
+      { href: "/dashboard/messages", label: tr("Tin nhắn liên hệ", "Contact messages"), icon: "icon-contact.png", badge: true },
+      { href: "/dashboard/users", label: tr("Tài khoản admin", "Admin accounts"), icon: "icon-password.png" },
     ],
   },
   {
-    title: "Nội dung",
+    title: tr("Nội dung", "Content"),
     // Cùng thứ tự với menu của website
     items: [
       { href: "/dashboard/pages/home", label: "Home", icon: "icon-home.png" },
@@ -37,6 +39,7 @@ const GROUPS = [
 
 export default function AdminNav({ unread, children }: { unread: number; children: React.ReactNode }) {
   const pathname = usePathname();
+  const { tr } = useTr();
   const [open, setOpen] = useState(false);
 
   return (
@@ -46,7 +49,7 @@ export default function AdminNav({ unread, children }: { unread: number; childre
           <img src="/img/ui/icon-logo.webp" alt="" /> YokaiDex
         </div>
         <nav>
-          {GROUPS.map((g) => (
+          {groups(tr).map((g) => (
             <div key={g.title}>
               <div className="a-nav-group">{g.title}</div>
               {g.items.map((it) => {
@@ -69,7 +72,7 @@ export default function AdminNav({ unread, children }: { unread: number; childre
             type="button"
             className="a-btn a-btn-sm a-menu-btn"
             style={{ position: "fixed", top: 14, left: 12, zIndex: 60 }}
-            aria-label="Mở menu"
+            aria-label={tr("Mở menu", "Open menu")}
             onClick={(e) => {
               e.stopPropagation();
               setOpen(true);

@@ -1,6 +1,7 @@
 import "server-only";
 import { updateTag } from "next/cache";
 import { CONTENT_TAG } from "./data";
+import { getTr } from "./admin-lang-server";
 
 export type ActionState = { ok?: string; error?: string };
 
@@ -31,12 +32,16 @@ export function slugify(s: string) {
     .replace(/^-+|-+$/g, "");
 }
 
-/** Chuẩn hoá thông báo lỗi Prisma thành tiếng Việt dễ hiểu. */
-export function errorMessage(e: unknown): string {
+/** Chuẩn hoá thông báo lỗi Prisma thành câu dễ hiểu (theo ngôn ngữ admin). */
+export async function errorMessage(e: unknown): Promise<string> {
+  const { tr } = await getTr();
   const err = e as { code?: string; meta?: { target?: unknown }; message?: string };
-  if (err?.code === "P2002") return `Giá trị bị trùng (${String(err.meta?.target ?? "unique")}). Hãy chọn slug/mã khác.`;
-  if (err?.code === "P2025") return "Không tìm thấy bản ghi.";
-  return err?.message ?? "Đã có lỗi xảy ra.";
+  if (err?.code === "P2002") return tr(
+      `Giá trị bị trùng (${String(err.meta?.target ?? "unique")}). Hãy chọn slug/mã khác.`,
+      `Duplicate value (${String(err.meta?.target ?? "unique")}). Please choose another slug/code.`,
+    );
+  if (err?.code === "P2025") return tr("Không tìm thấy bản ghi.", "Record not found.");
+  return err?.message ?? tr("Đã có lỗi xảy ra.", "Something went wrong.");
 }
 
 /** Bỏ các field rỗng hoàn toàn, chuẩn hoá chuỗi trong mảng rows từ RowsEditor. */

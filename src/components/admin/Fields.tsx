@@ -2,6 +2,7 @@
 
 import { useId, useRef, useState } from "react";
 import { PALETTE } from "@/lib/constants";
+import { useTr } from "./AdminLang";
 
 /** Upload file lên /api/admin/upload, trả về đường dẫn public. */
 export async function uploadFile(file: File): Promise<string> {
@@ -9,7 +10,7 @@ export async function uploadFile(file: File): Promise<string> {
   fd.append("file", file);
   const res = await fetch("/api/admin/upload", { method: "POST", body: fd });
   const data = await res.json();
-  if (!res.ok) throw new Error(data.error || "Upload thất bại");
+  if (!res.ok) throw new Error(data.error || "Upload failed");
   return data.url as string;
 }
 
@@ -21,13 +22,14 @@ type ImageInputProps = {
 };
 
 /** Ô nhập đường dẫn ảnh + xem trước + nút upload. */
-export function ImageInput({ value, onChange, name, placeholder = "/img/... hoặc https://..." }: ImageInputProps) {
+export function ImageInput({ value, onChange, name, placeholder }: ImageInputProps) {
+  const { tr } = useTr();
   const fileRef = useRef<HTMLInputElement>(null);
   const [busy, setBusy] = useState(false);
   return (
     <div className="a-image-field">
       {value ? <img className="a-thumb" src={value} alt="" /> : <span className="a-thumb" />}
-      <input type="text" name={name} value={value} placeholder={placeholder} onChange={(e) => onChange(e.target.value)} />
+      <input type="text" name={name} value={value} placeholder={placeholder ?? tr("/img/... hoặc https://...", "/img/... or https://...")} onChange={(e) => onChange(e.target.value)} />
       <button type="button" className="a-btn a-btn-sm" disabled={busy} onClick={() => fileRef.current?.click()}>
         {busy ? "..." : "Upload"}
       </button>
@@ -81,11 +83,12 @@ export function ColorInput({ value, onChange, name }: { value: string; onChange:
   );
 }
 
-export function ColorField({ name, defaultValue = "#E85A3D", label = "Màu" }: { name: string; defaultValue?: string; label?: string }) {
+export function ColorField({ name, defaultValue = "#E85A3D", label }: { name: string; defaultValue?: string; label?: string }) {
+  const { tr } = useTr();
   const [v, setV] = useState(defaultValue);
   return (
     <div className="a-field">
-      <label>{label}</label>
+      <label>{label ?? tr("Màu", "Color")}</label>
       <ColorInput name={name} value={v} onChange={setV} />
     </div>
   );

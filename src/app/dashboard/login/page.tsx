@@ -1,12 +1,24 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
+import { AdminLangProvider, LangSwitch } from "@/components/admin/AdminLang";
+import { getTr } from "@/lib/admin-lang-server";
 import LoginForm from "./LoginForm";
 
-export const metadata: Metadata = { title: "Đăng nhập" };
+export async function generateMetadata(): Promise<Metadata> {
+  const { tr } = await getTr();
+  return { title: tr("Đăng nhập", "Log in") };
+}
 
 async function Form({ searchParams }: { searchParams: Promise<{ next?: string }> }) {
-  const { next } = await searchParams;
-  return <LoginForm next={next} />;
+  const [{ next }, { lang }] = await Promise.all([searchParams, getTr()]);
+  return (
+    <AdminLangProvider lang={lang}>
+      <div className="a-login-lang">
+        <LangSwitch />
+      </div>
+      <LoginForm next={next} />
+    </AdminLangProvider>
+  );
 }
 
 export default function LoginPage(props: PageProps<"/dashboard/login">) {
@@ -16,7 +28,7 @@ export default function LoginPage(props: PageProps<"/dashboard/login">) {
         <div className="a-login-logo">
           <img src="/img/ui/icon-logo.webp" alt="" /> YokaiDex Admin
         </div>
-        <Suspense fallback={<LoginForm />}>
+        <Suspense fallback={null}>
           <Form searchParams={props.searchParams as Promise<{ next?: string }>} />
         </Suspense>
       </div>

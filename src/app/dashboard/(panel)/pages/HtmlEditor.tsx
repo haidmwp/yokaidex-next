@@ -2,29 +2,31 @@
 
 import { useEffect, useRef, useState } from "react";
 import { uploadFile } from "@/components/admin/Fields";
+import { useTr } from "@/components/admin/AdminLang";
+import type { Tr } from "@/lib/admin-lang";
 
 type Tool = { label: string; title: string; cmd: string; value?: string; style?: React.CSSProperties };
 
-const TOOLS: (Tool | "|")[] = [
-  { label: "B", title: "In đậm", cmd: "bold", style: { fontWeight: 800 } },
-  { label: "I", title: "In nghiêng", cmd: "italic", style: { fontStyle: "italic" } },
-  { label: "U", title: "Gạch chân", cmd: "underline", style: { textDecoration: "underline" } },
+const tools = (tr: Tr): (Tool | "|")[] => [
+  { label: "B", title: tr("In đậm", "Bold"), cmd: "bold", style: { fontWeight: 800 } },
+  { label: "I", title: tr("In nghiêng", "Italic"), cmd: "italic", style: { fontStyle: "italic" } },
+  { label: "U", title: tr("Gạch chân", "Underline"), cmd: "underline", style: { textDecoration: "underline" } },
   "|",
-  { label: "Đoạn", title: "Đoạn văn", cmd: "formatBlock", value: "<p>" },
-  { label: "H2", title: "Tiêu đề lớn", cmd: "formatBlock", value: "<h2>" },
-  { label: "H3", title: "Tiêu đề nhỏ", cmd: "formatBlock", value: "<h3>" },
+  { label: tr("Đoạn", "Para"), title: tr("Đoạn văn", "Paragraph"), cmd: "formatBlock", value: "<p>" },
+  { label: "H2", title: tr("Tiêu đề lớn", "Large heading"), cmd: "formatBlock", value: "<h2>" },
+  { label: "H3", title: tr("Tiêu đề nhỏ", "Small heading"), cmd: "formatBlock", value: "<h3>" },
   "|",
-  { label: "• Danh sách", title: "Danh sách chấm", cmd: "insertUnorderedList" },
-  { label: "1. Danh sách", title: "Danh sách số", cmd: "insertOrderedList" },
+  { label: tr("• Danh sách", "• List"), title: tr("Danh sách chấm", "Bulleted list"), cmd: "insertUnorderedList" },
+  { label: tr("1. Danh sách", "1. List"), title: tr("Danh sách số", "Numbered list"), cmd: "insertOrderedList" },
   "|",
-  { label: "🔗 Link", title: "Chèn liên kết (chọn chữ trước)", cmd: "@link" },
-  { label: "Bỏ link", title: "Bỏ liên kết", cmd: "unlink" },
-  { label: "🖼 Upload ảnh", title: "Tải ảnh lên và chèn", cmd: "@upload" },
-  { label: "Ảnh URL", title: "Chèn ảnh từ URL", cmd: "@imageUrl" },
+  { label: "🔗 Link", title: tr("Chèn liên kết (chọn chữ trước)", "Insert link (select text first)"), cmd: "@link" },
+  { label: tr("Bỏ link", "Unlink"), title: tr("Bỏ liên kết", "Remove link"), cmd: "unlink" },
+  { label: tr("🖼 Upload ảnh", "🖼 Upload image"), title: tr("Tải ảnh lên và chèn", "Upload and insert an image"), cmd: "@upload" },
+  { label: tr("Ảnh URL", "Image URL"), title: tr("Chèn ảnh từ URL", "Insert image from URL"), cmd: "@imageUrl" },
   "|",
-  { label: "Xoá định dạng", title: "Xoá định dạng chữ", cmd: "removeFormat" },
-  { label: "↶", title: "Hoàn tác", cmd: "undo" },
-  { label: "↷", title: "Làm lại", cmd: "redo" },
+  { label: tr("Xoá định dạng", "Clear format"), title: tr("Xoá định dạng chữ", "Clear text formatting"), cmd: "removeFormat" },
+  { label: "↶", title: tr("Hoàn tác", "Undo"), cmd: "undo" },
+  { label: "↷", title: tr("Làm lại", "Redo"), cmd: "redo" },
 ];
 
 /**
@@ -34,6 +36,7 @@ const TOOLS: (Tool | "|")[] = [
  */
 export default function HtmlEditor({ name, defaultValue, contentClass }: { name: string; defaultValue: string; contentClass?: string }) {
   const [html, setHtml] = useState(defaultValue);
+  const { tr } = useTr();
   const [tab, setTab] = useState<"visual" | "html">("visual");
   const [busy, setBusy] = useState(false);
   const editor = useRef<HTMLDivElement>(null);
@@ -74,7 +77,7 @@ export default function HtmlEditor({ name, defaultValue, contentClass }: { name:
 
   const addLink = () => {
     saveSelection();
-    const url = window.prompt("Nhập đường dẫn (vd: https://... hoặc /medallium):");
+    const url = window.prompt(tr("Nhập đường dẫn (vd: https://... hoặc /medallium):", "Enter a URL (e.g. https://... or /medallium):"));
     if (!url) return;
     exec("createLink", url);
     // link ra ngoài mở tab mới
@@ -89,7 +92,7 @@ export default function HtmlEditor({ name, defaultValue, contentClass }: { name:
 
   const addImageUrl = () => {
     saveSelection();
-    const url = window.prompt("Nhập URL ảnh:");
+    const url = window.prompt(tr("Nhập URL ảnh:", "Enter image URL:"));
     if (url) exec("insertImage", url);
   };
 
@@ -109,7 +112,7 @@ export default function HtmlEditor({ name, defaultValue, contentClass }: { name:
       <input type="hidden" name={name} value={html} />
       <div className="a-toolbar" style={{ marginBottom: 8 }}>
         <button type="button" className={tab === "visual" ? "a-btn a-btn-sm a-btn-primary" : "a-btn a-btn-sm"} onClick={() => setTab("visual")}>
-          Soạn thảo
+          {tr("Soạn thảo", "Visual")}
         </button>
         <button type="button" className={tab === "html" ? "a-btn a-btn-sm a-btn-primary" : "a-btn a-btn-sm"} onClick={() => (sync(), setTab("html"))}>
           HTML
@@ -119,7 +122,7 @@ export default function HtmlEditor({ name, defaultValue, contentClass }: { name:
       {tab === "visual" ? (
         <>
           <div className="a-editor-tools">
-            {TOOLS.map((t, i) =>
+            {tools(tr).map((t, i) =>
               t === "|" ? (
                 <span key={i} className="a-editor-sep" />
               ) : (
@@ -167,12 +170,22 @@ export default function HtmlEditor({ name, defaultValue, contentClass }: { name:
               }
             }}
           />
-          <p className="a-hint">Soạn như Word: chọn chữ rồi bấm nút định dạng. Nhớ bấm “Lưu thay đổi” để cập nhật lên site.</p>
+          <p className="a-hint">
+            {tr(
+              "Soạn như Word: chọn chữ rồi bấm nút định dạng. Nhớ bấm “Lưu thay đổi” để cập nhật lên site.",
+              "Edit like Word: select text, then click a format button. Remember to click “Save” to update the site.",
+            )}
+          </p>
         </>
       ) : (
         <>
           <textarea className="a-code" rows={22} value={html} onChange={(e) => setHtml(e.target.value)} />
-          <p className="a-hint">Chế độ HTML cho người rành code. Có thể dùng class của site, vd. privacy-policy-content-title.</p>
+          <p className="a-hint">
+            {tr(
+              "Chế độ HTML cho người rành code. Có thể dùng class của site, vd. privacy-policy-content-title.",
+              "HTML mode for people comfortable with code. You can use site classes, e.g. privacy-policy-content-title.",
+            )}
+          </p>
         </>
       )}
     </div>
