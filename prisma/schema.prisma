@@ -13,6 +13,7 @@ datasource db {
 
 model User {
   id           Int      @id @default(autoincrement())
+  username     String?  @unique // đăng nhập bằng username hoặc email
   email        String   @unique
   name         String   @default("")
   passwordHash String
@@ -20,12 +21,13 @@ model User {
   updatedAt    DateTime @updatedAt
 }
 
-/// Yo-kai trong Medallium
+/// Yo-kai trong Medallium – mỗi game (1, 2, 3) có danh sách riêng
 model Yokai {
   id        Int     @id @default(autoincrement())
-  number    String  @unique // "001"
+  game      Int     @default(3) // 1 | 2 | 3
+  number    String // "001"
   name      String
-  slug      String  @unique
+  slug      String
   rank      String // S, A, B, C, D, E
   tribe     String
   attribute String
@@ -49,6 +51,9 @@ model Yokai {
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  @@unique([game, number])
+  @@unique([game, slug])
 }
 
 model FoodCategory {

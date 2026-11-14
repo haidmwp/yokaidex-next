@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import PageHeader from "@/components/site/PageHeader";
 import { getPage, getSocials } from "@/lib/data";
-import { SITE_DESCRIPTION, pageTitle } from "@/lib/constants";
+import { SITE_DESCRIPTION } from "@/lib/constants";
 
-export const metadata: Metadata = { title: pageTitle(), description: SITE_DESCRIPTION };
+// tiêu đề = "Tiêu đề website" mặc định từ layout (Cài đặt chung)
+export const metadata: Metadata = { description: SITE_DESCRIPTION };
 
 export default async function HomePage() {
   const [page, socials] = await Promise.all([getPage("home"), getSocials()]);

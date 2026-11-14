@@ -624,6 +624,11 @@ code {
     margin: 0;
 }
 
+/* nhiều đoạn: cách nhau, trừ đoạn cuối */
+.yokai-detail-profile-content p:not(:last-child) {
+    margin-bottom: 12px;
+}
+
 .yokai-food {
     display: flex;
     align-items: center;

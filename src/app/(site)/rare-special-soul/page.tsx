@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Fragment } from "react";
 import PageHeader from "@/components/site/PageHeader";
 import { getSpecialSouls } from "@/lib/data";
-import { pageTitle } from "@/lib/constants";
+import { pageTitle, yokaiHref } from "@/lib/constants";
 
 export const metadata: Metadata = { title: pageTitle("RARE Special Soul") };
 
@@ -17,7 +17,7 @@ function Soul({ name, slug, image }: { name: string; slug: string; image: string
   return (
     <span>
       {slug ? (
-        <Link className="special-soul" href={`/yokai-information/${slug}`}>
+        <Link className="special-soul" href={yokaiHref(3, slug)}>
           {inner}
         </Link>
       ) : (

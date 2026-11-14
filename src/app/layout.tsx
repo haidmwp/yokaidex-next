@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import { OG_IMAGE, SITE_DESCRIPTION, SITE_URL, pageTitle } from "@/lib/constants";
+import { OG_IMAGE, SITE_DESCRIPTION, SITE_NAME, SITE_URL } from "@/lib/constants";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: pageTitle(),
+  title: SITE_NAME,
   description: SITE_DESCRIPTION,
   openGraph: { description: SITE_DESCRIPTION, images: [OG_IMAGE] },
 };

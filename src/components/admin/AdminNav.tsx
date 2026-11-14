@@ -7,29 +7,30 @@ import { useState } from "react";
 const GROUPS = [
   {
     title: "Tổng quan",
-    items: [{ href: "/admin", label: "Dashboard", icon: "icon-home.png", exact: true }],
+    items: [{ href: "/dashboard", label: "Dashboard", icon: "/img/ui/admin/icon-dashboard.svg", exact: true }],
+  },
+  {
+    title: "Hệ thống",
+    items: [
+      { href: "/dashboard/settings", label: "Cài đặt chung", icon: "icon-baffle-board.png" },
+      { href: "/dashboard/messages", label: "Tin nhắn liên hệ", icon: "icon-contact.png", badge: true },
+      { href: "/dashboard/users", label: "Tài khoản admin", icon: "icon-password.png" },
+    ],
   },
   {
     title: "Nội dung",
     // Cùng thứ tự với menu của website
     items: [
-      { href: "/admin/pages/home", label: "Home", icon: "icon-home.png" },
-      { href: "/admin/yokai", label: "Yo-kai (Medallium)", icon: "icon-medallium.png" },
-      { href: "/admin/qr-code", label: "QR Code", icon: "icon-qr-code.png" },
-      { href: "/admin/baffle-board", label: "Baffle Board", icon: "icon-baffle-board.png" },
-      { href: "/admin/attitudes", label: "Attitudes", icon: "icon-attitudes.png" },
-      { href: "/admin/passwords", label: "Password", icon: "icon-password.png" },
-      { href: "/admin/special-souls", label: "RARE Special Soul", icon: "icon-soul.png" },
-      { href: "/admin/food", label: "Food", icon: "icon-food.png" },
-      { href: "/admin/pages/privacy-policy", label: "Privacy Policy", icon: "icon-policy.png" },
-      { href: "/admin/changelog", label: "Changelog", icon: "icon-changelog.png" },
-    ],
-  },
-  {
-    title: "Hệ thống",
-    items: [
-      { href: "/admin/messages", label: "Tin nhắn liên hệ", icon: "icon-contact.png", badge: true },
-      { href: "/admin/users", label: "Tài khoản admin", icon: "icon-password.png" },
+      { href: "/dashboard/pages/home", label: "Home", icon: "icon-home.png" },
+      { href: "/dashboard/yokai", label: "Yo-kai (Medallium)", icon: "icon-medallium.png" },
+      { href: "/dashboard/qr-code", label: "QR Code", icon: "icon-qr-code.png" },
+      { href: "/dashboard/baffle-board", label: "Baffle Board", icon: "icon-baffle-board.png" },
+      { href: "/dashboard/attitudes", label: "Attitudes", icon: "icon-attitudes.png" },
+      { href: "/dashboard/passwords", label: "Password", icon: "icon-password.png" },
+      { href: "/dashboard/special-souls", label: "RARE Special Soul", icon: "icon-soul.png" },
+      { href: "/dashboard/food", label: "Food", icon: "icon-food.png" },
+      { href: "/dashboard/pages/privacy-policy", label: "Privacy Policy", icon: "icon-policy.png" },
+      { href: "/dashboard/changelog", label: "Changelog", icon: "icon-changelog.png" },
     ],
   },
 ];
@@ -52,7 +53,7 @@ export default function AdminNav({ unread, children }: { unread: number; childre
                 const active = "exact" in it && it.exact ? pathname === it.href : pathname.startsWith(it.href);
                 return (
                   <Link key={it.href} href={it.href} className={active ? "active" : undefined} onClick={() => setOpen(false)}>
-                    <img src={`/img/ui/menu/${it.icon}`} alt="" />
+                    <img src={it.icon.startsWith("/") ? it.icon : `/img/ui/menu/${it.icon}`} alt="" />
                     {it.label}
                     {"badge" in it && it.badge && unread > 0 && <span className="a-badge">{unread}</span>}
                   </Link>

@@ -1,6 +1,6 @@
 /* Nạp dữ liệu từ prisma/seed-data/*.json vào database.
  *   npm run db:seed            -> xoá & nạp lại toàn bộ nội dung, tạo admin nếu chưa có
- * Tài khoản admin lấy từ ADMIN_EMAIL / ADMIN_PASSWORD trong .env
+ * Tài khoản admin lấy từ ADMIN_USERNAME / ADMIN_EMAIL / ADMIN_PASSWORD trong .env
  */
 import fs from "node:fs";
 import path from "node:path";
@@ -29,11 +29,16 @@ async function main() {
     prisma.yokai.deleteMany(),
   ]);
 
-  const yokais = load("yokais");
+  // yokais.json = Yo-kai Watch 3; yokais-yw1/yw2.json = cào từ fandom (scripts/scrape-fandom.mjs)
+  const yokais = [
+    ...load("yokais-yw1"),
+    ...load("yokais-yw2"),
+    ...load("yokais").map((y) => ({ ...y, game: 3 })),
+  ];
   for (let i = 0; i < yokais.length; i += 100) {
     await prisma.yokai.createMany({ data: yokais.slice(i, i + 100) });
   }
-  console.log(`✓ ${yokais.length} yokai`);
+  console.log(`✓ ${yokais.length} yokai (YW1 + YW2 + YW3)`);
 
   for (const { items, ...cat } of load("food")) {
     await prisma.foodCategory.create({
@@ -62,15 +67,16 @@ async function main() {
   }
   console.log("✓ baffle board, attitudes, special souls, changelog, pages, settings");
 
-  const email = process.env.ADMIN_EMAIL;
+  const email = process.env.ADMIN_EMAIL?.toLowerCase();
+  const username = process.env.ADMIN_USERNAME?.toLowerCase() || null;
   const password = process.env.ADMIN_PASSWORD;
   if (email && password) {
     const exists = await prisma.user.findUnique({ where: { email } });
     if (!exists) {
       await prisma.user.create({
-        data: { email, name: "Admin", passwordHash: await bcrypt.hash(password, 10) },
+        data: { username, email, name: "Admin", passwordHash: await bcrypt.hash(password, 10) },
       });
-      console.log(`✓ tạo tài khoản admin ${email}`);
+      console.log(`✓ tạo tài khoản admin ${username ?? email}`);
     }
   } else {
     console.warn("! Thiếu ADMIN_EMAIL / ADMIN_PASSWORD – chưa tạo tài khoản admin");

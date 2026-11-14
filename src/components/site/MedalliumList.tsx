@@ -14,7 +14,7 @@ function EmptyList() {
   );
 }
 
-export default function MedalliumList({ yokais }: { yokais: YokaiCard[] }) {
+export default function MedalliumList({ yokais, basePath }: { yokais: YokaiCard[]; basePath: string }) {
   const [search, setSearch] = useState("");
   const [rank, setRank] = useState("");
   const [attribute, setAttribute] = useState("");
@@ -68,7 +68,7 @@ export default function MedalliumList({ yokais }: { yokais: YokaiCard[] }) {
             {list.map((y) => (
               <li key={y.number} style={{ backgroundColor: y.color }} className="yokai-content-pc-wrapper">
                 <span className="bg-color-pc"></span>
-                <Link className="yokai-content-pc" href={`/yokai-information/${y.slug}`}>
+                <Link className="yokai-content-pc" href={`${basePath}/${y.slug}`}>
                   <span className="img-yokai-wrapper-pc">
                     <img className="img-yokai-pc" alt={y.name} src={y.image} loading="lazy" />
                   </span>
@@ -93,7 +93,7 @@ export default function MedalliumList({ yokais }: { yokais: YokaiCard[] }) {
             {list.length === 0 && <EmptyList />}
             {list.map((y) => (
               <li key={y.number} style={{ backgroundColor: y.color }}>
-                <Link className="yokai-content" href={`/yokai-information/${y.slug}`}>
+                <Link className="yokai-content" href={`${basePath}/${y.slug}`}>
                   <span className="yokai-left-wrapper">
                     <span className="img-yokai-wrapper">
                       <img className="img-yokai" alt={y.name} src={y.image} loading="lazy" />

@@ -17,27 +17,27 @@ export async function getPage(slug: string) {
   return prisma.page.findUnique({ where: { slug } });
 }
 
-export async function getYokaiCards(): Promise<YokaiCard[]> {
+export async function getYokaiCards(game: number): Promise<YokaiCard[]> {
   "use cache";
   tag();
   return prisma.yokai.findMany({
-    where: { published: true },
+    where: { game, published: true },
     orderBy: { number: "asc" },
     select: { number: true, name: true, slug: true, rank: true, tribe: true, attribute: true, color: true, image: true },
   });
 }
 
-export async function getYokaiSlugs() {
+export async function getYokaiSlugs(game: number) {
   "use cache";
   tag();
-  const rows = await prisma.yokai.findMany({ where: { published: true }, select: { slug: true } });
+  const rows = await prisma.yokai.findMany({ where: { game, published: true }, select: { slug: true } });
   return rows.map((r) => r.slug);
 }
 
-export async function getYokai(slug: string) {
+export async function getYokai(game: number, slug: string) {
   "use cache";
   tag();
-  const y = await prisma.yokai.findFirst({ where: { slug, published: true } });
+  const y = await prisma.yokai.findFirst({ where: { game, slug, published: true } });
   if (!y) return null;
   const food = y.foodSlug
     ? await prisma.foodCategory.findUnique({ where: { slug: y.foodSlug }, select: { name: true, slug: true, image: true } })

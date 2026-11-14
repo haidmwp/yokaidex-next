@@ -46,3 +46,6 @@ next-env.d.ts
 /prisma/*.db-journal
 /uploads/*
 !/uploads/.gitkeep
+
+# khoá bí mật (Google service account...)
+/secrets/

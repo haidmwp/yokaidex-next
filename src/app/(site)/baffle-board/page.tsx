@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import PageHeader from "@/components/site/PageHeader";
 import { getBaffleBoards } from "@/lib/data";
-import { BAFFLE_GAMES, pageTitle } from "@/lib/constants";
+import { BAFFLE_GAMES, pageTitle, yokaiHref } from "@/lib/constants";
 
 export const metadata: Metadata = { title: pageTitle("Baffle Board") };
 
@@ -40,7 +40,7 @@ export default async function BaffleBoardPage() {
                             ))}
                           </td>
                           <td className="baffle-board-solution">
-                            {r.slug ? <Link href={`/yokai-information/${r.slug}`}>{r.solution}</Link> : r.solution}
+                            {r.slug ? <Link href={yokaiHref(g.yokaiGame, r.slug)}>{r.solution}</Link> : r.solution}
                           </td>
                           {g.hasLocation && <td>{r.effect}</td>}
                         </tr>

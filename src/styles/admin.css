@@ -57,7 +57,7 @@ html, body { margin: 0; padding: 0; }
   position: sticky; top: 0; z-index: 10;
 }
 .a-topbar .a-user { display: flex; align-items: center; gap: 12px; color: var(--a-muted); }
-.a-content { padding: 24px; max-width: 1280px; width: 100%; }
+.a-content { padding: 24px; width: 100%; } /* cùng padding 24px với .a-topbar */
 .a-btn.a-menu-btn { display: none; }
 
 .a-page-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 18px; flex-wrap: wrap; }
@@ -161,7 +161,7 @@ html, body { margin: 0; padding: 0; }
   .a-sidebar { position: fixed; left: -260px; z-index: 50; transition: left .2s; }
   .a-sidebar.open { left: 0; box-shadow: 0 0 0 100vmax rgba(0,0,0,.4); }
   .a-btn.a-menu-btn { display: inline-flex; }
-  .a-topbar { padding-left: 60px; }
+  .a-topbar { padding: 0 16px 0 60px; }
   .a-content { padding: 16px; }
 }
 
@@ -188,3 +188,29 @@ html, body { margin: 0; padding: 0; }
 .a-wysiwyg .socials-wrapper { margin: 0; padding: 0; }
 .a-wysiwyg .socials-wrapper li { list-style: none; display: inline-block; margin-right: 10px; }
 .a-wysiwyg .icon-follow { width: 35px; height: 35px; border-radius: 50%; object-fit: cover; }
+
+/* ===== Thống kê Google Analytics ===== */
+.a-delta { font-size: 12px; font-weight: 700; margin-left: 4px; color: var(--a-muted); }
+.a-stat .a-delta-up, .a-delta-up { color: var(--a-success); }
+.a-stat .a-delta-down, .a-delta-down { color: var(--a-danger); }
+.a-stat-live b { color: var(--a-success); }
+.a-stat-live span { display: flex; align-items: center; gap: 6px; }
+.a-live-dot { display: block; flex-shrink: 0; width: 8px; height: 8px; border-radius: 50%; background: var(--a-success); }
+
+.a-chart { position: relative; display: flex; gap: 8px; height: 200px; padding-bottom: 22px; }
+.a-chart-grid { display: flex; flex-direction: column; justify-content: space-between; font-size: 11px; color: var(--a-muted); text-align: right; min-width: 32px; }
+.a-chart-bars {
+  flex: 1; display: flex; align-items: flex-end; gap: 2px; position: relative;
+  border-bottom: 1px solid var(--a-border);
+  background: linear-gradient(var(--a-border) 1px, transparent 1px) 0 0 / 100% 50%;
+}
+.a-chart-col { flex: 1; height: 100%; display: flex; align-items: flex-end; justify-content: center; position: relative; outline: none; }
+.a-chart-bar { width: 100%; max-width: 24px; min-height: 2px; background: #5b74f0; border-radius: 4px 4px 0 0; transition: opacity .15s; }
+.a-chart-col:hover .a-chart-bar, .a-chart-col:focus .a-chart-bar { opacity: .75; }
+.a-chart-x { position: absolute; bottom: -20px; font-size: 11px; color: var(--a-muted); white-space: nowrap; }
+.a-chart-tip {
+  display: none; position: absolute; bottom: calc(100% + 6px); left: 50%; transform: translateX(-50%); z-index: 3;
+  background: #1e2130; color: #fff; padding: 6px 10px; border-radius: 6px; font-size: 12px; white-space: nowrap;
+  flex-direction: column; gap: 1px; pointer-events: none;
+}
+.a-chart-col:hover .a-chart-tip, .a-chart-col:focus .a-chart-tip { display: flex; bottom: 100%; top: auto; }
