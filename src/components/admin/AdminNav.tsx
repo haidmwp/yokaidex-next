@@ -11,22 +11,18 @@ const GROUPS = [
   },
   {
     title: "Nội dung",
-    items: [
-      { href: "/admin/yokai", label: "Yo-kai (Medallium)", icon: "icon-medallium.png" },
-      { href: "/admin/food", label: "Food", icon: "icon-food.png" },
-      { href: "/admin/qr-code", label: "QR Code", icon: "icon-qr-code.png" },
-      { href: "/admin/baffle-board", label: "Baffle Board", icon: "icon-baffle-board.png" },
-      { href: "/admin/passwords", label: "Password", icon: "icon-password.png" },
-      { href: "/admin/special-souls", label: "RARE Special Soul", icon: "icon-soul.png" },
-      { href: "/admin/attitudes", label: "Attitudes", icon: "icon-attitudes.png" },
-      { href: "/admin/changelog", label: "Changelog", icon: "icon-changelog.png" },
-    ],
-  },
-  {
-    title: "Trang",
+    // Cùng thứ tự với menu của website
     items: [
       { href: "/admin/pages/home", label: "Trang chủ (Home)", icon: "icon-home.png" },
+      { href: "/admin/yokai", label: "Yo-kai (Medallium)", icon: "icon-medallium.png" },
+      { href: "/admin/qr-code", label: "QR Code", icon: "icon-qr-code.png" },
+      { href: "/admin/baffle-board", label: "Baffle Board", icon: "icon-baffle-board.png" },
+      { href: "/admin/attitudes", label: "Attitudes", icon: "icon-attitudes.png" },
+      { href: "/admin/passwords", label: "Password", icon: "icon-password.png" },
+      { href: "/admin/special-souls", label: "RARE Special Soul", icon: "icon-soul.png" },
+      { href: "/admin/food", label: "Food", icon: "icon-food.png" },
       { href: "/admin/pages/privacy-policy", label: "Privacy Policy", icon: "icon-policy.png" },
+      { href: "/admin/changelog", label: "Changelog", icon: "icon-changelog.png" },
     ],
   },
   {
