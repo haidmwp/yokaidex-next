@@ -7,7 +7,7 @@
 // các lần sau giữ nguyên dữ liệu trên hosting.
 //
 // Trên hosting (home /home/mpcaxydchosting):
-//   ~/yokaidex        app root của Node.js app (cloudlinux-selector, startup file server.js, Node 22)
+//   ~/yokaidex        app root của Node.js app (cloudlinux-selector, startup file start.js, Node 22)
 //   ~/yokaidex-data   dữ liệu, nằm ngoài app nên deploy lại không bị ghi đè
 // Deploy lại: `cloudlinux-selector stop ...` TRƯỚC, thay ~/yokaidex/.next + server.js, rồi `cloudlinux-selector start
 // --json --interpreter nodejs --app-root yokaidex`. Không dùng `restart`: tiến trình cũ và mới chạy song song có thể
@@ -37,6 +37,8 @@ cp(`${SRC}/.next/static`, `${APP}/.next/static`);
 fs.rmSync(`${APP}/public`, { recursive: true, force: true });
 cp(`${SRC}/public`, `${APP}/public`);
 cp(`${SRC}/prisma/schema.prisma`, `${APP}/prisma/schema.prisma`);
+// startup file: chạy server.js + tự thoát khi rảnh (xem scripts/hosting-start.cjs)
+cp(`${SRC}/scripts/hosting-start.cjs`, `${APP}/start.js`);
 
 if (WITH_DATA) {
   fs.rmSync(DATA, { recursive: true, force: true });
