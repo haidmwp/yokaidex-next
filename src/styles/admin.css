@@ -164,3 +164,27 @@ html, body { margin: 0; padding: 0; }
   .a-topbar { padding-left: 60px; }
   .a-content { padding: 16px; }
 }
+
+/* ===== Trình soạn thảo trực quan ===== */
+.a-editor-tools {
+  display: flex; flex-wrap: wrap; gap: 4px; align-items: center;
+  padding: 6px; border: 1px solid var(--a-border); border-bottom: none;
+  border-radius: 8px 8px 0 0; background: #fafbfd; position: sticky; top: 56px; z-index: 4;
+}
+.a-editor-sep { width: 1px; height: 20px; background: var(--a-border); margin: 0 4px; }
+.a-wysiwyg {
+  min-height: 360px; max-height: 70vh; overflow-y: auto;
+  border: 1px solid var(--a-border); border-radius: 0 0 8px 8px; padding: 16px 20px; background: #fff;
+  font-size: 15px; line-height: 1.6; text-align: justify;
+}
+.a-wysiwyg:focus { outline: 2px solid rgba(117,142,255,.35); }
+.a-wysiwyg h2 { font-size: 20px; margin: 18px 0 8px; }
+.a-wysiwyg h3 { font-size: 17px; margin: 14px 0 6px; }
+.a-wysiwyg p { margin: 0 0 12px; }
+.a-wysiwyg img { max-width: 100%; }
+.a-wysiwyg a { text-decoration: underline; }
+/* khối mạng xã hội ở trang Home */
+.a-wysiwyg .follow-title { font-weight: 700; }
+.a-wysiwyg .socials-wrapper { margin: 0; padding: 0; }
+.a-wysiwyg .socials-wrapper li { list-style: none; display: inline-block; margin-right: 10px; }
+.a-wysiwyg .icon-follow { width: 35px; height: 35px; border-radius: 50%; object-fit: cover; }

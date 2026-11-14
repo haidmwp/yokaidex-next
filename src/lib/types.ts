@@ -37,3 +37,6 @@ export type YokaiCard = {
   color: string;
   image: string;
 };
+
+export type SocialLink = { name: string; url: string; icon: string };
+export type Socials = { title: string; links: SocialLink[] };

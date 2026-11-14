@@ -2,7 +2,7 @@
 // CONTENT_TAG. Admin gọi updateTag(CONTENT_TAG) sau mỗi thay đổi để làm mới.
 import { cacheLife, cacheTag } from "next/cache";
 import { prisma } from "./prisma";
-import type { Evolution, Fusion, Moveset, YokaiCard } from "./types";
+import type { Evolution, Fusion, Moveset, Socials, YokaiCard } from "./types";
 
 export const CONTENT_TAG = "content";
 
@@ -129,4 +129,12 @@ export async function getChangelog() {
   tag();
   const rows = await prisma.changelog.findMany({ orderBy: [{ sortOrder: "asc" }, { id: "desc" }] });
   return rows.map((r) => ({ ...r, items: (r.items as string[]) ?? [] }));
+}
+
+export async function getSocials(): Promise<Socials> {
+  "use cache";
+  tag();
+  const row = await prisma.setting.findUnique({ where: { key: "socials" } });
+  const v = (row?.value ?? {}) as Partial<Socials>;
+  return { title: v.title ?? "Follow us on:", links: v.links ?? [] };
 }

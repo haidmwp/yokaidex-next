@@ -182,3 +182,10 @@ model ContactMessage {
   read      Boolean  @default(false)
   createdAt DateTime @default(now())
 }
+
+/// Cấu hình dạng key-value, vd. key "socials" = { title, links: [{ name, url, icon }] }
+model Setting {
+  key       String   @id
+  value     Json
+  updatedAt DateTime @updatedAt
+}

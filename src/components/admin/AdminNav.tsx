@@ -20,7 +20,13 @@ const GROUPS = [
       { href: "/admin/special-souls", label: "RARE Special Soul", icon: "icon-soul.png" },
       { href: "/admin/attitudes", label: "Attitudes", icon: "icon-attitudes.png" },
       { href: "/admin/changelog", label: "Changelog", icon: "icon-changelog.png" },
-      { href: "/admin/pages", label: "Trang tĩnh", icon: "icon-policy.png" },
+    ],
+  },
+  {
+    title: "Trang",
+    items: [
+      { href: "/admin/pages/home", label: "Trang chủ (Home)", icon: "icon-home.png" },
+      { href: "/admin/pages/privacy-policy", label: "Privacy Policy", icon: "icon-policy.png" },
     ],
   },
   {

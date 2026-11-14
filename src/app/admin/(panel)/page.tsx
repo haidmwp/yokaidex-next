@@ -31,9 +31,17 @@ export default async function Dashboard() {
           <h1>Dashboard</h1>
           <p>Quản trị nội dung YokaiDex</p>
         </div>
-        <Link className="a-btn a-btn-primary" href="/admin/yokai/new">
-          + Thêm Yo-kai
-        </Link>
+        <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+          <Link className="a-btn" href="/admin/pages/home">
+            ✎ Sửa trang chủ
+          </Link>
+          <Link className="a-btn" href="/admin/pages/privacy-policy">
+            ✎ Sửa Privacy Policy
+          </Link>
+          <Link className="a-btn a-btn-primary" href="/admin/yokai/new">
+            + Thêm Yo-kai
+          </Link>
+        </div>
       </div>
       <div className="a-stats">
         {stats.map((s) => (

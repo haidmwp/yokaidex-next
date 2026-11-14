@@ -57,7 +57,10 @@ async function main() {
   await prisma.specialSoul.createMany({ data: load("specialsouls") });
   await prisma.changelog.createMany({ data: load("changelog") });
   await prisma.page.createMany({ data: load("pages") });
-  console.log("✓ baffle board, attitudes, special souls, changelog, pages");
+  for (const s of load("settings")) {
+    await prisma.setting.upsert({ where: { key: s.key }, create: s, update: { value: s.value } });
+  }
+  console.log("✓ baffle board, attitudes, special souls, changelog, pages, settings");
 
   const email = process.env.ADMIN_EMAIL;
   const password = process.env.ADMIN_PASSWORD;

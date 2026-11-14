@@ -32,7 +32,7 @@ export default async function PagesAdmin() {
                 <td className="a-hint">{PUBLIC_URL[p.slug] ?? `/${p.slug}`}</td>
                 <td>{p.updatedAt.toLocaleString("vi-VN")}</td>
                 <td className="a-right">
-                  <Link className="a-btn a-btn-sm" href={`/admin/pages/${p.id}`}>
+                  <Link className="a-btn a-btn-sm" href={`/admin/pages/${p.slug}`}>
                     Sửa
                   </Link>
                 </td>

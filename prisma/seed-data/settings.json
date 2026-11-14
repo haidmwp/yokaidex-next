@@ -1,0 +1,30 @@
+[
+  {
+    "key": "socials",
+    "value": {
+      "title": "Follow us on:",
+      "links": [
+        {
+          "name": "Facebook",
+          "url": "https://www.facebook.com/yokaiinfodx/",
+          "icon": "/img/ui/social/icon-facebook.png"
+        },
+        {
+          "name": "Instagram",
+          "url": "https://www.instagram.com/yokaiinfodx/",
+          "icon": "/img/ui/social/icon-instagram.png"
+        },
+        {
+          "name": "Threads",
+          "url": "https://www.threads.net/@yokaiinfodx",
+          "icon": "/img/ui/social/icon-threads.png"
+        },
+        {
+          "name": "X",
+          "url": "https://x.com/yokaiinfodx",
+          "icon": "/img/ui/social/icon-x.png"
+        }
+      ]
+    }
+  }
+]
