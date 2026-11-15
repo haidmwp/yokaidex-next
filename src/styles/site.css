@@ -50,7 +50,7 @@ code {
 /* ===== Medallium.css ===== */
 .container {
     margin: 0 auto;
-    width: 1280px;
+    width: 1440px;
     max-width: 100%;
 }
 
@@ -76,7 +76,7 @@ code {
 
 .yokai-filter-wrapper {
     top: 122px;
-    width: 1280px;
+    width: 1440px;
     max-width: 100%;
     padding: 0 18px 18px 18px;
     background: #E85A3D;
@@ -125,7 +125,7 @@ code {
     background-repeat: no-repeat;
     background-position-x: 95%;
     background-position-y: center;
-    background-color: var(--font-second-color);
+    background-color: var(--site-surface);
 }
 
 .yokai-search:focus {
@@ -542,7 +542,7 @@ code {
     left: 0;
     right: 0;
     margin: auto;
-    width: 1280px;
+    width: 1440px;
     max-width: 100%;
     background: #E85A3D;
     position: fixed;
@@ -876,7 +876,7 @@ code {
     padding: 10px 0;
     width: 100%;
     text-align: center;
-    background: var(--font-second-color);
+    background: var(--site-surface);
     position: absolute;
     z-index: 9999;
 }
@@ -1040,6 +1040,41 @@ code {
 
 .img-password-logo {
     object-fit: contain;
+}
+
+/* Next.js port: trang chọn game (Medallium, Password) trên điện thoại – 3 logo chia đều chiều cao
+   màn hình (trừ thanh tiêu đề 60px và thanh quảng cáo) để không phải cuộn */
+@media (max-width: 768px) {
+    .password-wrapper {
+        height: calc(100vh - 60px);
+        height: calc(100dvh - 60px);
+        box-sizing: border-box;
+        gap: 15px;
+    }
+    body.has-ad-bar:not(.ad-bar-hidden) .password-wrapper {
+        height: calc(100dvh - 60px - var(--ad-bar-h, 98px));
+    }
+    .password-wrapper .password {
+        flex: 1;
+        min-height: 0;
+        margin: 0 !important;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .password-wrapper .password a {
+        height: 100%;
+        max-width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .password-wrapper .img-password-logo {
+        max-width: 100%;
+        max-height: 100%;
+        width: auto;
+        height: auto;
+    }
 }
 
 .password-1-content-wrapper,
@@ -1246,6 +1281,16 @@ code {
 /* ===== Contact.css ===== */
 .contact-form-wrapper {
     padding: 15px;
+}
+
+/* Next.js port: Full name + Email 2 cột */
+.contact-form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 15px;
+}
+@media (max-width: 600px) {
+    .contact-form-row { grid-template-columns: 1fr; }
 }
 
 .contact-form label {
@@ -1473,7 +1518,11 @@ code {
     left: 0;
     width: 30%;
     height: 100vh;
-    background: var(--font-second-color);
+    height: 100dvh;
+    /* menu dài hơn màn hình thì cuộn trong menu, không kéo theo trang phía sau */
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    background: var(--site-surface);
     position: absolute;
     z-index: 1;
 }
@@ -1501,7 +1550,8 @@ code {
 
 .sidebar-home-link,
 .sidebar-attitudes-link,
-.sidebar-food-link {
+.sidebar-food-link,
+.sidebar-changelog-link {
     border-bottom: solid 1px #CCC;
 }
 
@@ -1595,6 +1645,8 @@ code {
 :root {
     --font-primary-color: #333;
     --font-second-color: #FFF;
+    /* nền khung nội dung (đổi theo chế độ sáng/tối) */
+    --site-surface: #FFF;
 }
 
 @font-face {
@@ -1662,7 +1714,7 @@ img {
 }
 
 .container {
-    background: var(--font-second-color);
+    background: var(--site-surface);
 }
 
 .App,
@@ -1770,7 +1822,7 @@ img {
     /* cao theo banner: khung bên trong được đặt chiều cao bằng JS (AdBar.tsx) */
     padding: 4px;
     display: flex;
-    background: rgba(255, 255, 255, .97);
+    background: #fff;
     box-shadow: 0 -2px 6px rgba(0, 0, 0, .15);
     transition: transform .25s ease;
 }
@@ -1801,7 +1853,7 @@ img {
     height: 24px;
     border: none;
     border-radius: 6px 6px 0 0;
-    background: rgba(255, 255, 255, .97);
+    background: #fff;
     box-shadow: 0 -2px 4px rgba(0, 0, 0, .12);
     color: #333;
     padding: 0;
@@ -1861,3 +1913,197 @@ html.yd-shield-lock, html.yd-shield-lock body { overflow: hidden; }
 }
 .yd-shield-btn:hover { background: #d44a2e; }
 .yd-shield-btn:disabled { opacity: .7; cursor: wait; }
+
+/* ===== Next.js port: chế độ sáng / tối (html[data-theme], xem components/ThemeScript.tsx) ===== */
+.navbar-theme { display: flex; align-items: center; }
+.theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 34px;
+    height: 34px;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    background: transparent;
+    color: var(--font-primary-color);
+    cursor: pointer;
+    font: inherit;
+}
+.theme-toggle:hover { background: rgba(0, 0, 0, .08); }
+/* trong menu trượt (mobile): một dòng giống các mục menu (cùng padding, icon 20px, căn trái) */
+.theme-toggle.sidebar-theme {
+    width: 100%;
+    height: auto;
+    margin: 0;
+    padding: 10px 15px;
+    border-radius: 0;
+    justify-content: flex-start;
+    font-size: 16px;
+    font-weight: 700;
+    text-align: left;
+}
+/* icon SVG có khoảng trống trong viewBox -> vẽ 24px (lùi 2px) để to bằng icon PNG 20px của các mục trên */
+.theme-toggle.sidebar-theme { gap: 8px; }
+.theme-toggle.sidebar-theme svg { width: 24px; height: 24px; margin-left: -2px; flex: none; }
+
+html[data-theme="dark"] {
+    color-scheme: dark;
+    --site-surface: #1b1e29;
+}
+/* chữ trong khung nội dung tối; các khối có màu riêng (thẻ yo-kai, menu vàng…) giữ chữ tối */
+html[data-theme="dark"] .container { color: #e4e6ee; }
+html[data-theme="dark"] body {
+    background: #0f1117;
+}
+/* nền hoa văn yo-kai: đảo màu -> nét vẽ trắng trên nền tối */
+html[data-theme="dark"] body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background: url("/img/ui/background.webp") no-repeat center center;
+    background-size: cover;
+    filter: invert(1);
+    opacity: .7;
+}
+/* nút Send Email giữ đúng màu như chế độ sáng (trình duyệt tự đổi chữ nút sang trắng khi color-scheme: dark) */
+html[data-theme="dark"] .btn-contact-form {
+    background: #FDDC69;
+    color: #000;
+}
+html[data-theme="dark"] .theme-toggle:hover { background: rgba(255, 255, 255, .1); }
+/* nền xám nhạt của danh sách / tiêu đề bảng -> xám tối */
+html[data-theme="dark"] .medallium-list ul,
+html[data-theme="dark"] .baffle-board-content-title,
+html[data-theme="dark"] .rare-special-soul-header,
+html[data-theme="dark"] .table-food thead { background: #2a2e3d; color: #e4e6ee; }
+/* thanh quảng cáo + tai nút */
+html[data-theme="dark"] .ad-bar,
+html[data-theme="dark"] .ad-bar-close { background: #1b1e29; color: #e4e6ee; }
+html[data-theme="dark"] .ad-bar-close:hover { background: #2a2e3d; }
+/* ô chọn (rank/attribute/tribe) dùng icon mũi tên tối -> làm sáng icon */
+html[data-theme="dark"] .container select { color: #e4e6ee; }
+/* khối có nền màu riêng giữ chữ tối như bản sáng */
+html[data-theme="dark"] #navbar .container,
+html[data-theme="dark"] .container .header-content,
+html[data-theme="dark"] .container [class^="stats-"],
+html[data-theme="dark"] .container [style*="background"],
+html[data-theme="dark"] .container .bg-img-yokai-detail { color: #333; }
+/* link theo màu chữ của khối chứa (sáng trên nền tối, tối trên nền màu) */
+html[data-theme="dark"] .container a,
+html[data-theme="dark"] .container a:hover,
+html[data-theme="dark"] .container a:focus,
+html[data-theme="dark"] .container a:visited { color: inherit; }
+/* menu trượt (mobile) */
+html[data-theme="dark"] .sidebar-content-wrapper,
+html[data-theme="dark"] .sidebar-content-wrapper .nav-link,
+html[data-theme="dark"] .sidebar-content-wrapper .theme-toggle { color: #e4e6ee; }
+html[data-theme="dark"] .sidebar-content .icon-menu { filter: invert(1); }
+html[data-theme="dark"] .sidebar-content .nav-link.active { color: #333; }
+html[data-theme="dark"] .sidebar-content .nav-link.active .icon-menu { filter: none; }
+
+/* ===== Next.js port: menu con Yo-kai Watch 1/2/3 (Medallium, Password) ===== */
+/* desktop: dropdown khi rê chuột / focus bàn phím */
+.navbar-content li.has-dropdown { position: relative; }
+.navbar-content .nav-caret { margin-left: 4px; vertical-align: -2px; transition: transform .2s; }
+.navbar-content li.has-dropdown:hover .nav-caret,
+.navbar-content li.has-dropdown:focus-within .nav-caret { transform: rotate(180deg); }
+.nav-dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    min-width: 100%;
+    margin: 0;
+    padding: 4px 0;
+    background: #EFDE5B;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, .18);
+    z-index: 10;
+}
+.navbar-content li.has-dropdown:hover > .nav-dropdown,
+.navbar-content li.has-dropdown:focus-within > .nav-dropdown { display: block; }
+.navbar-content .nav-dropdown li a {
+    display: block;
+    white-space: nowrap;
+    padding: 9px 16px;
+    font-weight: 600;
+}
+
+/* mobile: menu con trong menu trượt */
+.sidebar-item { display: flex; align-items: stretch; }
+.sidebar-item > a { flex: 1; min-width: 0; }
+.sidebar-sub-toggle {
+    flex: none;
+    width: 44px;
+    border: none;
+    background: transparent;
+    color: inherit;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.sidebar-sub-toggle svg { transition: transform .2s; }
+.sidebar-sub-toggle.open svg { transform: rotate(180deg); }
+.sidebar-sub { margin: 0; padding: 0 0 4px; }
+.sidebar-content .sidebar-sub li a {
+    padding: 8px 15px 8px 47px;
+    font-weight: 600;
+    font-size: 15px;
+}
+.sidebar-content .sidebar-sub li a.active-sub { background: rgba(239, 222, 91, .45); }
+/* giữ menu desktop trên 1 dòng (thêm mũi tên dropdown + nút sáng/tối) */
+.navbar-content > li > a { white-space: nowrap; }
+/* màn hình hẹp hơn khung 1440px: thu khoảng cách để menu vẫn 1 dòng */
+@media (max-width: 1440px) {
+    .navbar-content > li > a { padding: 10px 11px; }
+}
+@media (max-width: 1250px) {
+    .navbar-content > li > a { padding: 10px 7px; font-size: 15px; }
+}
+
+/* khoá cuộn trang khi menu trượt đang mở */
+html.site-menu-lock, html.site-menu-lock body { overflow: hidden; }
+/* nút sáng/tối trên menu desktop: cùng kích thước + hiệu ứng hover như các mục menu */
+.navbar-content .navbar-theme { align-self: stretch; }
+.navbar-content .navbar-theme .theme-toggle {
+    width: auto;
+    height: 100%;
+    padding: 10px 15px;
+    border-radius: 0;
+    transition: .5s;
+}
+.navbar-content .navbar-theme .theme-toggle:hover,
+.navbar-content .navbar-theme .theme-toggle:focus-visible,
+html[data-theme="dark"] .navbar-content .navbar-theme .theme-toggle:hover { background: #C3C3C3; outline: none; }
+html[data-theme="dark"] .navbar-content .navbar-theme .theme-toggle { color: #333; }
+@media (max-width: 1440px) {
+    .navbar-content .navbar-theme .theme-toggle { padding: 10px 11px; }
+}
+@media (max-width: 1250px) {
+    .navbar-content .navbar-theme .theme-toggle { padding: 10px 7px; }
+}
+/* icon trên nền tối: kính lúp tìm kiếm + mũi tên ô chọn chuyển sang trắng */
+html[data-theme="dark"] .icon-search { filter: invert(1); }
+html[data-theme="dark"] #filter-rank,
+html[data-theme="dark"] #filter-attribute,
+html[data-theme="dark"] #filter-tribe { background-image: url("/img/ui/icon-down-white.svg"); }
+
+/* ===== Next.js port: slide QR vừa màn hình, chừa chỗ thanh quảng cáo để luôn thấy pagination ===== */
+.qr-code-slide-content .swiper { height: calc(100dvh - 122px) !important; }
+body.has-ad-bar:not(.ad-bar-hidden) .qr-code-slide-content .swiper {
+    height: calc(100dvh - 122px - var(--ad-bar-h, 98px)) !important;
+}
+/* mobile / tablet: thanh tiêu đề 60px, không có menu vàng */
+@media (max-width: 1080px) {
+    .qr-code-slide-content .swiper { height: calc(100dvh - 60px) !important; }
+    body.has-ad-bar:not(.ad-bar-hidden) .qr-code-slide-content .swiper {
+        height: calc(100dvh - 60px - var(--ad-bar-h, 98px)) !important;
+    }
+}
+
+/* QR: chừa chỗ dãy số trang (absolute, ~42px) để ảnh căn giữa trong phần vùng xám nhìn thấy */
+.qr-code-slide-content .swiper-slide { box-sizing: border-box; padding-bottom: 42px; }

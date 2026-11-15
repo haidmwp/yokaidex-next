@@ -1,6 +1,8 @@
 import { Suspense } from "react";
 import AdminNav from "@/components/admin/AdminNav";
 import { AdminLangProvider, LangSwitch } from "@/components/admin/AdminLang";
+import ThemeToggle from "@/components/ThemeToggle";
+import { THEME_KEYS } from "@/components/ThemeScript";
 import { requireAdmin } from "@/lib/auth";
 import { getTr } from "@/lib/admin-lang-server";
 import { prisma } from "@/lib/prisma";
@@ -16,6 +18,7 @@ async function Shell({ children }: { children: React.ReactNode }) {
         <header className="a-topbar">
           <span />
           <div className="a-user">
+            <ThemeToggle className="a-theme-btn" storageKey={THEME_KEYS.admin} labels={{ light: tr("Chế độ sáng", "Light mode"), dark: tr("Chế độ tối", "Dark mode") }} />
             <LangSwitch />
             <a href="/" target="_blank" rel="noreferrer">
               {tr("Xem website ↗", "View website ↗")}

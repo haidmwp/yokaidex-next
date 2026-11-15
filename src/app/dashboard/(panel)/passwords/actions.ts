@@ -42,7 +42,7 @@ export async function saveRegion(id: number | null, _prev: ActionState, fd: Form
 
 export async function deleteRegion(id: number) {
   await requireAdmin();
-  await prisma.passwordRegion.delete({ where: { id } });
+  const r = await prisma.passwordRegion.delete({ where: { id } });
   refreshContent();
-  redirect("/dashboard/passwords");
+  redirect(`/dashboard/passwords?game=${r.game}`);
 }

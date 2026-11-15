@@ -24,7 +24,7 @@ export default async function QrList() {
           <thead>
             <tr>
               <th>{tr("Thứ tự", "Order")}</th>
-              <th></th>
+              <th>Icon</th>
               <th>{tr("Tên", "Name")}</th>
               <th>{tr("Số bộ QR", "QR sets")}</th>
               <th>{tr("Màu", "Color")}</th>

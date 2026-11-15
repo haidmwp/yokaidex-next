@@ -87,7 +87,7 @@ export default async function YokaiList(props: PageProps<"/dashboard/yokai">) {
           <thead>
             <tr>
               <th>#</th>
-              <th></th>
+              <th>{tr("Ảnh", "Image")}</th>
               <th>{tr("Tên", "Name")}</th>
               <th>Rank</th>
               <th>Tribe</th>

@@ -4,6 +4,7 @@ import SiteShell from "@/components/site/SiteShell";
 import Analytics from "@/components/site/Analytics";
 import AdBar from "@/components/site/AdBar";
 import SupportNotice from "@/components/site/SupportNotice";
+import ThemeScript, { THEME_KEYS } from "@/components/ThemeScript";
 import { faviconIcons, getGeneralSettings } from "@/lib/settings";
 
 // Tiêu đề tab: trang chủ = tiêu đề website, trang con = "Tên trang | tiêu đề website" (sửa trong Admin › Cài đặt chung)
@@ -34,6 +35,8 @@ async function Ads() {
 export default function SiteLayout({ children }: { children: React.ReactNode }) {
   return (
     <>
+      {/* chế độ sáng / tối của website (lưu riêng với trang quản trị) */}
+      <ThemeScript storageKey={THEME_KEYS.site} />
       <SiteShell>{children}</SiteShell>
       <Ads />
       <Analytics />

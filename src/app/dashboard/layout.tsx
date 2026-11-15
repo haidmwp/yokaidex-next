@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "@/styles/admin.css";
 import { faviconIcons, getGeneralSettings } from "@/lib/settings";
+import ThemeScript, { THEME_KEYS } from "@/components/ThemeScript";
 
 export async function generateMetadata(): Promise<Metadata> {
   const { favicon } = await getGeneralSettings();
@@ -12,5 +13,11 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default function AdminRootLayout({ children }: { children: React.ReactNode }) {
-  return <div className="admin-body">{children}</div>;
+  return (
+    <>
+      {/* chế độ sáng / tối của trang quản trị (lưu riêng với website) */}
+      <ThemeScript storageKey={THEME_KEYS.admin} />
+      <div className="admin-body">{children}</div>
+    </>
+  );
 }

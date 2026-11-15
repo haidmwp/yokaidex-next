@@ -14,14 +14,21 @@ export default function ContactForm() {
   return (
     <div className="contact-form-wrapper">
       <form className="contact-form" ref={form} action={action}>
-        <label>
-          Full name <span className="require">*</span>
-        </label>
-        <input type="text" name="user_name" placeholder="Enter your full name" required />
-        <label>
-          Email <span className="require">*</span>
-        </label>
-        <input type="email" name="user_email" placeholder="Enter your email" required />
+        {/* Full name + Email trên cùng một hàng (2 cột), điện thoại xuống 1 cột */}
+        <div className="contact-form-row">
+          <div>
+            <label htmlFor="contact-name">
+              Full name <span className="require">*</span>
+            </label>
+            <input id="contact-name" type="text" name="user_name" placeholder="Enter your full name" required />
+          </div>
+          <div>
+            <label htmlFor="contact-email">
+              Email <span className="require">*</span>
+            </label>
+            <input id="contact-email" type="email" name="user_email" placeholder="Enter your email" required />
+          </div>
+        </div>
         <label>
           Subject <span className="require">*</span>
         </label>

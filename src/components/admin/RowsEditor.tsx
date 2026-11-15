@@ -2,12 +2,14 @@
 
 import { useState } from "react";
 import { ColorInput, ImageInput } from "./Fields";
+import ImagesInput from "./ImagesInput";
 import { useTr } from "./AdminLang";
 
 export type Column = {
   key: string;
   label: string;
-  type?: "text" | "textarea" | "number" | "color" | "image" | "lines" | "select";
+  /** images: danh sách nhiều ảnh (string[]) có upload */
+  type?: "text" | "textarea" | "number" | "color" | "image" | "images" | "lines" | "select";
   options?: readonly string[];
   width?: number | string;
   placeholder?: string;
@@ -20,7 +22,7 @@ const withKey = (r: Record<string, unknown>): Row => ({ ...r, _k: ++seq });
 
 function blank(columns: Column[]) {
   const r: Record<string, unknown> = {};
-  for (const c of columns) r[c.key] = c.type === "lines" ? [] : c.type === "number" ? 0 : c.type === "select" ? c.options?.[0] ?? "" : "";
+  for (const c of columns) r[c.key] = c.type === "lines" || c.type === "images" ? [] : c.type === "number" ? 0 : c.type === "select" ? c.options?.[0] ?? "" : "";
   return r;
 }
 
@@ -88,7 +90,7 @@ export default function RowsEditor({
                 {columns.map((c) => {
                   const v = r[c.key];
                   return (
-                    <td key={c.key} style={{ width: c.width, minWidth: c.type === "image" ? 240 : 120 }}>
+                    <td key={c.key} style={{ width: c.width, minWidth: c.type === "image" ? 240 : c.type === "images" ? 320 : 120 }}>
                       {c.type === "textarea" ? (
                         <textarea rows={2} value={String(v ?? "")} placeholder={c.placeholder} onChange={(e) => set(i, c.key, e.target.value)} />
                       ) : c.type === "lines" ? (
@@ -98,6 +100,8 @@ export default function RowsEditor({
                           placeholder={c.placeholder ?? tr("Mỗi dòng một giá trị", "One value per line")}
                           onChange={(e) => set(i, c.key, e.target.value.split("\n"))}
                         />
+                      ) : c.type === "images" ? (
+                        <ImagesInput value={(v as string[]) ?? []} onChange={(x) => set(i, c.key, x)} />
                       ) : c.type === "image" ? (
                         <ImageInput value={String(v ?? "")} onChange={(x) => set(i, c.key, x)} />
                       ) : c.type === "color" ? (

@@ -24,7 +24,7 @@ export default async function FoodList() {
           <thead>
             <tr>
               <th>{tr("Thứ tự", "Order")}</th>
-              <th></th>
+              <th>Icon</th>
               <th>{tr("Nhóm", "Group")}</th>
               <th>{tr("Số món", "Items")}</th>
               <th>{tr("Màu", "Color")}</th>

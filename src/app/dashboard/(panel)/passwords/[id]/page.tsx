@@ -13,8 +13,11 @@ export default async function EditRegion(props: PageProps<"/dashboard/passwords/
   const { id } = await props.params;
   const { tr } = await getTr();
   const isNew = id === "new";
+  // thêm mới từ tab nào thì chọn sẵn game đó (?game=)
+  const sp = (await props.searchParams) as { game?: string };
+  const newGame = [1, 2, 3].includes(Number(sp.game)) ? Number(sp.game) : 1;
   const r = isNew
-    ? { id: 0, game: 1, code: "", label: "", color: "#758EFF", sortOrder: 99, passwords: [] }
+    ? { id: 0, game: newGame, code: "", label: "", color: "#758EFF", sortOrder: 99, passwords: [] }
     : await prisma.passwordRegion.findUnique({
         where: { id: Number(id) },
         include: { passwords: { orderBy: [{ sortOrder: "asc" }, { id: "asc" }] } },
@@ -26,7 +29,7 @@ export default async function EditRegion(props: PageProps<"/dashboard/passwords/
         <div>
           <h1>{isNew ? tr("Thêm vùng password", "Add password region") : `Yo-kai Watch ${r.game} · ${r.label}`}</h1>
           <p>
-            <Link href="/dashboard/passwords">{tr("← Danh sách", "← Back to list")}</Link>
+            <Link href={`/dashboard/passwords?game=${r.game}`}>{tr("← Danh sách", "← Back to list")}</Link>
             {!isNew && (
               <>
                 {" · "}

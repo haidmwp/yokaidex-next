@@ -8,7 +8,7 @@ import { saveGeneralSettings } from "./actions";
 
 function Status({ on, children }: { on: boolean; children: React.ReactNode }) {
   return (
-    <div className={on ? "a-alert a-alert-ok" : "a-alert"} style={{ marginTop: 14, marginBottom: 0, background: on ? undefined : "#f4f5f9" }}>
+    <div className={on ? "a-alert a-alert-ok" : "a-alert"} style={{ marginTop: 14, marginBottom: 0, background: on ? undefined : "var(--a-subtle)" }}>
       {children}
     </div>
   );

@@ -55,7 +55,7 @@ export default async function EditQr(props: PageProps<"/dashboard/qr-code/[id]">
         </div>
         <div className="a-card">
           <h2>{tr("Các bộ QR", "QR sets")}</h2>
-          <p className="a-hint">{tr("Mỗi bộ là một trang slide; cột “Ảnh QR” nhập mỗi dòng một URL ảnh.", "Each set is one slide page; in the “QR images” column enter one image URL per line.")}</p>
+          <p className="a-hint">{tr("Mỗi bộ là một trang slide. Cột “Ảnh QR”: bấm Upload ảnh (chọn được nhiều ảnh một lúc), dùng ← → để đổi thứ tự, × để xoá.", "Each set is one slide page. “QR images” column: click Upload images (several at once), use ← → to reorder and × to remove.")}</p>
           <RowsEditor
             name="sets"
             addLabel={tr("+ Thêm bộ QR", "+ Add QR set")}
@@ -65,7 +65,7 @@ export default async function EditQr(props: PageProps<"/dashboard/qr-code/[id]">
               { key: "name", label: tr("Tên", "Name"), width: 160 },
               { key: "slug", label: "Slug", width: 160, placeholder: tr("tự tạo từ tên", "auto from name") },
               { key: "color", label: tr("Màu", "Color"), type: "color", width: 150 },
-              { key: "slides", label: tr("Ảnh QR (mỗi dòng 1 URL)", "QR images (one URL per line)"), type: "lines" },
+              { key: "slides", label: tr("Ảnh QR", "QR images"), type: "images" },
             ]}
           />
         </div>

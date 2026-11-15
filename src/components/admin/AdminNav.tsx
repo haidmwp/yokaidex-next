@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { Tr } from "@/lib/admin-lang";
 import { useTr } from "./AdminLang";
 
@@ -41,6 +41,12 @@ export default function AdminNav({ unread, children }: { unread: number; childre
   const pathname = usePathname();
   const { tr } = useTr();
   const [open, setOpen] = useState(false);
+
+  // mobile: khoá cuộn trang khi menu đang mở
+  useEffect(() => {
+    document.documentElement.classList.toggle("a-menu-lock", open);
+    return () => document.documentElement.classList.remove("a-menu-lock");
+  }, [open]);
 
   return (
     <div className="a-layout">

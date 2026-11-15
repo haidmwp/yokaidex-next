@@ -22,7 +22,7 @@ async function QrSetView({ params }: { params: Promise<{ slug: string; set: stri
       <div className="qr-code-slide-content-wrapper">
         <div className="container">
           <div className="qr-code-slide-content">
-            <QrSlider slides={qr.slides} />
+            <QrSlider key={`${slug}/${set}`} slides={qr.slides} storageKey={`yd-qr-slide:${slug}/${set}`} />
           </div>
         </div>
       </div>

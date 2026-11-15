@@ -65,18 +65,34 @@ export const PASSWORD_GAMES = [
   { game: 3, title: "PW Yo-kai Watch 3", color: "#6DAA73", logo: "/img/ui/Yo-kai_Watch_3_logo.webp" },
 ] as const;
 
-export const NAV_ITEMS = [
+/** Mục con trong menu (dropdown desktop / menu con mobile). */
+export type NavChild = { href: string; label: string };
+export type NavItem = { href: string; label: string; icon: string; match: string[]; divider?: boolean; children?: NavChild[] };
+
+export const NAV_ITEMS: NavItem[] = [
   { href: "/", label: "Home", icon: "icon-home.png", match: ["/"], divider: true },
-  { href: "/medallium", label: "Medallium", icon: "icon-medallium.png", match: ["/medallium", "/yokai-watch"] },
+  {
+    href: "/medallium",
+    label: "Medallium",
+    icon: "icon-medallium.png",
+    match: ["/medallium", "/yokai-watch"],
+    children: YOKAI_GAMES.map((g) => ({ href: yokaiListHref(g.game), label: g.title })),
+  },
   { href: "/qr-code", label: "QR Code", icon: "icon-qr-code.png", match: ["/qr-code"] },
   { href: "/baffle-board", label: "Baffle Board", icon: "icon-baffle-board.png", match: ["/baffle-board"] },
   { href: "/attitudes", label: "Attitudes", icon: "icon-attitudes.png", match: ["/attitudes"], divider: true },
-  { href: "/password", label: "Password", icon: "icon-password.png", match: ["/password"] },
+  {
+    href: "/password",
+    label: "Password",
+    icon: "icon-password.png",
+    match: ["/password"],
+    children: PASSWORD_GAMES.map((g) => ({ href: `/password-${g.game}`, label: `Yo-kai Watch ${g.game}` })),
+  },
   { href: "/rare-special-soul", label: "RARE Special Soul", icon: "icon-soul.png", match: ["/rare-special-soul"] },
   { href: "/food", label: "Food", icon: "icon-food.png", match: ["/food"], divider: true },
   { href: "/contact", label: "Contact Us", icon: "icon-contact.png", match: ["/contact"] },
   { href: "/privacy-policy", label: "Privacy Policy", icon: "icon-policy.png", match: ["/privacy-policy"] },
-  { href: "/changelog", label: "Changelog", icon: "icon-changelog.png", match: ["/changelog"] },
+  { href: "/changelog", label: "Changelog", icon: "icon-changelog.png", match: ["/changelog"], divider: true },
 ];
 
 /** Tiêu đề trang; phần " | <tiêu đề website>" do layout ghép theo Cài đặt chung. */
