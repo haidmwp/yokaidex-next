@@ -4,6 +4,21 @@ import Link from "next/link";
 import { useMemo, useState } from "react";
 import { ATTRIBUTES, RANKS, TRIBES, attributeImage, rankImage, tribeImage } from "@/lib/constants";
 import type { YokaiCard } from "@/lib/types";
+import { type YokaiMark, useMyYokai } from "@/lib/local-store";
+
+const MARK_BADGE: Record<YokaiMark, { icon: string; label: string }> = {
+  got: { icon: "✓", label: "Got it" },
+  want: { icon: "★", label: "Want" },
+};
+
+function MarkBadge({ mark }: { mark?: YokaiMark }) {
+  if (!mark) return null;
+  return (
+    <span className={`yokai-mark-badge yokai-mark-${mark}`} title={MARK_BADGE[mark].label}>
+      {MARK_BADGE[mark].icon}
+    </span>
+  );
+}
 
 function EmptyList() {
   return (
@@ -19,6 +34,12 @@ export default function MedalliumList({ yokais, basePath }: { yokais: YokaiCard[
   const [rank, setRank] = useState("");
   const [attribute, setAttribute] = useState("");
   const [tribe, setTribe] = useState("");
+  const [mine, setMine] = useState("");
+  const game = basePath.match(/yokai-watch-(\d)/)?.[1] ?? "";
+  const [myYokai] = useMyYokai();
+  const marks = useMemo(() => myYokai[game] ?? {}, [myYokai, game]);
+  const gotCount = yokais.filter((y) => marks[y.slug] === "got").length;
+  const wantCount = yokais.filter((y) => marks[y.slug] === "want").length;
 
   const list = useMemo(() => {
     const q = search.trim().toLowerCase();
@@ -27,9 +48,10 @@ export default function MedalliumList({ yokais, basePath }: { yokais: YokaiCard[
         (!q || y.name.toLowerCase().includes(q) || y.number.includes(q) || y.slug.includes(q)) &&
         (!rank || y.rank === rank) &&
         (!attribute || y.attribute === attribute) &&
-        (!tribe || y.tribe === tribe),
+        (!tribe || y.tribe === tribe) &&
+        (!mine || (mine === "none" ? !marks[y.slug] : marks[y.slug] === mine)),
     );
-  }, [yokais, search, rank, attribute, tribe]);
+  }, [yokais, search, rank, attribute, tribe, mine, marks]);
 
   return (
     <div className="medallium-list">
@@ -37,7 +59,13 @@ export default function MedalliumList({ yokais, basePath }: { yokais: YokaiCard[
         <div className="yokai-filter-wrapper">
           <div className="yokai-filter-left">
             <img alt="search" className="icon-search" src="/img/ui/icon-search.svg" />
-            <input onChange={(e) => setSearch(e.target.value)} className="yokai-search" placeholder="Search..." />
+            <input onChange={(e) => setSearch(e.target.value)} className="yokai-search" placeholder={`Search in ${list.length} yo-kai...`} aria-label="Search yo-kai" />
+            <select onChange={(e) => setMine(e.target.value)} name="mine" id="filter-mine" aria-label="My Yo-kai">
+              <option value="">All Yo-kai</option>
+              <option value="got">Got it ({gotCount})</option>
+              <option value="want">Want ({wantCount})</option>
+              <option value="none">Not got yet</option>
+            </select>
           </div>
           <div className="yokai-filter-right">
             <select onChange={(e) => setRank(e.target.value)} name="rank" id="filter-rank">
@@ -68,6 +96,7 @@ export default function MedalliumList({ yokais, basePath }: { yokais: YokaiCard[
             {list.map((y) => (
               <li key={y.number} style={{ backgroundColor: y.color }} className="yokai-content-pc-wrapper">
                 <span className="bg-color-pc"></span>
+                <MarkBadge mark={marks[y.slug]} />
                 <Link className="yokai-content-pc" href={`${basePath}/${y.slug}`}>
                   <span className="img-yokai-wrapper-pc">
                     <img className="img-yokai-pc" alt={y.name} src={y.image} loading="lazy" />
@@ -109,6 +138,7 @@ export default function MedalliumList({ yokais, basePath }: { yokais: YokaiCard[
                     <img className="img-trible" alt={y.tribe} src={tribeImage(y.tribe)} />
                   </span>
                   <span className="bg-color"></span>
+                  <MarkBadge mark={marks[y.slug]} />
                 </Link>
               </li>
             ))}

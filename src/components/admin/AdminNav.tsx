@@ -17,6 +17,7 @@ const groups = (tr: Tr) => [
       { href: "/dashboard/settings", label: tr("Cài đặt chung", "General settings"), icon: "icon-baffle-board.png" },
       { href: "/dashboard/messages", label: tr("Tin nhắn liên hệ", "Contact messages"), icon: "icon-contact.png", badge: true },
       { href: "/dashboard/users", label: tr("Tài khoản admin", "Admin accounts"), icon: "icon-password.png" },
+      { href: "/dashboard/maintenance", label: tr("Bảo trì & sao lưu", "Maintenance & backups"), icon: "icon-changelog.png" },
     ],
   },
   {

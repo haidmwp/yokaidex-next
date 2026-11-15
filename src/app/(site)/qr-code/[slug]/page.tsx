@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
 import PageHeader from "@/components/site/PageHeader";
+import QrSetList from "@/components/site/QrSetList";
 import { getQrCategories, getQrCategory } from "@/lib/data";
 import { pageTitle } from "@/lib/constants";
 
@@ -27,13 +27,7 @@ async function QrList({ params }: { params: Promise<{ slug: string }> }) {
       <div className="qr-code-list-wrapper">
         <div className="container">
           <div className="qr-list-content">
-            <ul>
-              {cat.sets.map((s) => (
-                <li key={s.slug}>
-                  <Link href={`/qr-code/${cat.slug}/${s.slug}`}>{s.name}</Link>
-                </li>
-              ))}
-            </ul>
+            <QrSetList category={cat.slug} sets={cat.sets} />
           </div>
         </div>
       </div>

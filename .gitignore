@@ -49,3 +49,6 @@ next-env.d.ts
 
 # khoá bí mật (Google service account...)
 /secrets/
+
+# bản sao lưu database (src/lib/backups.ts)
+/prisma/backups/

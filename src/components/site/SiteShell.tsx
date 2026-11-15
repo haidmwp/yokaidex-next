@@ -22,6 +22,11 @@ const isChildActive = (pathname: string, href: string) => pathname === href || p
 function SidebarLinks({ pathname, onNavigate }: { pathname: string; onNavigate: () => void }) {
   // menu con: mặc định mở khi đang ở trong nhóm đó, người xem bấm mũi tên để mở/đóng
   const [toggled, setToggled] = useState<Record<string, boolean>>({});
+  // bấm một mục bất kỳ: đóng hết các menu con (lần mở menu sau không còn bung sẵn) rồi đóng sidebar
+  const navigate = () => {
+    setToggled(Object.fromEntries(NAV_ITEMS.filter((i) => i.children).map((i) => [i.href, false])));
+    onNavigate();
+  };
   return (
     <ul className="sidebar-content">
       {NAV_ITEMS.map((item) => {
@@ -30,7 +35,7 @@ function SidebarLinks({ pathname, onNavigate }: { pathname: string; onNavigate: 
         return (
           <li key={item.href} className={item.divider ? `sidebar-${item.href === "/" ? "home" : item.href.slice(1)}-link` : undefined}>
             <div className="sidebar-item">
-              <Link href={item.href} onClick={onNavigate} className={active ? "active nav-link" : "nav-link"}>
+              <Link href={item.href} onClick={navigate} className={active ? "active nav-link" : "nav-link"}>
                 <img alt="icon" className="icon-menu" src={`/img/ui/menu/${item.icon}`} /> {item.label}
               </Link>
               {item.children && (
@@ -51,7 +56,7 @@ function SidebarLinks({ pathname, onNavigate }: { pathname: string; onNavigate: 
               <ul className="sidebar-sub">
                 {item.children.map((c) => (
                   <li key={c.href}>
-                    <Link href={c.href} onClick={onNavigate} className={isChildActive(pathname, c.href) ? "active-sub nav-link" : "nav-link"}>
+                    <Link href={c.href} onClick={navigate} className={isChildActive(pathname, c.href) ? "active-sub nav-link" : "nav-link"}>
                       {c.label}
                     </Link>
                   </li>
@@ -66,12 +71,23 @@ function SidebarLinks({ pathname, onNavigate }: { pathname: string; onNavigate: 
 }
 
 function TopNav({ pathname }: { pathname: string }) {
+  // Sau khi bấm một mục trong dropdown: chuột vẫn nằm trên menu và link vẫn giữ focus nên
+  // dropdown (mở bằng :hover / :focus-within) không tự đóng -> tạm ẩn đến khi chuột rời khỏi mục.
+  const [closed, setClosed] = useState<string | null>(null);
+  const closeDropdown = (href: string) => {
+    setClosed(href);
+    (document.activeElement as HTMLElement | null)?.blur();
+  };
   return (
     <nav id="navbar" className={pathname === "/medallium" ? "medallium-navigation" : "site-navigation"}>
       <div className="container">
         <ul className="navbar-content">
           {NAV_ITEMS.map((item) => (
-            <li key={item.href} className={item.children ? "has-dropdown" : undefined}>
+            <li
+              key={item.href}
+              className={item.children ? (closed === item.href ? "has-dropdown dropdown-closed" : "has-dropdown") : undefined}
+              onMouseLeave={item.children && closed === item.href ? () => setClosed(null) : undefined}
+            >
               <Link href={item.href} className={isActive(pathname, item.match) ? "active nav-link" : "nav-link"} aria-haspopup={item.children ? "true" : undefined}>
                 {item.label}
                 {item.children && (
@@ -84,7 +100,7 @@ function TopNav({ pathname }: { pathname: string }) {
                 <ul className="nav-dropdown">
                   {item.children.map((c) => (
                     <li key={c.href}>
-                      <Link href={c.href} className={isChildActive(pathname, c.href) ? "active nav-link" : "nav-link"}>
+                      <Link href={c.href} onClick={() => closeDropdown(item.href)} className={isChildActive(pathname, c.href) ? "active nav-link" : "nav-link"}>
                         {c.label}
                       </Link>
                     </li>

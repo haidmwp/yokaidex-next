@@ -76,10 +76,13 @@ export async function getQrCategories() {
 export async function getQrCategory(slug: string) {
   "use cache";
   tag();
-  return prisma.qrCategory.findUnique({
+  const cat = await prisma.qrCategory.findUnique({
     where: { slug },
-    include: { sets: { orderBy: [{ sortOrder: "asc" }, { id: "asc" }], select: { name: true, slug: true } } },
+    include: { sets: { orderBy: [{ sortOrder: "asc" }, { id: "asc" }], select: { name: true, slug: true, slides: true } } },
   });
+  if (!cat) return null;
+  // chỉ cần số ảnh của mỗi bộ (để hiện tiến độ "đã quét")
+  return { ...cat, sets: cat.sets.map(({ slides, ...s }) => ({ ...s, total: Array.isArray(slides) ? slides.length : 0 })) };
 }
 
 export async function getQrSet(categorySlug: string, slug: string) {

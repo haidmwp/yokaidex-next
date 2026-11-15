@@ -2107,3 +2107,379 @@ body.has-ad-bar:not(.ad-bar-hidden) .qr-code-slide-content .swiper {
 
 /* QR: chừa chỗ dãy số trang (absolute, ~42px) để ảnh căn giữa trong phần vùng xám nhìn thấy */
 .qr-code-slide-content .swiper-slide { box-sizing: border-box; padding-bottom: 42px; }
+
+/* ===== QR: đánh dấu đã quét + phóng to ===== */
+.qr-code-slide-content { position: relative; }
+.qr-tools {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    right: 12px;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    pointer-events: none;
+}
+.qr-tools > * { pointer-events: auto; }
+.qr-tools .qr-progress { margin-right: auto; }
+.qr-progress {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 999px;
+    background: #EEE;
+    color: #333;
+    font-size: 13px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+.qr-progress-done { background: #2E9E5B; color: #FFF; }
+.qr-tool-btn {
+    height: 34px;
+    padding: 0 14px;
+    border: 0;
+    border-radius: 4px;
+    background: #FFF;
+    color: #333;
+    font: inherit;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+}
+.qr-tool-btn:hover { background: #E9E9E9; }
+.qr-tool-on, .qr-tool-on:hover { background: #2E9E5B; color: #FFF; }
+.img-qr-slide { cursor: zoom-in; }
+.qr-code-slide-content .swiper-slide { position: relative; }
+.qr-scanned-badge {
+    position: absolute;
+    top: calc(50% - 21px - 125px - 14px);
+    left: calc(50% + 125px - 14px);
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: #2E9E5B;
+    color: #FFF;
+    font-weight: 700;
+    line-height: 28px;
+    text-align: center;
+    pointer-events: none;
+}
+.slide-number-scanned { color: #2E9E5B; }
+.slide-number-scanned::after { content: "✓"; font-size: 11px; margin-left: 1px; }
+.slide-number-scanned.slide-number-active { color: #DC143C; }
+
+.qr-zoom {
+    position: fixed;
+    inset: 0;
+    z-index: 2147483100;
+    background: #FFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.qr-zoom-img {
+    width: min(92vw, calc(100dvh - 140px));
+    height: min(92vw, calc(100dvh - 140px));
+    object-fit: contain;
+    image-rendering: pixelated;
+}
+.qr-zoom-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+    padding: 12px 16px;
+}
+.qr-zoom-count { margin-right: auto; font-weight: 700; color: #333; }
+.qr-zoom .qr-tool-btn { background: #EEE; }
+.qr-zoom .qr-tool-btn:hover { background: #E0E0E0; }
+.qr-zoom .qr-tool-on, .qr-zoom .qr-tool-on:hover { background: #2E9E5B; color: #FFF; }
+.qr-zoom-close, .qr-zoom-nav {
+    border: 0;
+    background: #EEE;
+    color: #333;
+    cursor: pointer;
+    font: inherit;
+    font-weight: 700;
+    line-height: 1;
+}
+.qr-zoom-close { width: 40px; height: 40px; border-radius: 50%; font-size: 26px; }
+.qr-zoom-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 44px;
+    height: 64px;
+    border-radius: 4px;
+    font-size: 34px;
+    opacity: .85;
+}
+.qr-zoom-prev { left: 12px; }
+.qr-zoom-next { right: 12px; }
+.qr-zoom-close:hover, .qr-zoom-nav:hover { background: #DDD; opacity: 1; }
+
+.qr-set-link {
+    display: flex !important;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+@media (max-width: 600px) {
+    .qr-tool-btn { height: 30px; padding: 0 10px; font-size: 13px; }
+    .qr-zoom-nav { width: 36px; height: 52px; font-size: 28px; }
+}
+
+/* ===== Medallium: lọc "Yo-kai của tôi" (cạnh ô tìm kiếm) + huy hiệu Got it / Want ===== */
+.yokai-filter-left { gap: 10px; }
+.yokai-filter-left .yokai-search { flex: 1; min-width: 0; }
+#filter-mine {
+    flex: 0 0 170px;
+    padding: 15px;
+    border: none;
+    border-radius: 5px;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    background: var(--site-surface) url("/img/ui/icon-down.svg") no-repeat 92% center;
+}
+html[data-theme="dark"] #filter-mine { background-image: url("/img/ui/icon-down-white.svg"); }
+@media (max-width: 809px) {
+    .yokai-filter-left { gap: 7px; }
+    #filter-mine { flex-basis: 130px; height: 42px; padding: 10px; }
+}
+
+.yokai-mark-badge {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    z-index: 3;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    color: #FFF;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 26px;
+    text-align: center;
+    box-shadow: 0 1px 3px rgba(0,0,0,.3);
+    pointer-events: none;
+}
+.yokai-list-wrapper li { position: relative; }
+.yokai-mark-got { background: #2E9E5B; }
+.yokai-mark-want { background: #E8A317; }
+
+.yokai-mark-buttons {
+    position: absolute;
+    left: 50%;
+    top: 10px;
+    transform: translateX(-50%);
+    z-index: 2;
+    display: flex;
+    gap: 8px;
+}
+.yokai-mark-btn {
+    height: 34px;
+    padding: 0 14px;
+    /* viền = màu Yo-kai (dải tiêu đề); nền trắng (sáng) / tối (dark mode) */
+    border: 2px solid var(--mark-bg, #E85A3D);
+    border-radius: 0;
+    background: #FFF;
+    color: #333;
+    font: inherit;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    white-space: nowrap;
+}
+.yokai-mark-btn:hover { filter: brightness(.93); }
+html[data-theme="dark"] .yokai-mark-btn:not(.on-got):not(.on-want) { background: var(--site-surface); color: #E6E6E6; }
+html[data-theme="dark"] .yokai-mark-btn:hover { filter: brightness(1.25); }
+.yokai-mark-btn.on-got, .yokai-mark-btn.on-got:hover { background: #2E9E5B; border-color: #2E9E5B; color: #FFF; }
+.yokai-mark-btn.on-want, .yokai-mark-btn.on-want:hover { background: #E8A317; border-color: #E8A317; color: #FFF; }
+@media (max-width: 600px) {
+    .yokai-mark-btn { height: 30px; padding: 0 10px; font-size: 13px; }
+}
+.yokai-content-pc-wrapper .yokai-mark-badge { top: 18px; right: 62px; }
+.yokai-list-wrapper .yokai-mark-badge { top: 4px; right: 4px; width: 22px; height: 22px; line-height: 22px; font-size: 13px; }
+
+/* ô tìm kiếm + các ô lọc Medallium: cùng nền, cùng màu chữ (cả sáng lẫn tối) */
+.yokai-search,
+#filter-mine,
+#filter-rank,
+#filter-attribute,
+#filter-tribe {
+    background-color: var(--site-surface);
+    color: #333;
+}
+.yokai-search::placeholder { color: #888; opacity: 1; }
+html[data-theme="dark"] .yokai-search,
+html[data-theme="dark"] #filter-mine,
+html[data-theme="dark"] #filter-rank,
+html[data-theme="dark"] #filter-attribute,
+html[data-theme="dark"] #filter-tribe { color: #E6E6E6; }
+html[data-theme="dark"] .yokai-search::placeholder { color: #9A9DAA; }
+
+/* dropdown menu: ẩn ngay sau khi bấm chọn (SiteShell gắn .dropdown-closed đến khi chuột rời mục) */
+.navbar-content li.has-dropdown.dropdown-closed > .nav-dropdown { display: none; }
+.navbar-content li.has-dropdown.dropdown-closed .nav-caret { transform: none; }
+
+/* mũi tên các ô lọc Medallium: cách mép phải cố định, đều nhau dù ô rộng hẹp khác nhau */
+#filter-mine,
+#filter-rank,
+#filter-attribute,
+#filter-tribe {
+    background-position: right 10px center;
+    padding-right: 36px;
+}
+@media (max-width: 809px) {
+    #filter-mine,
+    #filter-rank,
+    #filter-attribute,
+    #filter-tribe {
+        background-position: right 8px center;
+        padding-right: 28px;
+    }
+}
+
+/* thẻ Yo-kai (Medallium): bấm vào bất kỳ đâu trên thẻ cũng mở trang chi tiết
+   (vùng phủ của link trải kín thẻ <li>, vốn đã position: relative) */
+.yokai-content-pc::after,
+.yokai-content::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 4;
+}
+
+/* ===== Trang chi tiết Yo-kai: phần ảnh =====
+   mobile/tablet: giữ nguyên (số, biểu tượng, nút Got it / Want nằm trên ảnh; khối thông tin ẩn)
+   desktop ≥1081px: ảnh vuông bên trái, bên phải là số + tên, rank / tribe / attribute và nút đánh dấu */
+.yokai-detail-hero { position: relative; }
+.yokai-detail-info { display: none; }
+
+@media (min-width: 1081px) {
+    .yokai-detail-hero {
+        display: grid;
+        grid-template-columns: minmax(0, 36%) minmax(0, 1fr);
+        /* thông tin + nút nằm giữa theo chiều dọc */
+        grid-template-rows: 1fr auto auto 1fr;
+        column-gap: 0;
+        /* cùng tông với khung ảnh: màu Yo-kai phủ 60% trắng */
+        background: color-mix(in srgb, var(--yokai-color, #E85A3D) 40%, #FFF);
+    }
+    .yokai-detail-hero .img-yokai-detail-wrapper { grid-column: 1; grid-row: 1 / 5; aspect-ratio: 1 / 1; }
+    .yokai-detail-hero .img-yokai-detail { padding: 40px; }
+    /* thông tin đã có ở cột phải -> ẩn số/biểu tượng trên ảnh */
+    .yokai-detail-hero .yokai-number,
+    .yokai-detail-hero .img-rank-detail,
+    .yokai-detail-hero .img-tribe-detail,
+    .yokai-detail-hero .img-attribute-detail { display: none; }
+
+    .yokai-detail-info {
+        grid-column: 2;
+        grid-row: 2;
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        margin: 0;
+        padding: 0 40px 18px;
+        color: #333;
+    }
+    .yokai-info-head { display: flex; align-items: baseline; gap: 14px; margin-bottom: 6px; }
+    .yokai-info-number { font-size: 26px; font-weight: 700; opacity: .7; }
+    .yokai-info-name { font-size: 40px; font-weight: 700; line-height: 1.1; }
+    .yokai-detail-info > div:not(.yokai-info-head) {
+        display: grid;
+        grid-template-columns: 1fr auto; /* nhãn bên trái, biểu tượng bên phải */
+        align-items: center;
+        padding: 10px 14px;
+        border: 2px solid var(--yokai-color, #E85A3D); /* cùng viền với nút Got it / Want */
+        background: #FFF;
+        color: #333;
+    }
+    html[data-theme="dark"] .yokai-detail-info > div:not(.yokai-info-head) { background: var(--site-surface); color: #E6E6E6; }
+    .yokai-detail-info dt { font-weight: 700; }
+    .yokai-detail-info dd { margin: 0; display: flex; align-items: center; }
+    .yokai-detail-info dd img { width: 36px; height: 36px; object-fit: contain; }
+
+    .yokai-detail-hero .yokai-mark-buttons {
+        grid-column: 2;
+        grid-row: 3;
+        position: static;
+        transform: none;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        padding: 0 40px;
+    }
+    .yokai-detail-hero .yokai-mark-btn { height: 44px; font-size: 16px; }
+}
+
+/* Medallium mobile: vòng tròn nền sau ảnh Yo-kai theo dark mode */
+html[data-theme="dark"] .img-yokai-wrapper { background: #2A2E3D; }
+.yokai-mark-btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; }
+.yokai-verified-icon { flex: none; }
+
+/* thanh tiêu đề (mobile): nút back + menu cùng màu chữ tiêu đề #333 (ảnh SVG gốc màu đen → invert 20% = #333) */
+.menu-back img[src$="icon-back.svg"],
+.menu-toggle .icon-navbar { filter: invert(20%); }
+
+/* Medallium desktop: lưới thẻ dùng grid để mép trái/phải thẳng hàng với ô tìm kiếm và các ô lọc
+   (trước đây margin-right 1.5% làm thẻ cuối hàng lệch so với ô "All tribe") */
+.yokai-list-pc-wrapper ul {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    column-gap: 18px;
+    padding-right: 18px;
+}
+.yokai-list-pc-wrapper .yokai-content-pc-wrapper { width: auto; margin-right: 0; }
+.yokai-list-pc-wrapper .no-yokai-wrapper { grid-column: 1 / -1; }
+
+/* Medallium desktop: viền dưới/phải của thẻ sáng hơn ở dark mode (#333 gần như lẫn vào nền tối) */
+html[data-theme="dark"] .yokai-list-pc-wrapper .yokai-content-pc-wrapper { border-right-color: #6B7089; border-bottom-color: #6B7089; }
+
+/* Medallium desktop: 5 thẻ mỗi hàng, thẻ thấp hơn (ảnh nhỏ lại, đệm trên/dưới ít hơn) */
+.yokai-list-pc-wrapper ul { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+.yokai-list-pc-wrapper .yokai-content-pc-wrapper { padding: 46px 12px 44px; }
+.yokai-list-pc-wrapper .img-yokai-pc { width: 100%; max-width: 190px; height: auto; aspect-ratio: 1 / 1; }
+.yokai-list-pc-wrapper .img-yokai-wrapper-pc { display: flex; justify-content: center; }
+.yokai-list-pc-wrapper .meddallium-yokai-number-pc,
+.yokai-list-pc-wrapper .yokai-name-pc { font-size: 20px; line-height: 22px; padding: 8px 10px; }
+.yokai-list-pc-wrapper .yokai-name-pc-wrapper { margin-top: 6px; }
+.yokai-list-pc-wrapper .img-trible-pc,
+.yokai-list-pc-wrapper .img-rank-pc,
+.yokai-list-pc-wrapper .img-attribute-pc { width: 30px; height: 30px; }
+.yokai-content-pc-wrapper .yokai-mark-badge { top: 15px; right: 50px; }
+
+/* sidebar mobile: nút mũi tên mở menu con cùng nền/màu với mục đang active (vàng, chữ #333);
+   khi chạm/focus không đổi sang màu khác */
+.sidebar-item:has(> a.active) .sidebar-sub-toggle { background: #EFDE5B; color: #333; }
+.sidebar-sub-toggle:focus { outline: none; }
+.sidebar-sub-toggle:focus-visible { outline: 2px solid #EFDE5B; outline-offset: -2px; }
+.sidebar-item:has(> a.active) .sidebar-sub-toggle:focus-visible { outline-color: #333; }
+.sidebar-sub-toggle { -webkit-tap-highlight-color: transparent; }
+
+/* Medallium mobile: 3 ô lọc rank / attribute / tribe chia đều chiều rộng */
+@media (max-width: 809px) {
+    .yokai-filter-right { gap: 7px; }
+    #filter-rank,
+    #filter-attribute,
+    #filter-tribe { flex: 1 1 0; width: auto; min-width: 0; }
+}
+
+/* Medallium mobile: hàng trên chia theo cùng lưới 3 cột với hàng dưới –
+   ô tìm kiếm = 2 ô, "All Yo-kai" = 1 ô, khoảng cách đều 7px */
+@media (max-width: 809px) {
+    .yokai-filter-left {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 7px;
+    }
+    .yokai-filter-left .yokai-search { grid-column: span 2; width: 100%; }
+    .yokai-filter-left #filter-mine { width: 100%; flex: none; }
+}

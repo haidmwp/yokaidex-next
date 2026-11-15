@@ -4,6 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import PageHeader from "./PageHeader";
 import ShareButtons from "./ShareButtons";
+import YokaiMarkButtons from "./YokaiMarkButtons";
 import { getYokai, getYokaiSlugs } from "@/lib/data";
 import { SITE_URL, attributeImage, pageTitle, rankImage, tribeImage, yokaiGame, yokaiHref } from "@/lib/constants";
 import type { Part } from "@/lib/types";
@@ -74,13 +75,42 @@ export async function YokaiDetail({ game, params }: { game: number; params: Prom
       <PageHeader title={title} color={y.color} />
       <div className="yokai-detail-wrapper">
         <div className="container">
-          <div className="img-yokai-detail-wrapper" style={{ backgroundColor: y.color }}>
-            <div className="bg-img-yokai-detail"></div>
-            <img className="img-yokai-detail" alt={y.name} src={y.image} />
-            <span className="yokai-number">#{y.number}</span>
-            <img alt={y.tribe} className="img-tribe-detail" src={tribeImage(y.tribe)} />
-            <img alt={y.attribute} className="img-attribute-detail" src={attributeImage(y.attribute)} />
-            <img alt={y.rank} className="img-rank-detail" src={rankImage(y.rank)} />
+          {/* mobile/tablet: như cũ (số, biểu tượng, nút nằm trên ảnh).
+              desktop ≥1081px: ảnh bên trái, thông tin + nút bên phải (xem site.css) */}
+          <div className="yokai-detail-hero" style={{ "--yokai-color": y.color } as React.CSSProperties}>
+            <div className="img-yokai-detail-wrapper" style={{ backgroundColor: y.color }}>
+              <div className="bg-img-yokai-detail"></div>
+              <img className="img-yokai-detail" alt={y.name} src={y.image} />
+              <span className="yokai-number">#{y.number}</span>
+              <img alt={y.tribe} className="img-tribe-detail" src={tribeImage(y.tribe)} />
+              <img alt={y.attribute} className="img-attribute-detail" src={attributeImage(y.attribute)} />
+              <img alt={y.rank} className="img-rank-detail" src={rankImage(y.rank)} />
+            </div>
+            <dl className="yokai-detail-info">
+              <div className="yokai-info-head">
+                <span className="yokai-info-number">#{y.number}</span>
+                <span className="yokai-info-name">{y.name}</span>
+              </div>
+              <div>
+                <dt>Rank</dt>
+                <dd>
+                  <img alt={y.rank} title={y.rank} src={rankImage(y.rank)} />
+                </dd>
+              </div>
+              <div>
+                <dt>Tribe</dt>
+                <dd>
+                  <img alt={y.tribe} title={y.tribe} src={tribeImage(y.tribe)} />
+                </dd>
+              </div>
+              <div>
+                <dt>Attribute</dt>
+                <dd>
+                  <img alt={y.attribute} title={y.attribute} src={attributeImage(y.attribute)} />
+                </dd>
+              </div>
+            </dl>
+            <YokaiMarkButtons game={game} slug={y.slug} color={y.color} />
           </div>
 
           {y.food && (
